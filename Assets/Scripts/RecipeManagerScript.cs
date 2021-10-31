@@ -93,7 +93,9 @@ public class RecipeManagerScript : MonoBehaviour
                     //谜之bug用了魔法解决问题...我真的不行了
                     if (player.GetComponent<PlayerScript>().currentMat.name != "Match - Low Damage Bullet" &&
                         player.GetComponent<PlayerScript>().currentMat.name != "Argyi - Self Healing" &&
-                        player.GetComponent<PlayerScript>().currentMat.name != "Copper Nail - Drop Material Bullet")
+                        player.GetComponent<PlayerScript>().currentMat.name != "Copper Nail - Drop Material Bullet" &&
+                        player.GetComponent<PlayerScript>().currentMat.name != "Cotton" &&
+                        player.GetComponent<PlayerScript>().currentMat.name != "Tear")
                     {
                         if (possibleCombinations.Count > 0)
 						{
