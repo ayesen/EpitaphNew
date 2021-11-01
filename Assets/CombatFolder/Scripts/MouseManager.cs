@@ -9,8 +9,14 @@ public class MouseManager : MonoBehaviour
     public LayerMask ignoreMe;
     public bool slctedEnemy = false;
     public GameObject enemySelected;
+    public bool showCursor;
 
-	private void Awake()
+    void Start()
+    {
+        Cursor.visible = showCursor;
+    }
+
+    private void Awake()
 	{
         me = this;
 	}

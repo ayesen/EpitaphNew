@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
 	static public PlayerScript me;
-	private Animator anim;
+	public Animator anim;
 	public GameObject actualModel;
 	public float spd;
 	public float rot_spd;
@@ -21,6 +21,8 @@ public class PlayerScript : MonoBehaviour
 	[Header("Temp Inventory")]
 	public List<InventoryDict> tempInventory;
 	public List<GameObject> chosenMats;
+
+	
 
 	private void Awake()
 	{
