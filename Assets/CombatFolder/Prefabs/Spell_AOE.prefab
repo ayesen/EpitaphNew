@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1501126100792903112}
   - component: {fileID: 210570345}
   - component: {fileID: 8769391955229090479}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Spell_AOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501126100792903113}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetsInAoe: []
   mat: {fileID: 0}
+  aoe_burst: {fileID: 7247770929345205438, guid: 3b5a3f6ac4bc64b44a8b92d99df5db3b, type: 3}
 --- !u!54 &8769391955229090479
 Rigidbody:
   m_ObjectHideFlags: 0

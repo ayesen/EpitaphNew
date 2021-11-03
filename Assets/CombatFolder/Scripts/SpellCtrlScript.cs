@@ -16,11 +16,11 @@ public class SpellCtrlScript : MonoBehaviour
 	private float spellSpd;
 	private float spellMass;
 
-	[Header("AOE")]
+	[Header("AOE")] // the ratio between range indicator's scale, aoe collider's scale, and aoe particle effect is rougly 1:15:20
 	public GameObject spell_AOE_prefab;
 	public GameObject aoeRangeIndicator;
 	private float aoeDistance;
-	private float aoeRadius;
+	private float aoeRadius; // this is the aoe collider's scale
 	private Color aoeOgColor;
 
 	[Header("PIE")]
@@ -118,7 +118,6 @@ public class SpellCtrlScript : MonoBehaviour
 				// cast the spell
 				if (Input.GetMouseButtonDown(0) && ps.ConsumeMats())
 				{
-					SpawnSpell_aoe();
 					anim.Play("testWindup_aoe");
 				}
 			}

@@ -105,3 +105,11 @@
 // 10/31/21
 // xvisual cue to indicate backswing state
 // vfx
+	// xprojectile
+	// aoe
+		// xheal
+		// xdmg
+		// dot
+	// pie
+	// xhot
+	// dot

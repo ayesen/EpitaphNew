@@ -6,6 +6,18 @@ public class SpellAOEScript : MonoBehaviour
 {
 	public List<GameObject> targetsInAoe;
 	public GameObject mat;
+	public ParticleSystem aoe_burst;
+	public ParticleSystem.ShapeModule sm;
+
+	private void Start()
+	{
+		
+		Vector3 pos = new Vector3(transform.position.x, 1, transform.position.z);
+		float targetRadius = transform.localScale.x / 1.5f * 2f;
+		ParticleSystem aoeB = Instantiate(aoe_burst, pos, Quaternion.identity);
+		sm = aoeB.shape;
+		sm.radius = targetRadius;
+	}
 
 	void Update()
 	{
@@ -15,7 +27,7 @@ public class SpellAOEScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("RealPlayer"))
 		{
 			// !effect here
 			EffectManager.me.ProcessEffects(mat, other.gameObject);

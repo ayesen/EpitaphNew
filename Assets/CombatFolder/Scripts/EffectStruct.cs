@@ -6,10 +6,10 @@ using UnityEngine;
 public struct EffectStruct
 {
     [Header("DMG")]
-    public int damageAmount;
+    public int damageAmount; // if it's not DOT, one time dmg amount; if it's DOT, dmg amount for each tick
     public bool DOT;
-    public float DOT_interval;
-    public float DOT_duration;
+    public float DOT_interval; // interval between each dmg
+    public float DOT_duration; // total duration of the DOT
     public bool freezeFrame;
 
     [Header("CTRL")]
@@ -18,10 +18,10 @@ public struct EffectStruct
     public float knockback_amount;
 
     [Header("RECOV")]
-    public float healAmount;
+    public float healAmount; // if it's not HOT, one time heal amount; if it's hot, heal amount for each tick
     public bool HOT;
-    public float HOT_interval;
-    public float HOT_duration;
+    public float HOT_interval; // interval between each heal
+    public float HOT_duration; // total duration of the hot
 
     [Header("SPLY")]
     public List<GameObject> matProduce; // for testing only

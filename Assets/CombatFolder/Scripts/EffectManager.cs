@@ -10,6 +10,10 @@ public class EffectManager : MonoBehaviour
 	public GameObject enemy;
 	public Enemy enemyScript;
 
+	// particle effects
+	public ParticleSystem healVFX;
+	public ParticleSystem hotVFX;
+
 	public enum CtrlTypes
 	{
 		none,
@@ -106,17 +110,18 @@ public class EffectManager : MonoBehaviour
 
 	public void Heal(GameObject target, EffectStruct effect)
 	{
-		//print("I am debugging healing");
-		if (target.GetComponent<PlayerScript>() != null && effect.healAmount > 0)
+		print("I am debugging healing");
+		if (target.GetComponentInParent<PlayerScript>() != null && effect.healAmount > 0)
 		{
-			print("healed " + target.name + " " + effect.healAmount);
-			target.GetComponent<PlayerScript>().hp += effect.healAmount;
+			target.GetComponentInParent<PlayerScript>().hp += effect.healAmount;
+			healVFX.Play();
 		}
 
-        if (target.GetComponent<PlayerScript>() != null && effect.HOT)
+        if (target.GetComponentInParent<PlayerScript>() != null && effect.HOT)
         {
 			StartCoroutine(DoHOT(effect, target));
-        }
+			hotVFX.gameObject.SetActive(true);
+		}
 	}
 
 	public void KnockBack(float amount, GameObject er, GameObject ee)
@@ -186,11 +191,12 @@ public class EffectManager : MonoBehaviour
 		{
 			timer += 1;
 			print("healed " + effect.HOT_interval + " HOT HP to " + target.name);
-			target.GetComponent<PlayerScript>().hp += effect.HOT_interval;
+			target.GetComponentInParent<PlayerScript>().hp += effect.HOT_interval;
 			yield return new WaitForSeconds(1f);
 		}
 		if (timer > effect.HOT_duration)
 		{
+			hotVFX.gameObject.SetActive(false);
 			StopCoroutine(DoHOT(effect, target));
 		}
 	}
