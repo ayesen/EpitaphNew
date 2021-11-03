@@ -7,40 +7,42 @@ public class AIStateIdle : AIStateBase
     public float IdleTimer;
     public override void StartState(Enemy myEnemy)
     {
-        
+        myEnemy.ghostRider.isStopped = true;
     }
 
     public override void Update(Enemy myEnemy)
     {
-        myEnemy.Idleing();
-
-        if (myEnemy.InRange())
+        if (myEnemy.phase != Enemy.AIPhase.NotInBattle)
         {
-            
-            if (myEnemy.attackable)
+            myEnemy.Idleing();
+            if (myEnemy.InRange())
             {
-                IdleTimer += Time.fixedDeltaTime;
-                if (IdleTimer > myEnemy.atkSpd)
+
+                if (myEnemy.attackable)
                 {
-                    myEnemy.myAC.ChangeState(myEnemy.myAC.preAttackState);
+                    IdleTimer += Time.fixedDeltaTime;
+                    if (IdleTimer > myEnemy.atkSpd)
+                    {
+                        myEnemy.myAC.ChangeState(myEnemy.myAC.preAttackState);
+                    }
+                }
+                else if (!myEnemy.attackable)
+                {
+
                 }
             }
-            else if (!myEnemy.attackable)
+            else if (!myEnemy.InRange())
             {
-                
-            }
-        }
-        else if (!myEnemy.InRange())
-        {
-            if (myEnemy.walkable)
-            {
-                myEnemy.myAC.ChangeState(myEnemy.myAC.walkingState);
-            }
-            else if (!myEnemy.walkable)
-            {
-               
-            }
+                if (myEnemy.walkable)
+                {
+                    myEnemy.myAC.ChangeState(myEnemy.myAC.walkingState);
+                }
+                else if (!myEnemy.walkable)
+                {
 
+                }
+
+            }
         }
     }
 
