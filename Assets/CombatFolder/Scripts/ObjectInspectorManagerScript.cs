@@ -10,6 +10,7 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 	public GameObject textBg;
 	public GameObject pressE;
 	private bool textShowing = false;
+	public GameObject canvasUI;
 
 	private int index = 0;
 	public List<string> textToShow;
@@ -21,9 +22,16 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 
 	public void ShowText(List<string> content)
 	{
+		canvasUI.SetActive(false);
 		objectDes_ui.gameObject.SetActive(true);
-		textBg.SetActive(true);
-		pressE.SetActive(true);
+		if (textBg != null)
+		{
+			textBg.SetActive(true);
+		}
+		if (pressE != null)
+		{
+			pressE.SetActive(true);
+		}
 		textToShow = content;
 		objectDes_ui.text = content[index];
 		PlayerScript.me.GetComponentInChildren<Animator>().Play("readingText");
@@ -44,9 +52,12 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 				else
 				{
 					index = 0;
+					canvasUI.SetActive(true);
 					objectDes_ui.gameObject.SetActive(false);
-					textBg.SetActive(false);
-					pressE.SetActive(false);
+					if (textBg != null)
+						textBg.SetActive(false);
+					if (pressE != null)
+						pressE.SetActive(false);
 					objectDes_ui.text = "";
 					textShowing = false;
 					PlayerScript.me.GetComponentInChildren<Animator>().Play("testIdle");

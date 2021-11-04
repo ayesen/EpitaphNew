@@ -47,7 +47,7 @@ public class ObjectScript : MonoBehaviour
 				player.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("testIdle"))
 			{
 				inspected = true;
-				mr.enabled = false;
+				//mr.enabled = false;
 				ObjectInspectorManagerScript.me.ShowText(objectDescription);
 				foreach (GameObject interactable in interactiveSwitch)
 				{
@@ -79,7 +79,14 @@ public class ObjectScript : MonoBehaviour
 		yield return new WaitForSeconds(2);
 		sink = true;
 		GetComponent<Rigidbody>().isKinematic = true;
-		GetComponent<MeshCollider>().enabled = false;
+		if (GetComponent<MeshCollider>() != null)
+		{
+			GetComponent<MeshCollider>().enabled = false;
+		}
+		if (GetComponent<BoxCollider>() != null)
+		{
+			GetComponent<BoxCollider>().enabled = false;
+		}
 	}
 
 	private void Sinking()

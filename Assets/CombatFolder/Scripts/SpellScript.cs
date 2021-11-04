@@ -18,20 +18,25 @@ public class SpellScript : MonoBehaviour
 		{
 			//! effect here
 			EffectManager.me.ProcessEffects(mat, collision.gameObject);
-			ParticleSystem b = Instantiate(burst);
-			ParticleSystem f = Instantiate(fragments);
-			b.transform.position = collision.GetContact(0).point;
-			f.transform.position = collision.GetContact(0).point;
+			if (burst != null)
+			{
+				ParticleSystem b = Instantiate(burst);
+				b.transform.position = collision.GetContact(0).point;
+			}
+			if (fragments != null)
+			{
+				ParticleSystem f = Instantiate(fragments);
+				f.transform.position = collision.GetContact(0).point;
+			}
 		}
 		if (!collision.gameObject.CompareTag("Player"))
 		{
 			Destroy(gameObject);
-			ParticleSystem b = Instantiate(burst);
-			ParticleSystem f = Instantiate(fragments);
-			b.transform.position = collision.GetContact(0).point;
-			f.transform.position = collision.GetContact(0).point;
-
-			f.transform.rotation = PlayerScript.me.transform.rotation;
+			if (burst != null)
+			{
+				ParticleSystem b = Instantiate(burst);
+				b.transform.position = collision.GetContact(0).point;
+			}
 		}
 	}
 }

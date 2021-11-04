@@ -82,6 +82,7 @@ public class SpellCtrlScript : MonoBehaviour
 				// cast the spell
 				if (Input.GetMouseButtonDown(0) && ps.ConsumeMats())
 				{
+					lastMat = ps.currentMat;
 					anim.Play("testWindup");
 				}
 			}
@@ -118,6 +119,7 @@ public class SpellCtrlScript : MonoBehaviour
 				// cast the spell
 				if (Input.GetMouseButtonDown(0) && ps.ConsumeMats())
 				{
+					lastMat = ps.currentMat;
 					anim.Play("testWindup_aoe");
 				}
 			}
@@ -142,10 +144,11 @@ public class SpellCtrlScript : MonoBehaviour
 				// cast the spell
 				if (Input.GetMouseButtonDown(0) && ps.ConsumeMats())
 				{
+					lastMat = ps.currentMat;
 					anim.Play("testWindup_pie");
 				}
 			}
-			//! if cast type target
+			//! if cast type target (we don't have this type yet)
 			else if (currentCastType == CastType.target)
 			{
 				// turn off other indicators
@@ -163,6 +166,7 @@ public class SpellCtrlScript : MonoBehaviour
 						targetIndicator.GetComponent<Light>().color = new Color(0, 159, 179, 1);
 						//! insert effect codes here
 						print("hit enemy with target");
+						lastMat = ps.currentMat;
 						EffectManager.me.ProcessEffects(ps.currentMat, MouseManager.me.enemySelected);
 					}
 					// change indicator color back to default
@@ -191,8 +195,8 @@ public class SpellCtrlScript : MonoBehaviour
 				//! effect goes here
 				if (Input.GetMouseButtonUp(0))
 				{
-					EffectManager.me.ProcessEffects(ps.currentMat, ps.gameObject);
-					selfIndicator.GetComponent<Light>().color = new Color(59, 190, 55, 1);
+					lastMat = ps.currentMat;
+					
 				}
 			}
 			else
@@ -220,6 +224,7 @@ public class SpellCtrlScript : MonoBehaviour
 		spell.GetComponent<Rigidbody>().mass = spellMass;
 		spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * spellSpd, ForceMode.Impulse);
 		spell.GetComponent<SpellScript>().mat = ps.currentMat;
+		anim.Play("testATK");
 	}
 
 	private void SpawnSpell_aoe() // spawn a cylinder collider
@@ -229,6 +234,7 @@ public class SpellCtrlScript : MonoBehaviour
 		aoeSpell.transform.position = aoeRangeIndicator.transform.position;
 		aoeSpell.transform.localScale = new Vector3(aoeRadius, 2f, aoeRadius);
 		aoeSpell.GetComponent<SpellAOEScript>().mat = ps.currentMat;
+		anim.Play("testATK_aoe");
 	}
 
 	private void SpawnSpell_pie() // check if enemy in pie
@@ -253,6 +259,14 @@ public class SpellCtrlScript : MonoBehaviour
 				}
 			}
 		}
+		anim.Play("testATK_pie");
+	}
+
+	private void SpawnSpell_self()
+	{
+		EffectManager.me.ProcessEffects(ps.currentMat, ps.gameObject);
+		selfIndicator.GetComponent<Light>().color = new Color(59, 190, 55, 1);
+		anim.Play("testATK_self");
 	}
 
 	private void GetMatParams()

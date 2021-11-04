@@ -3,24 +3,24 @@
 // 9/21/21
 // xmovement
 // xaiming
-// projectile is combined with straight since they are typically the same, the straight line one is actually a projectile
+// !projectile is combined with straight since they are typically the same, the straight line one is actually a projectile
 	// xdestroy spells
 	// xlimit range
-// added aoe that allows the player to choose specific location to cast the spell in a certain range, might come in handy
+// !added aoe that allows the player to choose specific location to cast the spell in a certain range, might come in handy
 	// xrestrict range
 
 // 9/22/21
-// damage
-// control
-// recovery
+// xdamage
+// xcontrol
+// xrecovery
 
 // 9/25/21
 // xmaterial framework 1.0
-	// materials are prefabs
-	// each mat prefab can have multiple effect structs
-	// effect struct = effect the mat gives to the spell
-	// there can be only one material to be activated
-	// combination of materials functions as one new material
+	//! materials are prefabs
+	//! each mat prefab can have multiple effect structs
+	//! effect struct = effect the mat gives to the spell
+	//! there can be only one material to be activated
+	//! combination of materials functions as one new material
 
 // 9/30/21
 // adjustments
@@ -52,7 +52,7 @@
 	// xctrl
 		// xwalkability
 		// xatackability
-		// foece move
+		// xfoece move
 	// xrecovery
 		// xone time heal
 		// xhot
@@ -64,11 +64,11 @@
 	// xput combat into level
 // foce move
 	// ximpulse knock back
-	// knock back enemy
+	// xknock back enemy
 	// xknock back player
 
 // 10/22/21
-// combat refine
+// xcombat refine
 	// xwindup and backswing
 	// xdrop gradually
 		// xdrop meter
@@ -80,10 +80,10 @@
 	// xcancel backswing if cast new spell
 	// drop
 		// xdrop debugging
-		// refining
+		// xrefining
 	// deal damage
 		// xflash pie
-		// refining
+		// xrefining
 		// xfreeze frame
 	// damage avoidence
 		// gp
@@ -113,3 +113,11 @@
 	// pie
 	// xhot
 	// dot
+
+// 11/3/21
+// xtry light on vfx
+// xrefine vfx
+	// xfragment on enemy and on other stuffs
+// xdebug cancelling
+// xenemy lock-on
+// dialogue

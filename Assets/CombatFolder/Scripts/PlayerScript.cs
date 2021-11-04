@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
 	static public PlayerScript me;
+	[HideInInspector]
 	public Animator anim;
 	public GameObject actualModel;
 	public float spd;
@@ -16,6 +17,7 @@ public class PlayerScript : MonoBehaviour
 	private GameObject selectedMat;
 	public GameObject tear;
 	public GameObject cotton;
+	public GameObject enemy;
 
 	//Temp inventory
 	[Header("Temp Inventory")]
@@ -82,8 +84,17 @@ public class PlayerScript : MonoBehaviour
 
 		// look at mouse pos(not changing y-axis)
 		//! if this doesn't work properly, check game objects' layers, and make sure the mouse manager ignores the proper layers
-		var target = new Vector3(MouseManager.me.mousePos.x, transform.position.y, MouseManager.me.mousePos.z);
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target - transform.position), rot_spd * Time.deltaTime);
+		if (Input.GetMouseButton(1))
+		{
+			var target = new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target - transform.position), rot_spd * Time.deltaTime);
+		}
+		else
+		{
+			var target = new Vector3(MouseManager.me.mousePos.x, transform.position.y, MouseManager.me.mousePos.z);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target - transform.position), rot_spd * Time.deltaTime);
+		}
+		
 
 		// select mat
 		if (Input.GetKeyDown(KeyCode.Alpha1))

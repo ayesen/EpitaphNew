@@ -31,6 +31,18 @@ PrefabInstance:
       propertyPath: myEffects.Array.data[0].damageAmount
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 611036629, guid: 18c6bf2e166e43e46a396aead726f3d8, type: 3}
+      propertyPath: myEffects.Array.data[0].matProduce.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 611036629, guid: 18c6bf2e166e43e46a396aead726f3d8, type: 3}
+      propertyPath: myEffects.Array.data[0].matProduce.Array.data[0]
+      value: 
+      objectReference: {fileID: 8441474695682364324, guid: 212051402683f614781bcf259e7847f1, type: 3}
+    - target: {fileID: 611036629, guid: 18c6bf2e166e43e46a396aead726f3d8, type: 3}
+      propertyPath: myEffects.Array.data[0].matProduce.Array.data[1]
+      value: 
+      objectReference: {fileID: 2429920367318801475, guid: 246cc5031e223c548b132211d37c5988, type: 3}
     - target: {fileID: 4250870224981592407, guid: 18c6bf2e166e43e46a396aead726f3d8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

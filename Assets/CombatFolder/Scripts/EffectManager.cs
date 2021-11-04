@@ -48,13 +48,9 @@ public class EffectManager : MonoBehaviour
 		if (target.tag == "Enemy" && effect.damageAmount > 0)
 		{
 			enemyScript.LoseHealth(effect.damageAmount);
-			if (effect.freezeFrame)
+			if (effect.freezeFrameTime > 0)
 			{
-				StartCoroutine(FreezeFrame());
-			}
-			else
-			{
-				print(effect.freezeFrame);
+				StartCoroutine(FreezeFrame(effect.freezeFrameTime));
 			}
 		}
 
@@ -110,7 +106,6 @@ public class EffectManager : MonoBehaviour
 
 	public void Heal(GameObject target, EffectStruct effect)
 	{
-		print("I am debugging healing");
 		if (target.GetComponentInParent<PlayerScript>() != null && effect.healAmount > 0)
 		{
 			target.GetComponentInParent<PlayerScript>().hp += effect.healAmount;
@@ -213,10 +208,10 @@ public class EffectManager : MonoBehaviour
 			ForceMode.Impulse);
 	}
 
-	private IEnumerator FreezeFrame()
+	private IEnumerator FreezeFrame(float time)
 	{
 		Time.timeScale = 0.01f;
-		yield return new WaitForSeconds(0.002f);
+		yield return new WaitForSecondsRealtime(time * Time.deltaTime);
 		Time.timeScale = 1f;
 	}
 }

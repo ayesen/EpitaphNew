@@ -14,6 +14,7 @@ public class MouseManager : MonoBehaviour
     void Start()
     {
         Cursor.visible = showCursor;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Awake()

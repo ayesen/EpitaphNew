@@ -10,7 +10,7 @@ public struct EffectStruct
     public bool DOT;
     public float DOT_interval; // interval between each dmg
     public float DOT_duration; // total duration of the DOT
-    public bool freezeFrame;
+    public float freezeFrameTime;
 
     [Header("CTRL")]
     public EffectManager.CtrlTypes myCtrlType;
