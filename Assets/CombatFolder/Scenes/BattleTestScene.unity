@@ -3607,7 +3607,7 @@ MonoBehaviour:
   m_text: "\u5982\u4ECA\u90FD\u5DF2\u7D93\u96A8\u98A8\u9060\u53BB\u4E86"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 518272b4347582c4daeede6451e1fd02, type: 2}
-  m_sharedMaterial: {fileID: -8035878318475489197, guid: 518272b4347582c4daeede6451e1fd02, type: 2}
+  m_sharedMaterial: {fileID: 6945845047499274316, guid: 518272b4347582c4daeede6451e1fd02, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
