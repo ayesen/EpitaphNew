@@ -180,7 +180,8 @@ public class PlayerScript : MonoBehaviour
 		requiredMats.Add(inDic);
 	}
 
-	//拾取素材
+    //拾取素材
+    /*
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag("DroppedMat") && tempInventory[3].matAmounts == 0 
@@ -203,8 +204,32 @@ public class PlayerScript : MonoBehaviour
 			Destroy(other.gameObject);
 		}
 	}
+	*/
 
-	public bool ConsumeMats()
+    private void OnCollisionEnter(Collision other)
+    {
+		if (other.gameObject.CompareTag("DroppedMat") && tempInventory[3].matAmounts == 0
+													  && tempInventory[3].Mats == null)
+		{
+			InventoryDict droppedMat = new InventoryDict();
+
+			//这是用魔法写的，必须要改，但想不到咋办
+			if (other.gameObject.name.ToString() == "Tear(Clone)")
+				droppedMat.Mats = tear;
+			else if (other.gameObject.name.ToString() == "Cotton(Clone)")
+				droppedMat.Mats = cotton;
+
+			recipeManager.GetComponent<RecipeManagerScript>().bossMat.text = "4:" + droppedMat.Mats.name.ToString();
+			droppedMat.matAmounts = 1;
+
+			tempInventory.RemoveAt(3);
+			tempInventory.Add(droppedMat);
+
+			Destroy(other.gameObject);
+		}
+	}
+
+    public bool ConsumeMats()
 	{
 		List<GameObject> inventoryList = new List<GameObject>();
 		foreach (var mat in tempInventory)
