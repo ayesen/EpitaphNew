@@ -1,6 +1,6 @@
 // log
 
-// 9/21/21
+// 09/21/21
 // xmovement
 // xaiming
 // !projectile is combined with straight since they are typically the same, the straight line one is actually a projectile
@@ -9,12 +9,12 @@
 // !added aoe that allows the player to choose specific location to cast the spell in a certain range, might come in handy
 	// xrestrict range
 
-// 9/22/21
+// 09/22/21
 // xdamage
 // xcontrol
 // xrecovery
 
-// 9/25/21
+// 09/25/21
 // xmaterial framework 1.0
 	//! materials are prefabs
 	//! each mat prefab can have multiple effect structs
@@ -22,7 +22,7 @@
 	//! there can be only one material to be activated
 	//! combination of materials functions as one new material
 
-// 9/30/21
+// 09/30/21
 // adjustments
 	// projectile doesn't use gravity for now
 	
@@ -42,7 +42,7 @@
 	// xtarget
 		// xfind place to insert effect codes
 
-// 10/3/21
+// 10/03/21
 // adjustments
 	// xnew .gitignore
 	// xget current mat in hit detection and call effect from effect manager based on the mat's effects
@@ -59,7 +59,7 @@
 	// xsupply
 		// xdrop mats
 
-// 10/9/21
+// 10/09/21
 // xcombination
 	// xput combat into level
 // foce move
@@ -114,10 +114,19 @@
 	// xhot
 	// dot
 
-// 11/3/21
+// 11/03/21
 // xtry light on vfx
 // xrefine vfx
 	// xfragment on enemy and on other stuffs
 // xdebug cancelling
 // xenemy lock-on
+
+// 11/05/21
 // dialogue
+	// xtriggering
+		// xauto
+		// xpress e
+	// xshow cht and eng
+	// xshow image
+	// xoptions
+		// xdifferent following dialogues

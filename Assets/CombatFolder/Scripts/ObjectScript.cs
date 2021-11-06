@@ -12,24 +12,9 @@ public class ObjectScript : MonoBehaviour
 	public float sinkSpd;
 	public bool sink;
 
-	[Header("Object Inspection")]
-	public GameObject player;
-	private Material defaultMat;
-	public Material highLightMat;
-	public float inspectionRange;
-	private bool inspected;
-	private MeshRenderer mr;
-	public bool isSwitch;
-	public GameObject[] interactiveSwitch;
-	[TextArea]
-	public List<string> objectDescription;
-
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
-		mr = GetComponent<MeshRenderer>();
-		defaultMat = mr.material;
-		inspected = false;
 		
 	}
 
@@ -38,26 +23,6 @@ public class ObjectScript : MonoBehaviour
 		if (sink)
 		{
 			Sinking();
-		}
-		if (player != null && Vector3.Distance(player.transform.position, transform.position) < inspectionRange &&
-		    !inspected)
-		{
-			mr.material = highLightMat;
-			if (Input.GetKeyDown(KeyCode.E) &&
-				player.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("testIdle"))
-			{
-				inspected = true;
-				//mr.enabled = false;
-				ObjectInspectorManagerScript.me.ShowText(objectDescription);
-				foreach (GameObject interactable in interactiveSwitch)
-				{
-					interactable.SetActive(true);
-				}
-			}
-		}
-		else
-		{
-			mr.material = defaultMat;
 		}
 	}
 
