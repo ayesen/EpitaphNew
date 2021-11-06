@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 96dde5d8397488b42a34b188b5b5ae49, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.357
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.357}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -174,12 +174,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &2162056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -463,12 +457,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &8506781
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -522,12 +510,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &8923768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -723,12 +705,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &11072766
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1019,12 +995,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &34607351
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1233,12 +1203,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &39074346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1635,12 +1599,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &59397093
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2089,12 +2047,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &73813860
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2612,12 +2564,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &120255209
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2833,12 +2779,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &141685987
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3208,12 +3148,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &146299211
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3818,12 +3752,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &211754824
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3866,7 +3794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3827084875413354410, guid: 159656fb7ce731a41900452ef97092d5, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4492157861454425360, guid: 159656fb7ce731a41900452ef97092d5, type: 3}
       propertyPath: m_RootOrder
@@ -3951,12 +3879,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &234993001
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4319,12 +4241,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &246943289
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4486,12 +4402,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &255814763
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5356,12 +5266,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &363654518
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5999,12 +5903,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &394909765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6087,12 +5985,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &409967610
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6372,12 +6264,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &415641777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6535,12 +6421,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &423425171
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6672,12 +6552,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &443988258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6862,12 +6736,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &475964954
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6940,12 +6808,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!1 &480859026 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5318198213995577846, guid: f9e0fe7c501a919478e4045ae486a725, type: 3}
@@ -7215,12 +7077,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &487125168
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7288,12 +7144,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &494510978
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8155,12 +8005,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &582201244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8993,12 +8837,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &621679868
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9743,12 +9581,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &644527916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9802,12 +9634,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &645171172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9971,12 +9797,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &682459301
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10447,12 +10267,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &716629741
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11682,12 +11496,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &799213718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11818,12 +11626,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &801806634
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12511,12 +12313,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!1 &888820532
 GameObject:
   m_ObjectHideFlags: 0
@@ -12818,12 +12614,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &900503409
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13105,12 +12895,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &911237989
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13265,12 +13049,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &913810464
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14295,12 +14073,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1003572565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14542,12 +14314,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1021801882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14692,12 +14458,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1027076874
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15132,12 +14892,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1054618994
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15729,12 +15483,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1124847667
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15960,12 +15708,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1126510583
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16214,12 +15956,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!1 &1138357093
 GameObject:
   m_ObjectHideFlags: 0
@@ -16257,12 +15993,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1138357095
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16771,12 +16501,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1144466690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17013,12 +16737,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1156501287
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17213,12 +16931,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1165297777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17797,12 +17509,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1198368579
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18766,12 +18472,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1243559694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19059,12 +18759,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1257542019
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19387,12 +19081,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1268229412
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19803,12 +19491,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1294378603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19925,12 +19607,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1295112586
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20500,12 +20176,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1352561730
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20729,12 +20399,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1366952762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20879,12 +20543,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1367052097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22702,12 +22360,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1449815751
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22862,12 +22514,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1461053445
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22984,12 +22630,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1472857583
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23120,12 +22760,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1488904452
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23446,12 +23080,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1500512407
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24289,12 +23917,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1576674221
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25048,12 +24670,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1625689653
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25438,12 +25054,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1649908091
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25647,12 +25257,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1652936789
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26154,12 +25758,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1675332386
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26213,12 +25811,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1677151884
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27066,12 +26658,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1729833378
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27203,12 +26789,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1737310090
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27642,12 +27222,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1773613881
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27860,12 +27434,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1786684684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27933,12 +27501,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1797105128
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28482,12 +28044,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1841959934
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28544,12 +28100,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1847618969
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28641,12 +28191,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1849817000
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28766,12 +28310,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1850593625
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28933,12 +28471,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1853456890
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29890,12 +29422,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1918543536
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30177,12 +29703,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1941654682
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30351,12 +29871,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1947325752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30850,12 +30364,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1963337589
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30933,12 +30441,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1970569550
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31069,12 +30571,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1971198278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31319,12 +30815,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &1985523817
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31744,12 +31234,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &2012879359
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32152,12 +31636,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &2040150238
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32527,12 +32005,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &2055122160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32760,12 +32232,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &2063612507
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33014,12 +32480,6 @@ MonoBehaviour:
   enemy: {fileID: 1623671488}
   sinkSpd: 0.5
   sink: 0
-  player: {fileID: 0}
-  highLightMat: {fileID: 0}
-  inspectionRange: 0
-  isSwitch: 0
-  interactiveSwitch: []
-  objectDescription: []
 --- !u!54 &2068161218
 Rigidbody:
   m_ObjectHideFlags: 0
