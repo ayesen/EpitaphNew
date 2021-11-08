@@ -848,11 +848,11 @@ Shader "ToonShader"
 }
 /*ASEBEGIN
 Version=18912
-1049;544;480;455;-208.5743;1104.35;2.166851;False;False
+1049;544;480;455;-483.8341;764.6806;1;False;False
 Node;AmplifyShaderEditor.CommentaryNode;94;218.8103,-756.1543;Inherit;False;1232.482;627.9703;Cell Shading;11;81;83;86;93;73;74;72;89;88;87;103;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.SimpleDivideOpNode;86;1374.806,-438.0857;Inherit;False;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;83;983.6057,-501.6908;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;87;268.8102,-369.4593;Inherit;False;Property;_CellShading;CellShading;0;0;Create;True;0;0;0;False;0;False;0;150;0;230;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;87;268.8102,-369.4593;Inherit;False;Property;_CellShading;CellShading;0;0;Create;True;0;0;0;False;0;False;0;100;0;230;0;1;FLOAT;0
 Node;AmplifyShaderEditor.GrabScreenPosition;93;515.4455,-705.2133;Inherit;False;0;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;89;360.1335,-467.5543;Inherit;False;Constant;_Float0;Float 0;1;0;Create;True;0;0;0;False;0;False;256;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;88;720.6157,-436.7863;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
@@ -873,4 +873,4 @@ WireConnection;81;0;93;0
 WireConnection;103;0;83;0
 WireConnection;71;2;86;0
 ASEEND*/
-//CHKSM=2599250F6BBDD690620F8DF136EC63932AE58763
+//CHKSM=37FE5EB39BFC49B1DDE1E5A5B0F3C7C9D5F919B8
