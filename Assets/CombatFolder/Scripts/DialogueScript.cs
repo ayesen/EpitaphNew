@@ -5,10 +5,11 @@ using UnityEngine;
 public class DialogueScript : MonoBehaviour
 {
     public float triggerRange; // the distance for player to trigger the dialogue
-    public bool autoTrigger; //! if this is auto trigger or the player needs to press an interation button, dialogues with options should not be auto!
-    public List<DialogueStruct> texts; // the text to be shown
+    public bool autoTrigger; // if this dialogue is triggered automatically
+	public bool autoAdvance; //! if this dialogue advances automatically or the player needs to press an interation button, dialogues with options should not be auto advance!
+	public List<DialogueStruct> texts; // the text to be shown
 	public Sprite image; // the image to be shown
-	public GameObject player;
+	private GameObject player;
 	private Material defaultMat;
 	public Material highLightMat;
 	public bool restrictMovement; // does the player is prohibited from doing anything when reading
@@ -18,11 +19,19 @@ public class DialogueScript : MonoBehaviour
 	public bool isSwitch;
 	public GameObject[] interactiveSwitch;
 
+	[Header("Custimizable End Action")]
+	public GameObject actor;
+	public string funcToCall;
+
 	private void Start()
 	{
-		mr = GetComponent<MeshRenderer>();
-		defaultMat = mr.material;
+		if (GetComponent<MeshRenderer>() != null)
+		{
+			mr = GetComponent<MeshRenderer>();
+			defaultMat = mr.material;
+		}
 		inspected = false;
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	private void Update()
@@ -36,7 +45,7 @@ public class DialogueScript : MonoBehaviour
 					player.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("testIdle"))
 				{
 					inspected = true;
-					ObjectInspectorManagerScript.me.ShowText(texts, restrictMovement, autoTrigger, image);
+					ObjectInspectorManagerScript.me.ShowText(texts, restrictMovement, autoAdvance, image, actor, funcToCall);
 					foreach (GameObject interactable in interactiveSwitch)
 					{
 						interactable.SetActive(true);
@@ -46,7 +55,7 @@ public class DialogueScript : MonoBehaviour
 			else // auto show text
 			{
 				inspected = true;
-				ObjectInspectorManagerScript.me.ShowText(texts, restrictMovement, autoTrigger, image);
+				ObjectInspectorManagerScript.me.ShowText(texts, restrictMovement, autoAdvance, image, actor, funcToCall);
 				foreach (GameObject interactable in interactiveSwitch)
 				{
 					interactable.SetActive(true);
@@ -55,7 +64,10 @@ public class DialogueScript : MonoBehaviour
 		}
 		else
 		{
-			mr.material = defaultMat;
+			if (mr != null)
+			{
+				mr.material = defaultMat;
+			}
 		}
 	}
 }

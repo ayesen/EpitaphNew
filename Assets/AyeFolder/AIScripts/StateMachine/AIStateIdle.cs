@@ -5,19 +5,21 @@ using UnityEngine;
 public class AIStateIdle : AIStateBase
 {
     public float IdleTimer;
+    private Enemy es;
+
     public override void StartState(Enemy myEnemy)
     {
+        es = myEnemy;
         myEnemy.ghostRider.isStopped = true;
     }
 
     public override void Update(Enemy myEnemy)
     {
-        if (myEnemy.phase != Enemy.AIPhase.NotInBattle)
+        if (myEnemy.phase != Enemy.AIPhase.NotInBattle) // in battle phase 1 or 2
         {
             myEnemy.Idleing();
             if (myEnemy.InRange())
             {
-
                 if (myEnemy.attackable)
                 {
                     IdleTimer += Time.fixedDeltaTime;
@@ -39,10 +41,13 @@ public class AIStateIdle : AIStateBase
                 }
                 else if (!myEnemy.walkable)
                 {
-
+                    
                 }
-
             }
+        }
+		else // not in battle
+		{
+            GotoLoc();
         }
     }
 
@@ -50,4 +55,14 @@ public class AIStateIdle : AIStateBase
     {
         IdleTimer = 0;
     }
+
+    public void GotoLoc()
+	{
+        if (Input.GetKeyUp(KeyCode.T))
+		{
+            // go to specific location and stand still for dialogue
+            es.myAC.ChangeState(es.myAC.walkingState);
+            es.target = es.eventTarget.gameObject;
+		}
+	}
 }
