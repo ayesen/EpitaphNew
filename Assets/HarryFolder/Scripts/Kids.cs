@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Kids : MonoBehaviour
 {
     Transform selfPose;
-    Transform flatPose;
     private float xRotation;
     private float yRotation;
     private float zRotation;
@@ -20,7 +19,6 @@ public class Kids : MonoBehaviour
     void Start()
     {
         selfPose = this.transform;
-        flatPose.rotation = new Quaternion(0, 0, 0,0);
         xRotation = selfPose.rotation.x;
         yRotation = selfPose.rotation.y;
         zRotation = selfPose.rotation.z;
@@ -49,10 +47,10 @@ public class Kids : MonoBehaviour
         }
         if (isActivated)
         { 
-            selfPose.rotation = Quaternion.identity;
+          selfPose.rotation = Quaternion.identity;
           if (xRotation != 0 || yRotation != 0 || zRotation != 0)
           {
-              transform.rotation = Quaternion.Lerp(selfPose.rotation, flatPose.rotation, lerpSpeed * Time.deltaTime);
+              transform.rotation = Quaternion.Lerp(selfPose.rotation, new Quaternion(0,0,0,0), lerpSpeed * Time.deltaTime);
               print("rotated");
           }
           

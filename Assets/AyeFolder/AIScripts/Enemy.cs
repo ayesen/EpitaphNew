@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public int changePhaseTime;
     public int healthLimit;
     public int changeLimit = 2;
+    public float knockbackAmount;
 
     public AIController myAC;
     public enum AIPhase { NotInBattle, InBattle1, InBattle2 };
@@ -45,6 +46,11 @@ public class Enemy : MonoBehaviour
     [Header("Supply")]
     public float dropMeter;
     public float dropMeterMax;
+
+    [Header("SCRIPTED EVENTS")]
+    public Transform eventTarget;
+    public float stopDis;
+    public GameObject dialogueTrigger;
 
     private void Awake()
     {
@@ -166,8 +172,10 @@ public class Enemy : MonoBehaviour
 
             else if (walkable && attackable)
             {
-                hittedStates.text = "";
-
+                if (hittedStates != null)
+				{
+                    hittedStates.text = "";
+                }
             }
         }
     }
@@ -180,13 +188,13 @@ public class Enemy : MonoBehaviour
     {
         myTrigger.myMR.material.color = Color.Lerp(TempAtkColor, Origin, time);
     }
-    public void KnowckBackAtk()
+    public void KnockBackAtk()
     {
         myTrigger.myMR.material.color = new Color(1, 1, 1, 1);
 
         if (InRange())
         {
-            EffectManager.me.KnockBack(100, gameObject, PlayerScript.me.gameObject);
+            EffectManager.me.KnockBack(knockbackAmount, gameObject, PlayerScript.me.gameObject);
             /*deal damage here*/
         }
 
@@ -209,13 +217,11 @@ public class Enemy : MonoBehaviour
 
     public float AIToPlayerDist()
     {
-
         return Vector3.Distance(transform.position, target.transform.position);
     }
 
     public bool InRange()
     {
-
         if (myTrigger.onAtkTrigger)
         {
             return true;
@@ -224,4 +230,9 @@ public class Enemy : MonoBehaviour
             return false;
     }
 
+    public void BackToFighting()
+	{
+        target = GameObject.FindGameObjectWithTag("Player");
+        phase = AIPhase.InBattle1;
+	}
 }
