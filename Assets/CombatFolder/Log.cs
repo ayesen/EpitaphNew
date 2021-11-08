@@ -122,7 +122,7 @@
 // xenemy lock-on
 
 // 11/05/21
-// dialogue
+// xdialogue
 	// xtriggering
 		// xauto
 		// xpress e
@@ -130,3 +130,11 @@
 	// xshow image
 	// xoptions
 		// xdifferent following dialogues
+
+// 11/07/21
+// wall break
+	// particle effect
+		// xbricks
+		// dust
+	// xfunction
+// dialogue with ai

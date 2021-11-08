@@ -27,24 +27,32 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 	private int optionIndex = 0;
 
 	// for auto display text
-	private bool auto;
+	private bool autoAdvance;
 	private float timer;
+
+	// for customizable end action
+	private GameObject doer;
+	private string funcToCall;
 
 	private void Awake()
 	{
 		me = this;
+		objectDes_ui_cht.text = "";
+		objectDes_ui_eng.text = "";
 	}
 
-	public void ShowText(List<DialogueStruct> content, bool restricted, bool autoTrigger, Sprite image)
+	public void ShowText(List<DialogueStruct> content, bool restricted, bool auto,  Sprite image, GameObject actor, string function)
 	{
 		restrictMovement = restricted;
 		canvasUI.SetActive(false);
 		objectDes_ui_cht.gameObject.SetActive(true);
 		objectDes_ui_eng.gameObject.SetActive(true);
 		dialogueToShow = content;
-		auto = autoTrigger;
+		autoAdvance = auto;
 		objectDes_ui_cht.text = dialogueToShow[index].description_cht;
 		objectDes_ui_eng.text = dialogueToShow[index].description_eng;
+		doer = actor;
+		funcToCall = function;
 		if (restrictMovement) // if this dialogue prohibit player from moving when reading
 		{
 			PlayerScript.me.GetComponentInChildren<Animator>().Play("readingText");
@@ -72,7 +80,7 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 	{
 		if (textShowing)
 		{
-			if (auto) // if the dialogue is dispalyed automatically
+			if (autoAdvance) // if the dialogue is dispalyed automatically
 			{
 				if (timer > 0)
 				{
@@ -89,7 +97,7 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 						objectDes_ui_eng.text = dialogueToShow[index].description_eng;
 						timer = dialogueToShow[index].time;
 					}
-					else
+					else // when the dialogue ends
 					{
 						index = 0;
 						canvasUI.SetActive(true);
@@ -102,6 +110,11 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 						}
 						imageDisplayer.SetActive(false);
 						imageBG.SetActive(false);
+						if (doer != null)
+						{
+							doer.SendMessage(funcToCall);
+						}
+						
 					}
 				}
 			}
@@ -119,7 +132,7 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 							ShowOptions();
 						}
 					}
-					else
+					else // when the dialogue ends
 					{
 						index = 0;
 						canvasUI.SetActive(true);
@@ -132,6 +145,10 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 						}
 						imageDisplayer.SetActive(false);
 						imageBG.SetActive(false);
+						if (doer != null)
+						{
+							doer.SendMessage(funcToCall);
+						}
 					}
 				}
 				if (optionsDisplaying) // let player choose

@@ -24504,7 +24504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1623671489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24651,31 +24651,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba89d365c2835c4e831b7673416b539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 100
   maxHealth: 100
   moveSpeed: 0
-  shield: 0
-  maxShield: 0
+  shield: 100
+  maxShield: 100
   atkSpd: 2
   attack: 0
   preAtkSpd: 2
   atkTime: 1
   postAtkSpd: 2
   changePhaseTime: 0
-  healthLimit: 0
+  healthLimit: 50
   changeLimit: 2
   myAC: {fileID: 0}
-  phase: 1
-  ghostRider: {fileID: 1623671491}
-  target: {fileID: 1852103843}
-  myTrigger: {fileID: 0}
-  myTriggerObj: {fileID: 0}
+  phase: 0
+  ghostRider: {fileID: 0}
+  target: {fileID: 0}
+  myTrigger: {fileID: 2039028055}
+  myTriggerObj: {fileID: 2039028050}
   Origin: {r: 1, g: 0.5, b: 0.5, a: 0.2}
   TempAtkColor: {r: 1, g: 0, b: 0, a: 1}
   Mother: {fileID: 0}
   attackable: 1
   walkable: 1
-  hittedStates: {fileID: 721714601}
+  hittedStates: {fileID: 0}
   dropMeter: 0
   dropMeterMax: 0
 --- !u!1 &1624259622 stripped
