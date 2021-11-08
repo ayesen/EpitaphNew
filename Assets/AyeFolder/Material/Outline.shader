@@ -833,7 +833,7 @@ Shader "Toon"
 }
 /*ASEBEGIN
 Version=18912
-1051;428;478;571;575.5858;874.9391;3.389713;False;False
+1049;615;480;384;578.9755;874.9391;3.389713;False;False
 Node;AmplifyShaderEditor.NormalVertexDataNode;8;-285.4008,-85.23338;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;10;-290.4494,-222.7667;Inherit;False;Property;_Thickness;Thickness;0;0;Create;True;0;0;0;False;0;False;0.1;0.046;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;13;209.9486,-87.7885;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
@@ -848,4 +848,4 @@ WireConnection;13;1;8;0
 WireConnection;34;2;11;0
 WireConnection;34;5;13;0
 ASEEND*/
-//CHKSM=9AD7015C079CA3179005F74B642BA5AF8BC3592B
+//CHKSM=1220DD6756077A94772704F9604360E66D2C51FD
