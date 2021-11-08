@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour
 
     public void ChangeSpd(int ChangeAmt)
     {
-        moveSpeed += ChangeAmt;
+        moveSpeed += ChangeAmt; // get navmesh move spd
     }
 
     public void ChaseTarget()
