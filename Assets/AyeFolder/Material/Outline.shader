@@ -153,7 +153,7 @@ Shader "Toon"
 			HLSLPROGRAM
 			
 			#pragma multi_compile_instancing
-			#define ASE_SRP_VERSION 999999
+			#define ASE_SRP_VERSION 110000
 
 			
 			#pragma vertex vert
@@ -219,15 +219,13 @@ Shader "Toon"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float3 temp_output_19_0 = float3( 0,0,0 );
-				float4 transform14 = mul(GetObjectToWorldMatrix(),float4( ( ( _Thickness * v.ase_normal ) + temp_output_19_0 ) , 0.0 ));
 				
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
-				float3 vertexValue = transform14.xyz;
+				float3 vertexValue = ( _Thickness * v.ase_normal );
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
 				#else
@@ -390,7 +388,7 @@ Shader "Toon"
 			HLSLPROGRAM
 			
 			#pragma multi_compile_instancing
-			#define ASE_SRP_VERSION 999999
+			#define ASE_SRP_VERSION 110000
 
 			
 			#pragma vertex vert
@@ -450,15 +448,13 @@ Shader "Toon"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				float3 temp_output_19_0 = float3( 0,0,0 );
-				float4 transform14 = mul(GetObjectToWorldMatrix(),float4( ( ( _Thickness * v.ase_normal ) + temp_output_19_0 ) , 0.0 ));
 				
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
-				float3 vertexValue = transform14.xyz;
+				float3 vertexValue = ( _Thickness * v.ase_normal );
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
 				#else
@@ -627,7 +623,7 @@ Shader "Toon"
 			HLSLPROGRAM
 			
 			#pragma multi_compile_instancing
-			#define ASE_SRP_VERSION 999999
+			#define ASE_SRP_VERSION 110000
 
 			
 			#pragma vertex vert
@@ -685,15 +681,13 @@ Shader "Toon"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				float3 temp_output_19_0 = float3( 0,0,0 );
-				float4 transform14 = mul(GetObjectToWorldMatrix(),float4( ( ( _Thickness * v.ase_normal ) + temp_output_19_0 ) , 0.0 ));
 				
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
-				float3 vertexValue = transform14.xyz;
+				float3 vertexValue = ( _Thickness * v.ase_normal );
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
 				#else
@@ -839,13 +833,10 @@ Shader "Toon"
 }
 /*ASEBEGIN
 Version=18912
-681;374;634;463;910.8397;838.871;3.119202;True;False
-Node;AmplifyShaderEditor.RangedFloatNode;10;-530.6802,-281.5811;Inherit;False;Property;_Thickness;Thickness;0;0;Create;True;0;0;0;False;0;False;0.1;0.046;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.NormalVertexDataNode;8;-473.9924,-153.7324;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;13;-160.6439,-112.2519;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.TransformPositionNode;19;-298.0711,164.7425;Inherit;False;Object;Object;False;Fast;True;1;0;FLOAT3;0,0,0;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
-Node;AmplifyShaderEditor.SimpleAddOpNode;12;54.94575,-47.79937;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.ObjectToWorldTransfNode;14;343.5208,-96.66682;Inherit;False;1;0;FLOAT4;0,0,0,1;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+1049;561;480;438;575.5858;874.9391;3.389713;False;False
+Node;AmplifyShaderEditor.NormalVertexDataNode;8;-285.4008,-85.23338;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;10;-290.4494,-222.7667;Inherit;False;Property;_Thickness;Thickness;0;0;Create;True;0;0;0;False;0;False;0.1;0.046;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;13;209.9486,-87.7885;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.ColorNode;11;275.4818,-321.2412;Inherit;False;Property;_Color;Color;1;0;Create;True;0;0;0;False;0;False;0.6981132,0.25356,0.25356,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;33;670.8353,-123.1669;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;11;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;True;17;d3d9;d3d11;glcore;gles;gles3;metal;vulkan;xbox360;xboxone;xboxseries;ps4;playstation;psp2;n3ds;wiiu;switch;nomrt;0;False;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;True;True;True;True;0;False;-1;False;False;False;False;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;35;670.8353,-123.1669;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;11;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;True;17;d3d9;d3d11;glcore;gles;gles3;metal;vulkan;xbox360;xboxone;xboxseries;ps4;playstation;psp2;n3ds;wiiu;switch;nomrt;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=ShadowCaster;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
@@ -854,10 +845,7 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;37;670.8353,-123.1669;Float
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;34;670.8353,-123.1669;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;3;Toon;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;1;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;True;17;d3d9;d3d11;glcore;gles;gles3;metal;vulkan;xbox360;xboxone;xboxseries;ps4;playstation;psp2;n3ds;wiiu;switch;nomrt;0;False;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;False;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;22;Surface;0;  Blend;0;Two Sided;2;Cast Shadows;1;  Use Shadow Threshold;0;Receive Shadows;1;GPU Instancing;1;LOD CrossFade;0;Built-in Fog;0;DOTS Instancing;0;Meta Pass;0;Extra Pre Pass;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;5;False;True;True;True;False;False;;False;0
 WireConnection;13;0;10;0
 WireConnection;13;1;8;0
-WireConnection;12;0;13;0
-WireConnection;12;1;19;0
-WireConnection;14;0;12;0
 WireConnection;34;2;11;0
-WireConnection;34;5;14;0
+WireConnection;34;5;13;0
 ASEEND*/
-//CHKSM=7F64062FE86B27328BB2809B37D36E4BFAB503B3
+//CHKSM=F1E9F090B0F3BB5592299F361BFE9933EC1DF2AF
