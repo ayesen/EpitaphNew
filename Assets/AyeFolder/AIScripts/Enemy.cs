@@ -10,12 +10,17 @@ public class Enemy : MonoBehaviour
     public int health;
     public int maxHealth;
     public int moveSpeed;
+    public int shield;
+    public int maxShield;
     public int atkSpd;
     public int attack;
     public int preAtkSpd;
     public int atkTime;
     public int postAtkSpd;
-    private Animator playerAnim;
+    public int changePhaseTime;
+    public int healthLimit;
+    public int changeLimit = 2;
+    public float knockbackAmount;
 
     public AIController myAC;
     public enum AIPhase { NotInBattle, InBattle1, InBattle2 };
@@ -31,6 +36,7 @@ public class Enemy : MonoBehaviour
     public GameObject myTriggerObj;
     public Color Origin = new Color(1, 0.5f, 0.5f, 0.3f);
     public Color TempAtkColor = new Color(1, 0, 0, 0.3f);
+    public MotherController Mother;
 
     [Header("HITTED CTRL")]
     public bool attackable;
@@ -41,40 +47,47 @@ public class Enemy : MonoBehaviour
     public float dropMeter;
     public float dropMeterMax;
 
+    [Header("SCRIPTED EVENTS")]
+    public Transform eventTarget;
+    public float stopDis;
+    public GameObject dialogueTrigger;
+
     private void Awake()
     {
         ghostRider = GetComponent<NavMeshAgent>();
-        myAC = GetComponent<AIController>();  
+        myAC = GetComponent<AIController>();
         health = maxHealth;
-        PhaseChange();
-        playerAnim = PlayerScript.me.GetComponent<Animator>();
+        PhaseSetting();
+        Mother = GetComponent<MotherController>();
     }
 
     private void Update()
     {
         HittedStatesIndication();
         AIDead();
-        PhaseChange();
-        if (!GetComponent<Rigidbody>().isKinematic)
-        {
-            if (GetComponent<Rigidbody>().velocity.magnitude < 0.01f &&
-                !playerAnim.GetCurrentAnimatorStateInfo(0).IsTag("windup"))
-            {
-                GetComponent<NavMeshAgent>().enabled = true;
-                GetComponent<Rigidbody>().isKinematic = true;
-            }
-        }
+        PhaseSetting();
     }
 
-    public void PhaseChange()
+    public void ChangePhase(AIPhase phaseName, int time)
     {
-        if(phase == AIPhase.InBattle1)
+        myTrigger.myMR.enabled = false;
+        phase = phaseName;
+        changePhaseTime = time;
+        myAC.ChangeState(myAC.changePhaseState);
+    }
+    public void PhaseSetting()
+    {
+        if (phase == AIPhase.InBattle1)
         {
             atkSpd = 2;
             preAtkSpd = 2;
             atkTime = 1;
             postAtkSpd = 2;
             myTriggerObj = GameObject.Find("Atk1Trigger");
+            if (shield <= 0)
+            {
+                ChangePhase(AIPhase.InBattle2, 10);
+            }
         }
         else if (phase == AIPhase.InBattle2)
         {
@@ -83,6 +96,11 @@ public class Enemy : MonoBehaviour
             atkTime = 1;
             postAtkSpd = 3;
             myTriggerObj = GameObject.Find("Atk2Trigger");
+            if (health < healthLimit && changeLimit > 0)
+            {
+                shield = maxShield;
+                ChangePhase(AIPhase.InBattle1, 10);
+            }
         }
         myTrigger = myTriggerObj.GetComponent<AtkTrigger>();
     }
@@ -97,19 +115,24 @@ public class Enemy : MonoBehaviour
 
     public void LoseHealth(int hurtAmt)
     {
-        if(health - hurtAmt >=0)
+        if (shield <= 0)
         {
-            health -= hurtAmt;
+            if (health - hurtAmt >= 0)
+            {
+                health -= hurtAmt;
+            }
+            else
+            {
+                health = 0;
+            }
         }
         else
-        {
-            health = 0;
-        }
+            shield -= hurtAmt;
     }
 
     public void ChangeSpd(int ChangeAmt)
     {
-        moveSpeed += ChangeAmt;
+        moveSpeed += ChangeAmt; // get navmesh move spd
     }
 
     public void ChaseTarget()
@@ -119,12 +142,12 @@ public class Enemy : MonoBehaviour
 
     public void Idleing()
     {
-        if(InRange())
+        if (InRange())
         {
             myTrigger.myMR.enabled = true;
             myTrigger.myMR.material.color = Origin;
         }
-        if(!InRange())
+        if (!InRange())
         {
             myTrigger.myMR.enabled = false;
         }
@@ -149,8 +172,10 @@ public class Enemy : MonoBehaviour
 
             else if (walkable && attackable)
             {
-                hittedStates.text = "";
-
+                if (hittedStates != null)
+				{
+                    hittedStates.text = "";
+                }
             }
         }
     }
@@ -163,13 +188,13 @@ public class Enemy : MonoBehaviour
     {
         myTrigger.myMR.material.color = Color.Lerp(TempAtkColor, Origin, time);
     }
-    public void KnowckBackAtk()
+    public void KnockBackAtk()
     {
         myTrigger.myMR.material.color = new Color(1, 1, 1, 1);
-        
+
         if (InRange())
         {
-            EffectManager.me.KnockBack(10, gameObject, PlayerScript.me.gameObject);
+            EffectManager.me.KnockBack(knockbackAmount, gameObject, PlayerScript.me.gameObject);
             /*deal damage here*/
         }
 
@@ -192,13 +217,11 @@ public class Enemy : MonoBehaviour
 
     public float AIToPlayerDist()
     {
-
         return Vector3.Distance(transform.position, target.transform.position);
     }
 
     public bool InRange()
     {
-        
         if (myTrigger.onAtkTrigger)
         {
             return true;
@@ -207,4 +230,9 @@ public class Enemy : MonoBehaviour
             return false;
     }
 
+    public void BackToFighting()
+	{
+        target = GameObject.FindGameObjectWithTag("Player");
+        phase = AIPhase.InBattle1;
+	}
 }

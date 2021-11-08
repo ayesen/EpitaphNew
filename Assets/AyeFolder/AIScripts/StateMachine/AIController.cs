@@ -13,19 +13,20 @@ public class AIController : MonoBehaviour
     public AIStateBase preAttackState = new AIStatePreAttack();
     public AIStateBase attackState = new AIStateAttacking();
     public AIStateBase postAttackState = new AIStatePostAttack();
+    public AIStateBase changePhaseState = new AIStateChangePhase();
     public AIStateBase dieState = new AIStateDie();
 
 
     public void ChangeState(AIStateBase newState)
     {
-        if(currentState != null)
+        if (currentState != null)
         {
             currentState.LeaveState(myEnemy);
         }
 
         currentState = newState;
 
-        if(currentState != null)
+        if (currentState != null)
         {
             currentState.StartState(myEnemy);
         }
@@ -41,7 +42,7 @@ public class AIController : MonoBehaviour
 
     void Start()
     {
-        ChangeState(walkingState);
+        ChangeState(idleState);
     }
 
     void Update()
