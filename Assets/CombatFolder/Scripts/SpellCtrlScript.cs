@@ -258,6 +258,13 @@ public class SpellCtrlScript : MonoBehaviour
 					print(collider.gameObject.name + " not in pie, its angle: " + Vector3.Angle(transform.forward, tempV3 - transform.position));
 				}
 			}
+			else if (collider.gameObject.CompareTag("InteractableObject"))
+			{
+				if (collider.gameObject.GetComponent<InteractableObjectScript>().reactionMat == ps.currentMat)
+				{
+					collider.gameObject.SendMessage("Reaction");
+				}
+			}
 		}
 		anim.Play("testATK_pie");
 	}
