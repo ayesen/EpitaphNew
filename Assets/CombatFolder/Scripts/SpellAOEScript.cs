@@ -33,6 +33,13 @@ public class SpellAOEScript : MonoBehaviour
 			EffectManager.me.ProcessEffects(mat, other.gameObject);
 			//print("enemy hit by aoe once");
 		}
+		else if (other.gameObject.CompareTag("InteractableObject"))
+		{
+			if (other.gameObject.GetComponent<InteractableObjectScript>().reactionMat == mat)
+			{
+				other.gameObject.SendMessage("Reaction");
+			}
+		}
 	}
 
 	private void OnTriggerStay(Collider other)
