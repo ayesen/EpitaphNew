@@ -33,11 +33,10 @@ public class AIStateWalking : AIStateBase
             }
 			else // if chasing down event target location
 			{
-                
-                if (Vector3.Distance(myEnemy.gameObject.transform.position, myEnemy.eventTarget.position) < myEnemy.stopDis)
+                if (Vector3.Distance(myEnemy.gameObject.transform.position, myEnemy.eventTarget.position) < myEnemy.stopDis && // if the enemy reaches the event target location
+                    GameManager.me.stateOfLevel == 1) // if it's the second time the player enters the level, which is level state 2
 				{
-                    Debug.Log("enter dialogue mode");
-                    myEnemy.dialogueTrigger.SetActive(true);
+                    EnemyDialogueManagerScript.me.SpawnDialogueTrigger(0);
 				}
 			}
         }

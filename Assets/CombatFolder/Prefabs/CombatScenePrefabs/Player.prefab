@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397684480}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: CamTaret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 705393197}
   - component: {fileID: 705393193}
   - component: {fileID: 199564423075833590}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: RealPlayer
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 199564423692395279}
   - component: {fileID: 199564423692395278}
   - component: {fileID: 199564423692395277}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Canvas-Pie Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 199564424247961320}
   - component: {fileID: 199564424247961327}
   - component: {fileID: 199564424247961326}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 199564424472730202}
   - component: {fileID: 199564424472730201}
   - component: {fileID: 199564424472730200}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199564424518589424}
   - component: {fileID: 199564424518589425}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Self Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,6 +612,7 @@ MonoBehaviour:
   recipeManager: {fileID: 0}
   tear: {fileID: 8441474695682364324, guid: 212051402683f614781bcf259e7847f1, type: 3}
   cotton: {fileID: 2429920367318801475, guid: 246cc5031e223c548b132211d37c5988, type: 3}
+  enemy: {fileID: 0}
   tempInventory:
   - Mats: {fileID: 1478154070093566531, guid: 699134f854649d041b639287d52979e4, type: 3}
     matAmounts: 999
@@ -661,7 +662,7 @@ SphereCollider:
   m_GameObject: {fileID: 199564424747727129}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
@@ -685,8 +686,12 @@ PrefabInstance:
       value: heal over time
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595422, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_RootOrder
@@ -746,7 +751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595423, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595423, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: ShapeModule.type
@@ -969,6 +974,10 @@ PrefabInstance:
     - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_Name
       value: heal one time
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_IsActive
