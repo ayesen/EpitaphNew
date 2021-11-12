@@ -5,11 +5,9 @@ using UnityEngine;
 public class AIStateIdle : AIStateBase
 {
     public float IdleTimer;
-    private Enemy es;
 
     public override void StartState(Enemy myEnemy)
     {
-        es = myEnemy;
         myEnemy.ghostRider.isStopped = true;
     }
 
@@ -45,24 +43,10 @@ public class AIStateIdle : AIStateBase
                 }
             }
         }
-		else // not in battle
-		{
-            GotoLoc();
-        }
     }
 
     public override void LeaveState(Enemy myEnemy)
     {
         IdleTimer = 0;
     }
-
-    public void GotoLoc()
-	{
-        if (Input.GetKeyUp(KeyCode.T))
-		{
-            // go to specific location and stand still for dialogue
-            es.myAC.ChangeState(es.myAC.walkingState);
-            es.target = es.eventTarget.gameObject;
-		}
-	}
 }

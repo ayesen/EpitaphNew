@@ -46,6 +46,7 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0, z: 0}
   ignoreMe:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   slctedEnemy: 0
   enemySelected: {fileID: 0}
+  showCursor: 0
