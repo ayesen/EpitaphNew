@@ -14,7 +14,7 @@ public class AIStateAttacking : AIStateBase
             if (myEnemy.phase == Enemy.AIPhase.InBattle1)
             {
                 Debug.Log("knowck");
-                myEnemy.KnowckBackAtk();
+                myEnemy.KnockBackAtk();
             }
             else if (myEnemy.phase == Enemy.AIPhase.InBattle2)
             {
