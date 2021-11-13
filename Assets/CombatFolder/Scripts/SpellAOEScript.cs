@@ -59,25 +59,10 @@ public class SpellAOEScript : MonoBehaviour
     {
 		targetsInAoe.Remove(other.gameObject);
 		StopAllCoroutines();
-		if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("RealPlayer"))
-		{
-			foreach (var effect in mat.GetComponent<MatScript>().myEffects)
-			{
-				EffectManager.me.StopCoroutine("HaloDamage");
-			}
-		}
     }
 
     private void OnDestroy()
     {
 		StopAllCoroutines();
-		foreach (var character in targetsInAoe)
-        {
-			foreach (var effect in mat.GetComponent<MatScript>().myEffects)
-			{
-				print("Destroy");
-				EffectManager.me.StopCoroutine("HaloDamage");
-			}
-		}
 	}
 }

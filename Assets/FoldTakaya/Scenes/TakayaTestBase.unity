@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &46984417 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1023754832047559294, guid: 227da076e12dbfa4b990f022b9a9dc8e, type: 3}
+  m_PrefabInstance: {fileID: 1831447847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &240243910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -248,6 +253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9715c13062f83e54ba91b3d4dbb4ab04, type: 3}
+--- !u!198 &322805740 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2245453605569360607, guid: 227da076e12dbfa4b990f022b9a9dc8e, type: 3}
+  m_PrefabInstance: {fileID: 1831447847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341364873
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,11 +347,17 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   moveSpeed: 0
+  shield: 0
+  maxShield: 0
   atkSpd: 2
   attack: 0
   preAtkSpd: 2
   atkTime: 1
   postAtkSpd: 2
+  changePhaseTime: 0
+  healthLimit: 0
+  changeLimit: 2
+  knockbackAmount: 0
   myAC: {fileID: 0}
   phase: 1
   ghostRider: {fileID: 341364876}
@@ -350,11 +366,15 @@ MonoBehaviour:
   myTriggerObj: {fileID: 0}
   Origin: {r: 1, g: 0.5, b: 0.5, a: 0.2}
   TempAtkColor: {r: 1, g: 0, b: 0, a: 1}
+  Mother: {fileID: 0}
   attackable: 1
   walkable: 1
   hittedStates: {fileID: 0}
   dropMeter: 0
   dropMeterMax: 0
+  eventTarget: {fileID: 0}
+  stopDis: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!136 &341364878
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -453,6 +473,14 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 341364873}
+    - target: {fileID: 2174258576397472078, guid: 57d520f0554298648be9d1affdcfbf69, type: 3}
+      propertyPath: hotVFX
+      value: 
+      objectReference: {fileID: 322805740}
+    - target: {fileID: 2174258576397472078, guid: 57d520f0554298648be9d1affdcfbf69, type: 3}
+      propertyPath: healVFX
+      value: 
+      objectReference: {fileID: 46984417}
     - target: {fileID: 2174258576397472079, guid: 57d520f0554298648be9d1affdcfbf69, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1727,6 +1755,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 199564424747727131, guid: 227da076e12dbfa4b990f022b9a9dc8e, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 341364873}
+    - target: {fileID: 199564424747727131, guid: 227da076e12dbfa4b990f022b9a9dc8e, type: 3}
       propertyPath: recipeManager
       value: 
       objectReference: {fileID: 1883843016}
@@ -1741,6 +1773,10 @@ PrefabInstance:
     - target: {fileID: 199564424747727131, guid: 227da076e12dbfa4b990f022b9a9dc8e, type: 3}
       propertyPath: tempInventory.Array.data[2].matAmounts
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2245453605569360601, guid: 227da076e12dbfa4b990f022b9a9dc8e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7093479450101510729, guid: 227da076e12dbfa4b990f022b9a9dc8e, type: 3}
       propertyPath: m_Radius
