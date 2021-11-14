@@ -196,6 +196,16 @@ public class EffectManager : MonoBehaviour
 		}
 	}
 
+	public IEnumerator HaloDamage(EffectStruct effect, GameObject target)
+    {
+        while (true)
+        {
+			yield return new WaitForSeconds(1f);
+			print("AOE dealt " + effect.damageAmount + "damage to " + target.name);
+			enemyScript.LoseHealth(effect.damageAmount);
+		}
+    }
+
 	private void SpawnMat(GameObject target, EffectStruct effect)
 	{
 		GameObject matDropped = effect.matProduce[Random.Range(0, effect.matProduce.Count)];
