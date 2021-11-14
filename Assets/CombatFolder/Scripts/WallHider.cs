@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WallHider : MonoBehaviour
 {
@@ -13,6 +14,17 @@ public class WallHider : MonoBehaviour
 	{
 		if (other.CompareTag("RealPlayer"))
 		{
+			print(gameObject.name);
+			List<GameObject> masks = GameObject.FindGameObjectsWithTag("Wall Hide Mask").ToList();
+			foreach (var mask in masks)
+			{
+				mask.SetActive(false);
+			}
+			if (wallsToShow.Count > 0)
+				foreach (var wall in wallsToShow)
+				{
+					wall.SetActive(true);
+				}
 			if (wallsToHide.Count > 0)
 				foreach (var wall in wallsToHide)
 				{
@@ -23,16 +35,8 @@ public class WallHider : MonoBehaviour
 				{
 					mask.SetActive(true);
 				}
-			if (wallsToShow.Count > 0)
-				foreach (var wall in wallsToShow)
-				{
-					wall.SetActive(true);
-				}
-			if (masksToHide.Count > 0)
-				foreach (var mask in masksToHide)
-				{
-					mask.SetActive(false);
-				}
+			
+			
 		}
 	}
 }
