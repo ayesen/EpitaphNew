@@ -16,9 +16,11 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 	private bool textShowing = false;
 	public GameObject canvasUI;
 	public GameObject canvasDialogue;
-	private bool restrictMovement; // does this dialogue make player stand still and do nothing?
 	private int index = 0;
 	public List<DialogueStruct> dialogueToShow;
+	private bool restrictMovement; // does this dialogue make player stand still and do nothing?
+	private bool burnAfterReading; // is this a one time only
+	private DialogueScript dT; // the dialogue trigger currently being used
 
 	// for options
 	public List<GameObject> options;
@@ -41,18 +43,20 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 		objectDes_ui_eng.text = "";
 	}
 
-	public void ShowText(List<DialogueStruct> content, bool restricted, bool auto,  Sprite image, GameObject actor, string function)
+	public void ShowText(DialogueScript ds)
 	{
-		restrictMovement = restricted;
+		dT = ds;
+		dialogueToShow = ds.texts;
+		restrictMovement = ds.restrictMovement;
+		autoAdvance = ds.autoAdvance;
+		burnAfterReading = ds.oneTimeDialogue;
+		doer = ds.actor;
+		funcToCall = ds.funcToCall;
 		canvasUI.SetActive(false);
 		objectDes_ui_cht.gameObject.SetActive(true);
 		objectDes_ui_eng.gameObject.SetActive(true);
-		dialogueToShow = content;
-		autoAdvance = auto;
 		objectDes_ui_cht.text = dialogueToShow[index].description_cht;
 		objectDes_ui_eng.text = dialogueToShow[index].description_eng;
-		doer = actor;
-		funcToCall = function;
 		if (restrictMovement) // if this dialogue prohibit player from moving when reading
 		{
 			PlayerScript.me.GetComponentInChildren<Animator>().Play("readingText");
@@ -66,11 +70,11 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 		}
 
 		// show image
-		if (image != null)
+		if (ds.image != null)
 		{
 			imageBG.SetActive(true);
 			imageDisplayer.SetActive(true);
-			imageDisplayer.GetComponent<Image>().sprite = image;
+			imageDisplayer.GetComponent<Image>().sprite = ds.image;
 		}
 
 		timer = dialogueToShow[index].time;
@@ -114,7 +118,10 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 						{
 							doer.SendMessage(funcToCall);
 						}
-						
+						if (burnAfterReading)
+						{
+							Destroy(dT.gameObject);
+						}
 					}
 				}
 			}
@@ -148,6 +155,10 @@ public class ObjectInspectorManagerScript : MonoBehaviour
 						if (doer != null)
 						{
 							doer.SendMessage(funcToCall);
+						}
+						if (burnAfterReading)
+						{
+							Destroy(dT.gameObject);
 						}
 					}
 				}

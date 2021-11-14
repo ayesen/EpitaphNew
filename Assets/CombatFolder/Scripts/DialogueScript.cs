@@ -45,7 +45,7 @@ public class DialogueScript : MonoBehaviour
 					player.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("testIdle"))
 				{
 					inspected = true;
-					ObjectInspectorManagerScript.me.ShowText(texts, restrictMovement, autoAdvance, image, actor, funcToCall);
+					ObjectInspectorManagerScript.me.ShowText(this);
 					foreach (GameObject interactable in interactiveSwitch)
 					{
 						interactable.SetActive(true);
@@ -55,7 +55,7 @@ public class DialogueScript : MonoBehaviour
 			else // auto show text
 			{
 				inspected = true;
-				ObjectInspectorManagerScript.me.ShowText(texts, restrictMovement, autoAdvance, image, actor, funcToCall);
+				ObjectInspectorManagerScript.me.ShowText(this);
 				foreach (GameObject interactable in interactiveSwitch)
 				{
 					interactable.SetActive(true);

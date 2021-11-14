@@ -235,4 +235,11 @@ public class Enemy : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         phase = AIPhase.InBattle1;
 	}
+
+    public void GotoLoc()
+    {
+        // go to specific location and stand still for dialogue
+        myAC.ChangeState(myAC.walkingState);
+        target = eventTarget.gameObject;
+    }
 }

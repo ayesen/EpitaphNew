@@ -29,6 +29,13 @@ public class SpellScript : MonoBehaviour
 				f.transform.position = collision.GetContact(0).point;
 			}
 		}
+		else if (collision.gameObject.CompareTag("InteractableObject"))
+		{
+			if (collision.gameObject.GetComponent<InteractableObjectScript>().reactionMat == mat)
+			{
+				collision.gameObject.SendMessage("Reaction");
+			}
+		}
 		if (!collision.gameObject.CompareTag("Player"))
 		{
 			Destroy(gameObject);
