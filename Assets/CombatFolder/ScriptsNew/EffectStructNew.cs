@@ -9,7 +9,7 @@ public struct EffectStructNew
 	{
 		none,
 		dmgDealt, // when dmg is dealt
-		enemyHit, // when enemy is hit
+		enemyHit, // when enemy is hit, only work after this effect is applied to the enemy on the last collision, so dealing dmg should be none
 		casting // when attack frame
 	};
 	public Condition when;

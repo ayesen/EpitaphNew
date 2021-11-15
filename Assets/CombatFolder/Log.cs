@@ -153,9 +153,10 @@
 	// select a few effects to realize
 		// situations
 			// when dmg dealt
-			// when collider hit
+			// xwhen collider hit
 			// xwhen casting
 		// effects
+			// dmg
 			// buffs
 			// debuffs
 			// stun

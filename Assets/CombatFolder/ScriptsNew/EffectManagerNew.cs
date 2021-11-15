@@ -31,7 +31,6 @@ public class EffectManagerNew : MonoBehaviour
 	private void Update()
 	{
 		ProcessEffects();
-
 	}
 
 	public void RefreshCurrentMats()
@@ -55,6 +54,7 @@ public class EffectManagerNew : MonoBehaviour
 		// when dmg dealt
 		if (dmgDealt)
 		{
+
 			dmgDealt = false;
 		}
 		// when collider hit
@@ -63,6 +63,8 @@ public class EffectManagerNew : MonoBehaviour
 			EnemyHitEvent();
 			enemyHit = false;
 		}
+		// no condition
+		NoneEvents();
 	}
 
 	#region Events
@@ -123,7 +125,7 @@ public class EffectManagerNew : MonoBehaviour
 	// effects on enemy are inflicted, or in another word, recorded, when the collider hit an enemy collider
 	public void EnemyHitEvent() // 
 	{
-		// buffs
+		// check effects on player
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
@@ -133,7 +135,7 @@ public class EffectManagerNew : MonoBehaviour
 			}
 		}
 		
-		// generally effects that inflicted on the enemy
+		// check effects on enemie
 		foreach (var enemy in enemiesEffected)
 		{
 			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders)
@@ -141,7 +143,31 @@ public class EffectManagerNew : MonoBehaviour
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
 				if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt)
 				{
-					print("deal dmg");
+					
+				}
+			}
+		}
+	}
+	#endregion
+	#region None Events
+	public void NoneEvents() // these effects will happen right after they're applied
+	{
+		// check effects on player
+		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
+		{
+			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+			
+		}
+
+		// check effects on enemies
+		foreach (var enemy in enemiesEffected) // get every enemies that have effects on them
+		{
+			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders) // get these enemies' effect holders
+			{
+				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+				if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt) // for each holder, check its effect
+				{
+					enemy.GetComponent<Enemy>().LoseHealth((int)ehs.myEffect.forHowMuch);
 					ehs.destroy = true;
 				}
 			}
@@ -152,15 +178,13 @@ public class EffectManagerNew : MonoBehaviour
 
 	public void SpawnEffectHolders(GameObject target, EffectStructNew effect)
 	{
-		print(target.name);
 		GameObject effectHolder = Instantiate(effectHolder_prefab, target.transform);
 		EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
 		ehs.myOwner = target;
 		ehs.myEffect = effect;
 		target.GetComponent<EffectHoldersHolderScript>().effectHolders.Add(effectHolder);
 	}
-
-	#region spawn related
+	#region spawn spell functions
 	private void SpawnSpell(int spawnAmount, int hitAmount)
 	{
 		int mAmount = spawnAmount;

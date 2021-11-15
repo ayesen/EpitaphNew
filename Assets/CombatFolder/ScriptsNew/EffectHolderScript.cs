@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// this script controls a gameobject for holding an effect, it is stored in an effect holders holder, which is attached to a game object that can be attacked
 public class EffectHolderScript : MonoBehaviour
 {
 	public GameObject myOwner;

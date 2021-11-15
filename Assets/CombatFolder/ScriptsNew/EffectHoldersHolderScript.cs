@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// this is the container of effect holders
 public class EffectHoldersHolderScript : MonoBehaviour
 {
     public List<GameObject> effectHolders;

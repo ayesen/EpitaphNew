@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerScriptNew : MonoBehaviour
 {
 	public static PlayerScriptNew me;
+	[Header("Basics")]
 	public float spd;
 	public float rot_spd;
 	private GameObject enemy;
-    public List<GameObject> selectedMats;
     private Animator anim;
     public GameObject actualPlayer;
-	public List<GameObject> matSlots;
+	[Header("Mat")]
+	public List<GameObject> selectedMats; // mats activated
+	public List<GameObject> matSlots; // inventory
 
 	// backswing cancel
 	private GameObject lastMat;
@@ -29,6 +31,7 @@ public class PlayerScriptNew : MonoBehaviour
 
 	private void Update()
 	{
+		// check for attack button press
 		if (selectedMats.Count > 0 &&  // check if player has mat activated
 			(anim.GetCurrentAnimatorStateInfo(0).IsName("testIdle") || // if player in idle state
 			anim.GetCurrentAnimatorStateInfo(0).IsName("testWalk")))  // if player in walk state
