@@ -13,12 +13,13 @@ public class MagnetMats : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        if(player != null && player.GetComponent<PlayerScript>().tempInventory[3].Mats != null)
+        if(player != null && PlayerScript.me.tempInventory[3].Mats != null)
         {
             flyToPlayer = false;
         }
@@ -31,10 +32,9 @@ public class MagnetMats : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("RealPlayer"))
         {
-            player = GameObject.Find("Player");
-            if(player.GetComponent<PlayerScript>().tempInventory[3].Mats == null)
+            if(PlayerScript.me.tempInventory[3].Mats == null)
             {
                 startTime = Time.time;
                 flyToPlayer = true;
