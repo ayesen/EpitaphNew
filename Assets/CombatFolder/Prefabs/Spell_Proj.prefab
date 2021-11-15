@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4131094066971217824}
   - component: {fileID: 158784552}
   - component: {fileID: 158784551}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spell_Proj
   m_TagString: Spell
   m_Icon: {fileID: 0}
@@ -129,3 +129,6 @@ MonoBehaviour:
   mat: {fileID: 0}
   burst: {fileID: 4206482292668527978, guid: 66c3d900e51cad04da07b40bf7c56cf9, type: 3}
   fragments: {fileID: 2156532497255595423, guid: 1033caef31484d34f9c755850c12368c, type: 3}
+  myEffects: []
+  hit_amount: 0
+  hit_interval: 0.3

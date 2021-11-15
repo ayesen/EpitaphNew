@@ -196,7 +196,6 @@ public class SpellCtrlScript : MonoBehaviour
 				if (Input.GetMouseButtonUp(0))
 				{
 					lastMat = ps.currentMat;
-					
 				}
 			}
 			else

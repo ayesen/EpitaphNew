@@ -7,6 +7,9 @@ public class SpellScript : MonoBehaviour
 	public GameObject mat;
 	public ParticleSystem burst;
 	public ParticleSystem fragments;
+	public List<EffectStructNew> myEffects;
+	public int hit_amount;
+	public float hit_interval;
 
 	private void Update()
 	{
@@ -14,20 +17,11 @@ public class SpellScript : MonoBehaviour
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
-        if (collision.gameObject.CompareTag("Enemy"))
+		if (!collision.gameObject.CompareTag("Player"))
 		{
-			//! effect here
-			EffectManager.me.ProcessEffects(mat, collision.gameObject);
-			if (burst != null)
-			{
-				ParticleSystem b = Instantiate(burst);
-				b.transform.position = collision.GetContact(0).point;
-			}
-			if (fragments != null)
-			{
-				ParticleSystem f = Instantiate(fragments);
-				f.transform.position = collision.GetContact(0).point;
-			}
+			StartCoroutine(Detection(hit_amount, collision, collision.GetContact(0).point));
+			GetComponent<BoxCollider>().enabled = false;
+			GetComponent<MeshRenderer>().enabled = false;
 		}
 		else if (collision.gameObject.CompareTag("InteractableObject"))
 		{
@@ -36,14 +30,38 @@ public class SpellScript : MonoBehaviour
 				collision.gameObject.SendMessage("Reaction");
 			}
 		}
-		if (!collision.gameObject.CompareTag("Player"))
+	}
+
+	IEnumerator Detection(int hitAmount, Collision hit, Vector3 hitPos)
+	{
+		int amount = hitAmount;
+		while (amount > 0)
 		{
-			Destroy(gameObject);
-			if (burst != null)
+			if (hit.gameObject.CompareTag("Enemy")) // if hit enemy, inflict effects on enemy and spawn fragments vfx
 			{
-				ParticleSystem b = Instantiate(burst);
-				b.transform.position = collision.GetContact(0).point;
+				// apply effects
+				foreach (var effect in myEffects)
+				{
+					if (effect.toWhom == EffectStructNew.Target.enemy)
+					{
+						hit.gameObject.GetComponent<Enemy>().effectsInflictedOnMe.Add(effect);
+					}
+				}
+				// vfx
+				if (fragments != null)
+				{
+					ParticleSystem f = Instantiate(fragments);
+					f.transform.position = hitPos;
+				}
 			}
+			if (burst != null) // if hit, spawn burst vfx
+			{
+				// vfx
+				ParticleSystem b = Instantiate(burst);
+				b.transform.position = hitPos;
+			}
+			amount--;
+			yield return new WaitForSeconds(hit_interval);
 		}
 	}
 }

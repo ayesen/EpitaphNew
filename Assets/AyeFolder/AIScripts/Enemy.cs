@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent ghostRider;
     public GameObject target;
 
-
     [Header("ATTACK")]
     public AtkTrigger myTrigger;
     public GameObject myTriggerObj;
@@ -51,6 +50,9 @@ public class Enemy : MonoBehaviour
     public Transform eventTarget;
     public float stopDis;
     public GameObject dialogueTrigger;
+
+    [Header("Effect Process")]
+    public List<EffectStructNew> effectsInflictedOnMe;
 
     private void Awake()
     {
