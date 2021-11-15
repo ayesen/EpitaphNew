@@ -10,12 +10,18 @@ public class EffectManagerNew : MonoBehaviour
 	[Header("Situation Manager")]
 	public bool casting;
 	public bool dmgDealt;
-	public bool colliderHit;
+	public bool enemyHit;
 
 	[Header("Spawn Manager")]
 	public Transform spellSpawnLoc;
 	public GameObject spell_proj_prefab;
 	public float extraSpawn_angleRange;
+
+	[Header("Enemy Stuffs")]
+	public List<GameObject> enemiesEffected; // enemies that have effects infliced on them
+
+	[Header("Effect Infliction")]
+	public GameObject effectHolder_prefab;
 
 	private void Awake()
 	{
@@ -25,6 +31,7 @@ public class EffectManagerNew : MonoBehaviour
 	private void Update()
 	{
 		ProcessEffects();
+
 	}
 
 	public void RefreshCurrentMats()
@@ -36,37 +43,12 @@ public class EffectManagerNew : MonoBehaviour
 		}
 	}
 
-    public void CastingEvent() // when player press attack button
-	{
-		int spawnCount = 1; // number of spells to spawn, default is 1
-		int hitCount = 1; // number of detection, default is 1
-
-		foreach (var mat in currentMats)
-		{
-			MatScriptNew ms = mat.GetComponent<MatScriptNew>();
-			foreach (var effect in ms.myEffects)
-			{
-				if (effect.when == EffectStructNew.Condition.casting) // pick out effects that come into force when casting
-				{
-					if (effect.doThis == EffectStructNew.Effect.spawnExtra) // if effect spawns extra spells, add it to spawn count
-					{
-						spawnCount += (int)effect.forHowMuch;
-					}
-					if (effect.doThis == EffectStructNew.Effect.spawnConsecutive) // if effect increases hit count, add it to default hit count
-					{
-						hitCount += (int)effect.forHowMuch;
-					}
-				}
-			}
-		}
-		SpawnSpell(spawnCount, hitCount);
-	}
-
 	public void ProcessEffects()
 	{
 		// when casting
 		if (casting)
 		{
+			CastingEvent_Inflict();
 			CastingEvent();
 			casting = false;
 		}
@@ -76,10 +58,106 @@ public class EffectManagerNew : MonoBehaviour
 			dmgDealt = false;
 		}
 		// when collider hit
-		if (colliderHit)
+		if (enemyHit)
 		{
-			colliderHit = false;
+			EnemyHitEvent();
+			enemyHit = false;
 		}
+	}
+
+	#region Events
+	#region Casting Events
+	private void CastingEvent_Inflict() // record effects on targets, now all effects that player inflicts on themselves are recorded when casted
+	{
+		foreach (var mat in currentMats)
+		{
+			MatScriptNew ms = mat.GetComponent<MatScriptNew>();
+			// inflict effects on target
+			foreach (var effect in ms.myEffects)
+			{
+				if (effect.toWhom == EffectStructNew.Target.player) // pick out effects that works on player, generally one time or continuous buffs
+				{
+					SpawnEffectHolders(PlayerScriptNew.me.gameObject, effect);
+				}
+			}
+		}
+	}
+
+	public void CastingEvent() // process effects on targets
+	{
+		// get effects inflicted on player
+		int spawnCount = 1; // number of spells to spawn, default is 1
+		int hitCount = 1; // number of detection, default is 1
+
+		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
+		{
+			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+			if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnExtra) // if effect spawns extra spells, add it to spawn count
+			{
+				spawnCount += (int)ehs.myEffect.forHowMuch;
+				ehs.destroy = true;
+			}
+			if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnConsecutive) // if effect increases hit count, add it to default hit count
+			{
+				hitCount += (int)ehs.myEffect.forHowMuch;
+				ehs.destroy = true;
+			}
+		}
+
+		// get effects inflicted on enemy
+		foreach (var enemy in enemiesEffected)
+		{
+			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders)
+			{
+				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+				if (ehs.myEffect.when == EffectStructNew.Condition.casting)
+				{
+					// effects
+				}
+			}
+		}
+		SpawnSpell(spawnCount, hitCount);
+	}
+	#endregion
+	#region Enemy Hit Events
+	// effects on enemy are inflicted, or in another word, recorded, when the collider hit an enemy collider
+	public void EnemyHitEvent() // 
+	{
+		// buffs
+		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
+		{
+			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+			if (ehs.myEffect.when == EffectStructNew.Condition.enemyHit)
+			{
+				
+			}
+		}
+		
+		// generally effects that inflicted on the enemy
+		foreach (var enemy in enemiesEffected)
+		{
+			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders)
+			{
+				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+				if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt)
+				{
+					print("deal dmg");
+					ehs.destroy = true;
+				}
+			}
+		}
+	}
+	#endregion
+	#endregion
+
+	public void SpawnEffectHolders(GameObject target, EffectStructNew effect)
+	{
+		print(target.name);
+		GameObject effectHolder = Instantiate(effectHolder_prefab, target.transform);
+		EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+		ehs.myOwner = target;
+		ehs.myEffect = effect;
+		target.GetComponent<EffectHoldersHolderScript>().effectHolders.Add(effectHolder);
 	}
 
 	#region spawn related
@@ -127,5 +205,6 @@ public class EffectManagerNew : MonoBehaviour
 		spellSpawnLoc.localRotation = Quaternion.Euler(0, 0, 0);
 	}
 	#endregion
+
 	#endregion
 }

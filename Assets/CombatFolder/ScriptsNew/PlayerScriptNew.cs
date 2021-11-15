@@ -13,8 +13,6 @@ public class PlayerScriptNew : MonoBehaviour
     public GameObject actualPlayer;
 	public List<GameObject> matSlots;
 
-    
-
 	// backswing cancel
 	private GameObject lastMat;
 

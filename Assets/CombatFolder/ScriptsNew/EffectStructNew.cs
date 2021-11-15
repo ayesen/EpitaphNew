@@ -8,9 +8,9 @@ public struct EffectStructNew
 	public enum Condition
 	{
 		none,
-		dmgDealt,
-		colliderHit,
-		casting
+		dmgDealt, // when dmg is dealt
+		enemyHit, // when enemy is hit
+		casting // when attack frame
 	};
 	public Condition when;
 
@@ -27,10 +27,10 @@ public struct EffectStructNew
 	public enum Target
 	{
 		player,
-		enemy
+		collisionEnemy
 	};
 	public Target toWhom;
 
 	public float forHowMuch;
-	public float forHowLong; // 0: only this time; >0: buff or debuff
+	public float forHowLong;
 }

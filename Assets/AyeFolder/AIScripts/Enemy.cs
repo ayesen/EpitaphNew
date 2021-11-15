@@ -51,9 +51,6 @@ public class Enemy : MonoBehaviour
     public float stopDis;
     public GameObject dialogueTrigger;
 
-    [Header("Effect Process")]
-    public List<EffectStructNew> effectsInflictedOnMe;
-
     private void Awake()
     {
         ghostRider = GetComponent<NavMeshAgent>();

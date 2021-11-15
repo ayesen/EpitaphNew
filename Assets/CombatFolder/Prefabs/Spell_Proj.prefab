@@ -131,4 +131,4 @@ MonoBehaviour:
   fragments: {fileID: 2156532497255595423, guid: 1033caef31484d34f9c755850c12368c, type: 3}
   myEffects: []
   hit_amount: 0
-  hit_interval: 0.3
+  hit_interval: 0.2
