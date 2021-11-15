@@ -156,7 +156,7 @@
 			// xwhen collider hit
 			// xwhen casting
 		// effects
-			// dmg
+			// xdmg
 			// buffs
 			// debuffs
 			// stun

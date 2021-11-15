@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HittedStateCanvas : MonoBehaviour
 {
-
     public GameObject AI;
     void Start()
     {

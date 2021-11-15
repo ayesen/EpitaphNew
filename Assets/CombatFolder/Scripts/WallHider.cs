@@ -23,12 +23,12 @@ public class WallHider : MonoBehaviour
 			if (wallsToShow.Count > 0)
 				foreach (var wall in wallsToShow)
 				{
-					wall.SetActive(true);
+					wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 				}
 			if (wallsToHide.Count > 0)
 				foreach (var wall in wallsToHide)
 				{
-					wall.SetActive(false);
+					wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
 				}
 			if (masksToShow.Count > 0)
 				foreach (var mask in masksToShow)
