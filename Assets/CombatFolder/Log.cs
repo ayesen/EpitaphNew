@@ -137,4 +137,8 @@
 		// xbricks
 		// dust
 	// xfunction
-// dialogue with ai
+// xdialogue with ai
+
+// 11/11/21
+// xdynamic line duration adjustment according to clip length
+// xwall hiding
