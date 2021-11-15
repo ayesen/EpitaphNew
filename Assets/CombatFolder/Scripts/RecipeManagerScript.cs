@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class RecipeManagerScript : MonoBehaviour
 {
     public List<Recipe> recipeList;
     public GameObject player;
     public TextMeshProUGUI instruction;
-    public TextMeshProUGUI combination;
     public TextMeshProUGUI match;
     public TextMeshProUGUI argyi;
     public TextMeshProUGUI nail;
     public TextMeshProUGUI bossMat;
+    public Image outcomeIcon;
+    public Image matInv;
+    public Image leftInv;
+    public Image rightInv;
+    public Image upInv;
+    public Image downInv;
 
     public List<GameObject> possibleCombinations;
 
@@ -35,18 +41,16 @@ public class RecipeManagerScript : MonoBehaviour
                     instruction.text += mat.name + "\n";
                 }
                 */
-                instruction.text += "Outcome:\n" + recipeList[i].Outcome.name;
+                outcomeIcon.sprite = recipeList[i].Outcome.GetComponent<MatScript>().Icon;
+                instruction.text += recipeList[i].Outcome.name;
                 return;
             }
             if (i == recipeList.Count - 1)
             {
                 player.SendMessage("RefreshChoosenMats");
-                if (choosenMats[choosenMats.Count - 1].GetComponent<MatScript>().matCastType == SpellCtrlScript.CastType.none)
-                    instruction.text = /*"Selected Materials: " + choosenMats[choosenMats.Count - 1].name + */"Outcome:\nNone";
-                else
-                {
-                    instruction.text = /*"Selected Materials: " + choosenMats[choosenMats.Count - 1].name + */"Outcome:\n" + choosenMats[choosenMats.Count - 1].name;
-                }
+                outcomeIcon.sprite = choosenMats[choosenMats.Count - 1].GetComponent<MatScript>().Icon;
+                if (choosenMats[choosenMats.Count - 1].GetComponent<MatScript>().matCastType == SpellCtrlScript.CastType.none) 
+                    instruction.text = choosenMats[choosenMats.Count - 1].name;
                 player.SendMessage("RefreshSpell", choosenMats[choosenMats.Count - 1]);
             }
         }
@@ -59,6 +63,11 @@ public class RecipeManagerScript : MonoBehaviour
         argyi.color = new Color32(255, 255, 255, 255);
         nail.color = new Color32(255, 255, 255, 255);
         bossMat.color = new Color32(255, 255, 255, 255);
+        leftInv.color = new Color32(255, 255, 255, 255);
+        rightInv.color = new Color32(255, 255, 255, 255);
+        upInv.color = new Color32(255, 255, 255, 255);
+        downInv.color = new Color32(255, 255, 255, 255);
+
         //combination.text = "Possible Combination:\n";
         for (int i = 0; i < recipeList.Count; i++)
         {
@@ -78,13 +87,25 @@ public class RecipeManagerScript : MonoBehaviour
                     for (int d = 0; d < matList.Count; d++)
                     {
                         if (matList[d].name == "Match - Low Damage Bullet")
+                        {
                             match.color = new Color32(87, 212, 197, 255);
+                            leftInv.color = new Color32(87, 212, 197, 255);
+                        }
                         if (matList[d].name == "Argyi - Self Healing")
+                        {
                             argyi.color = new Color32(87, 212, 197, 255);
+                            upInv.color = new Color32(87, 212, 197, 255);
+                        }
                         if (matList[d].name == "Copper Nail - Drop Material Bullet")
+                        {
                             nail.color = new Color32(87, 212, 197, 255);
+                            rightInv.color = new Color32(87, 212, 197, 255);
+                        }
                         if (matList[d].name == "Cotton" || matList[d].name == "Tear")
+                        {
                             bossMat.color = new Color32(87, 212, 197, 255);
+                            downInv.color = new Color32(87, 212, 197, 255);
+                        }
                         if (possibleCombinations[c].name == matList[d].name)
                         {
                             possibleCombinations.RemoveAt(c);
@@ -109,16 +130,27 @@ public class RecipeManagerScript : MonoBehaviour
         {
             //combination.text += mat.name + "\n";
             if (mat.name == "Match - Low Damage Bullet")
+            {
                 match.color = new Color32(215, 140, 90, 255);
+                leftInv.color = new Color32(215, 140, 90, 255);
+            }
             if (mat.name == "Argyi - Self Healing")
+            {
                 argyi.color = new Color32(215, 140, 90, 255);
+                upInv.color = new Color32(215, 140, 90, 255);
+            }
             if (mat.name == "Copper Nail - Drop Material Bullet")
+            {
                 nail.color = new Color32(215, 140, 90, 255);
+                rightInv.color = new Color32(215, 140, 90, 255);
+            }
             if (player.GetComponent<PlayerScript>().tempInventory[3].Mats != null && mat == player.GetComponent<PlayerScript>().tempInventory[3].Mats)
+            {
                 bossMat.color = new Color32(215, 140, 90, 255);
+                downInv.color = new Color32(215, 140, 90, 255);
+            }
         }
     }
-
 
     private bool ContainsList(int i, List<GameObject> matList, List<GameObject> requiredMats)
     {

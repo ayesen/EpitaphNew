@@ -32,6 +32,11 @@ public class DialogueScript : MonoBehaviour
 		}
 		inspected = false;
 		player = GameObject.FindGameObjectWithTag("Player");
+		foreach (var line in texts)
+		{
+			if (line.clip != null)
+				line.SetTime(line.clip.length);
+		}
 	}
 
 	private void Update()
