@@ -22,7 +22,7 @@ public class SpellAOEScript : MonoBehaviour
 	void Update()
 	{
 		// destroy it after 3 seconds
-		Destroy(gameObject, 0.5f);
+		Destroy(gameObject, 3f);
 	}
 
 	private void OnTriggerEnter(Collider other)
