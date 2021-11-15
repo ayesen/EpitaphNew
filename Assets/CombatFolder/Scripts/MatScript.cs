@@ -5,6 +5,7 @@ using UnityEngine;
 public class MatScript : MonoBehaviour
 {
     public string namae;
+    public Sprite Icon;
     public SpellCtrlScript.CastType matCastType;
     public bool compound; // true - product of combination
     public Material myMaterial;

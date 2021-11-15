@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
 	public GameObject tear;
 	public GameObject cotton;
 	public GameObject enemy;
+	public GameObject MatInventory;
 
 	//Temp inventory
 	[Header("Temp Inventory")]
@@ -211,19 +212,16 @@ public class PlayerScript : MonoBehaviour
 		if (other.gameObject.CompareTag("DroppedMat") && tempInventory[3].matAmounts == 0
 													  && tempInventory[3].Mats == null)
 		{
-			InventoryDict droppedMat = new InventoryDict();
-
 			//这是用魔法写的，必须要改，但想不到咋办
 			if (other.gameObject.name.ToString() == "Tear(Clone)")
-				droppedMat.Mats = tear;
+				tempInventory[3].Mats = tear;
 			else if (other.gameObject.name.ToString() == "Cotton(Clone)")
-				droppedMat.Mats = cotton;
+				tempInventory[3].Mats = cotton;
+			tempInventory[3].matAmounts = 1;
 
-			recipeManager.GetComponent<RecipeManagerScript>().bossMat.text = "4:" + droppedMat.Mats.name.ToString();
-			droppedMat.matAmounts = 1;
+			recipeManager.GetComponent<RecipeManagerScript>().bossMat.text = "4:" + tempInventory[3].Mats.name;
 
-			tempInventory.RemoveAt(3);
-			tempInventory.Add(droppedMat);
+			MatInventory.SendMessage("ChangeMatIcon");
 
 			Destroy(other.gameObject);
 		}
@@ -268,6 +266,7 @@ public class PlayerScript : MonoBehaviour
 							chosenMats.Remove(tempInventory[i].Mats);
 							tempInventory[i].Mats = null;
 							recipeManager.GetComponent<RecipeManagerScript>().bossMat.text = "4:None";
+							MatInventory.SendMessage("ChangeMatIcon");
 							//recipeManager.SendMessage("SearchRecipeForMats", choosentMats);
 							recipeManager.SendMessage("SearchForCombinations", chosenMats);
 						}
