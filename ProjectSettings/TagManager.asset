@@ -1,3 +1,51 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ed57b521a60335f5cedb905f50438c669365719fc1998d2617699f73052d8be6
-size 544
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - DroppedMat
+  - Enemy
+  - RealPlayer
+  - Spell
+  - InteractableObject
+  - Wall
+  - Wall Hide Mask
+  - Light
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Enemy
+  - DroppedMat
+  - Player
+  - Objects
+  - MonoTrigger
+  - AOECollider
+  - Walls
+  - Spells
+  - 
+  - Outline
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
