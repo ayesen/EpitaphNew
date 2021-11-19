@@ -5507,6 +5507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TV_lowpoly
       objectReference: {fileID: 0}
+    - target: {fileID: 2120530788957801534, guid: 7a99f412c8751ea4b94e43687b986ef4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a99f412c8751ea4b94e43687b986ef4, type: 3}
 --- !u!1 &325707248
@@ -10235,6 +10239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CouchSet
       objectReference: {fileID: 0}
+    - target: {fileID: 7760313682526528565, guid: 72930cac3b7902e4d8a697237f3320dc, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72930cac3b7902e4d8a697237f3320dc, type: 3}
 --- !u!1 &624207180
@@ -10501,6 +10509,10 @@ PrefabInstance:
     - target: {fileID: 4427744949850716547, guid: 0fe51eb8f1e101f449ad1925b1278193, type: 3}
       propertyPath: m_Name
       value: Fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427744949850716547, guid: 0fe51eb8f1e101f449ad1925b1278193, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fe51eb8f1e101f449ad1925b1278193, type: 3}
@@ -13813,6 +13825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Counter
       objectReference: {fileID: 0}
+    - target: {fileID: 3455737745845148241, guid: 119b51ac8f3b6e44b8e3133d02b108fb, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 119b51ac8f3b6e44b8e3133d02b108fb, type: 3}
 --- !u!4 &844683754 stripped
@@ -15965,6 +15981,10 @@ PrefabInstance:
     - target: {fileID: 4151484774657204248, guid: a81839daba603c047aa6f21be9a933b0, type: 3}
       propertyPath: m_Name
       value: TeaTable_lowpoly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151484774657204248, guid: a81839daba603c047aa6f21be9a933b0, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a81839daba603c047aa6f21be9a933b0, type: 3}
@@ -18904,6 +18924,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiningChair_highpoly
       objectReference: {fileID: 0}
+    - target: {fileID: 8966314082051787754, guid: 5eb336d6c78e4794395f01e566a36c1a, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eb336d6c78e4794395f01e566a36c1a, type: 3}
 --- !u!4 &1224902091 stripped
@@ -20153,6 +20177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuanGong
       objectReference: {fileID: 0}
+    - target: {fileID: 5133088825463268058, guid: f381a68035a32cb4a9b6e58adafefd4a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5510072486843365472, guid: f381a68035a32cb4a9b6e58adafefd4a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -20448,6 +20476,10 @@ PrefabInstance:
     - target: {fileID: 3827084875413354410, guid: 159656fb7ce731a41900452ef97092d5, type: 3}
       propertyPath: m_Name
       value: DiningTable_highpoly
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827084875413354410, guid: 159656fb7ce731a41900452ef97092d5, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4492157861454425360, guid: 159656fb7ce731a41900452ef97092d5, type: 3}
       propertyPath: m_RootOrder
@@ -22983,7 +23015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1359898471369788420, guid: 99952861e65c4e44bab6c861e516f2c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.05
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 1359898471369788420, guid: 99952861e65c4e44bab6c861e516f2c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24975,6 +25007,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Closet_GuanGong_lowpoly
       objectReference: {fileID: 0}
+    - target: {fileID: 7470612726514053014, guid: 2f6fcfa7d50c3f7438e8ebc3c9304a2d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7847278383679517996, guid: 2f6fcfa7d50c3f7438e8ebc3c9304a2d, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -25616,6 +25652,10 @@ PrefabInstance:
     - target: {fileID: 119758476116864160, guid: 227b5f839cf4b7441870c4b224cde040, type: 3}
       propertyPath: m_Name
       value: TV_StandSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 119758476116864160, guid: 227b5f839cf4b7441870c4b224cde040, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5516088695229561214, guid: 227b5f839cf4b7441870c4b224cde040, type: 3}
       propertyPath: m_RootOrder
@@ -29386,6 +29426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiningChair_highpoly (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8966314082051787754, guid: 5eb336d6c78e4794395f01e566a36c1a, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eb336d6c78e4794395f01e566a36c1a, type: 3}
 --- !u!4 &1990172578 stripped
@@ -31166,7 +31210,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
