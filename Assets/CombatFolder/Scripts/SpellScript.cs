@@ -39,13 +39,17 @@ public class SpellScript : MonoBehaviour
 		{
 			if (hit.gameObject.CompareTag("Enemy")) // if hit enemy, inflict effects on enemy and spawn fragments vfx
 			{
-				EffectManagerNew.me.enemyHit = true;
+				ConditionStruct cs = new ConditionStruct
+				{
+					condition = EffectStructNew.Condition.enemyHit,
+					conditionTrigger = hit.gameObject
+				};
+				EffectManagerNew.me.conditionProcessList.Add(cs);
 				// record effects
 				foreach (var effect in myEffects)
 				{
 					if (effect.toWhom == EffectStructNew.Target.collisionEnemy)
 					{
-						print("collide");
 						EffectManagerNew.me.SpawnEffectHolders(hit.gameObject, effect);
 					}
 				}

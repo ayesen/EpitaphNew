@@ -152,14 +152,14 @@
 		// when finish, this buff destroys itself
 	// select a few effects to realize
 		// situations
-			// when dmg dealt
+			// xwhen dmg dealt
 			// xwhen collider hit
 			// xwhen casting
 		// effects
 			// xdmg
 			// buffs
 			// debuffs
-			// stun
+			// xstun
 			// drop
 			// break
 			// heal

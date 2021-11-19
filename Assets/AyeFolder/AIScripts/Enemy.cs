@@ -114,7 +114,16 @@ public class Enemy : MonoBehaviour
 
     public void LoseHealth(int hurtAmt)
     {
-        if (shield <= 0)
+		// for effect manager new
+		ConditionStruct cs = new ConditionStruct
+		{
+			condition = EffectStructNew.Condition.dmgDealt,
+			conditionTrigger = gameObject
+		};
+        EffectManagerNew.me.conditionProcessList.Add(cs);
+
+		// og code
+		if (shield <= 0)
         {
             if (health - hurtAmt >= 0)
             {
@@ -193,7 +202,7 @@ public class Enemy : MonoBehaviour
 
         if (InRange())
         {
-            EffectManager.me.KnockBack(knockbackAmount, gameObject, PlayerScript.me.gameObject);
+            EffectManager.me.KnockBack(knockbackAmount, gameObject, PlayerScript.me.transform.GetChild(0).gameObject);
             /*deal damage here*/
         }
 
