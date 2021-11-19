@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent ghostRider;
     public GameObject target;
 
-
     [Header("ATTACK")]
     public AtkTrigger myTrigger;
     public GameObject myTriggerObj;

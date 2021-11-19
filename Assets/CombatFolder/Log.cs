@@ -142,3 +142,29 @@
 // 11/11/21
 // xdynamic line duration adjustment according to clip length
 // xwall hiding
+
+// 11/13/21
+// combat system revamp
+	// store effects on mat
+	// player decide what type of collider to spawn according to mat
+	// when collider hit enemy, add a buff to enemy
+		// this buff will process the effect
+		// when finish, this buff destroys itself
+	// select a few effects to realize
+		// situations
+			// when dmg dealt
+			// xwhen collider hit
+			// xwhen casting
+		// effects
+			// xdmg
+			// buffs
+			// debuffs
+			// stun
+			// drop
+			// break
+			// heal
+			// knock back
+			// xmultiple collision detection
+			// xmultiple collider spawning
+			// aoe collision detection
+			// aoe
