@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable] ///// structs are not serializable so we need to add this in order to see it in the inspector
+[System.Serializable] // structs are not serializable so we need to add this in order to see it in the inspector
 public struct EffectStruct
 {
     [Header("DMG")]
@@ -26,4 +26,6 @@ public struct EffectStruct
     [Header("SPLY")]
     public List<GameObject> matProduce; // for testing only
     public float dropMatAmount;
+
+    
 }

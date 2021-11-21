@@ -37,7 +37,7 @@ public class RecipeManagerScript : MonoBehaviour
                 instruction.text = "";
                 /*instruction.text = "Selected Materials: ";
                 foreach (var mat in recipeList[i].Materials)
-                {
+                {z
                     instruction.text += mat.name + "\n";
                 }
                 */

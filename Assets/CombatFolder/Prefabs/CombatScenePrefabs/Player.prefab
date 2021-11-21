@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397684480}
-  m_Layer: 8
-  m_Name: CamTaret
+  m_Layer: 15
+  m_Name: CamTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 705393197}
   - component: {fileID: 705393193}
   - component: {fileID: 199564423075833590}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Capsule
   m_TagString: RealPlayer
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 199564423692395279}
   - component: {fileID: 199564423692395278}
   - component: {fileID: 199564423692395277}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Canvas-Pie Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 199564424247961320}
   - component: {fileID: 199564424247961327}
   - component: {fileID: 199564424247961326}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199564424518589424}
   - component: {fileID: 199564424518589425}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Self Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 199564424747727109}
   - component: {fileID: 199564424747727110}
   - component: {fileID: 7093479450101510729}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ Transform:
   m_GameObject: {fileID: 199564424747727129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 199564423550319238}
   - {fileID: 199564423692395276}
@@ -508,8 +508,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  actualModel: {fileID: 199564423550319237}
-  spd: 2
+  actualModel: {fileID: 0}
+  spd: 6
   rot_spd: 4
   hp: 30
   currentMat: {fileID: 0}
@@ -518,6 +518,7 @@ MonoBehaviour:
   tear: {fileID: 8441474695682364324, guid: 212051402683f614781bcf259e7847f1, type: 3}
   cotton: {fileID: 2429920367318801475, guid: 246cc5031e223c548b132211d37c5988, type: 3}
   enemy: {fileID: 0}
+  MatInventory: {fileID: 0}
   tempInventory:
   - Mats: {fileID: 1478154070093566531, guid: 699134f854649d041b639287d52979e4, type: 3}
     matAmounts: 999
@@ -784,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_IsActive
@@ -1074,7 +1075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2156532497255595417, guid: 1033caef31484d34f9c755850c12368c, type: 3}
       propertyPath: m_IsActive
@@ -1356,7 +1357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a5a9cd700c0dfbf42ad2ecd4b9fca365, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a5a9cd700c0dfbf42ad2ecd4b9fca365, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2099,7 +2100,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!23 &7710817183028142171
 MeshRenderer:
   m_ObjectHideFlags: 0

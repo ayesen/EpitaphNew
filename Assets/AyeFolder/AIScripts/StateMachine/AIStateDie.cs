@@ -13,9 +13,7 @@ public class AIStateDie : AIStateBase
 
     public override void Update(Enemy myEnemy)
     {
-
         myEnemy.hittedStates.text = "DEAD";
-
     }
 
     public override void LeaveState(Enemy myEnemy)
