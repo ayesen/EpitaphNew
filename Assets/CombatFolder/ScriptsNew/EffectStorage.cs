@@ -68,7 +68,7 @@ public class EffectStorage : MonoBehaviour
 	public void Break(EffectHolderScript ehs, GameObject enemy)
 	{
 		if (enemy.GetComponent<Enemy>() != null &&
-			EffectManagerNew.me.droppableMat.Count > 0)
+			droppableMat.Count > 0)
 		{
 			Enemy eS = enemy.GetComponent<Enemy>();
 			eS.breakMeter -= ehs.myEffect.forHowMuch;
@@ -97,7 +97,7 @@ public class EffectStorage : MonoBehaviour
 			droppedMat.GetComponent<DroppedMatScript>().amount = matDropped.GetComponent<MatScriptNew>().amount_max;
 			droppedMat.GetComponent<Rigidbody>().AddForce(
 				new Vector3(Random.Range(-droppedMat_flyAmount, droppedMat_flyAmount),
-				3, // drop height
+				3, // force upward
 				Random.Range(-droppedMat_flyAmount, droppedMat_flyAmount)),
 				ForceMode.Impulse);
 		}

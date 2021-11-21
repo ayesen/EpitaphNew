@@ -160,8 +160,7 @@
 			// buffs
 			// debuffs
 			// xstun
-			// drop
-			// break
+			// xbreak (drop)
 			// heal
 			// knock back
 			// xmultiple collision detection

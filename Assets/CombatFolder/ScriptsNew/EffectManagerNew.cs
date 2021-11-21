@@ -10,8 +10,6 @@ public class EffectManagerNew : MonoBehaviour
 
 	[Header("Condition Manager")]
 	[HideInInspector]
-	public GameObject targetEffected; // the character that triggered the condition
-	[HideInInspector]
 	public List<ConditionStruct> conditionProcessList; // conditions to be processed
 	[HideInInspector]
 	public List<GameObject> enemiesEffected; // enemies that has effects on them
@@ -23,20 +21,13 @@ public class EffectManagerNew : MonoBehaviour
 	public int spawnCount = 1; // number of spells to spawn, default is 1
 	public int hitCount = 1; // number of detection, default is 1
 
-	[Header("Break Manager")]
-	public float droppedMat_flyAmount;
-	public List<GameObject> droppableMat;
-	public GameObject droppedMat_prefab;
-
 	[Header("Effect Infliction")]
 	public GameObject effectHolder_prefab;
-	public float dot_interval;
 
 	[Header("VFX")]
 	public ParticleSystem burst;
 	public ParticleSystem fragments;
 	public ParticleSystem fragments_dot;
-	public Vector3 hitPos;
 
 	public enum CtrlType
 	{
