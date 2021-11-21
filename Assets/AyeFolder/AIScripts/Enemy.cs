@@ -43,8 +43,12 @@ public class Enemy : MonoBehaviour
     public TextMeshProUGUI hittedStates;
 
     [Header("Supply")]
-    public float dropMeter;
-    public float dropMeterMax;
+    public float breakMeter;
+    public float breakMeterMax;
+    public float recovery_wait;
+    private float recovery_timer;
+    public float recovery_spd;
+    public TextMeshProUGUI breakMeter_ui;
 
     [Header("SCRIPTED EVENTS")]
     public Transform eventTarget;
@@ -65,6 +69,8 @@ public class Enemy : MonoBehaviour
         HittedStatesIndication();
         AIDead();
         PhaseSetting();
+        BreakMeter_recovery();
+        BreakMeter_show();
     }
 
     public void ChangePhase(AIPhase phaseName, int time)
@@ -250,4 +256,31 @@ public class Enemy : MonoBehaviour
         myAC.ChangeState(myAC.walkingState);
         target = eventTarget.gameObject;
     }
+
+    private void BreakMeter_recovery()
+	{
+        if (breakMeter < breakMeterMax)
+		{
+            if (recovery_timer >= 0)
+			{
+                recovery_timer -= Time.deltaTime;
+			}
+			else
+			{
+                breakMeter += recovery_spd * Time.deltaTime;
+			}
+		}
+		else
+		{
+            recovery_timer = recovery_wait;
+		}
+	}
+
+    private void BreakMeter_show()
+	{
+        if (breakMeter_ui != null)
+		{
+            breakMeter_ui.text = breakMeter.ToString("F2");
+        }
+	}
 }

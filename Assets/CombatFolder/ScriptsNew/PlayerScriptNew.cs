@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerScriptNew : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class PlayerScriptNew : MonoBehaviour
 	[Header("Mat")]
 	public List<GameObject> selectedMats; // mats activated
 	public List<GameObject> matSlots; // inventory
+	[Header("Temp UI")]
+	public TextMeshProUGUI mat1;
+	public TextMeshProUGUI mat2;
+	public TextMeshProUGUI mat3;
+	public TextMeshProUGUI mat4;
 
 	// backswing cancel
 	private GameObject lastMat;
@@ -38,10 +44,62 @@ public class PlayerScriptNew : MonoBehaviour
 		{
 			if (Input.GetMouseButtonUp(0)) // if left click
 			{
-				anim.Play("testWindup"); // playe anticipation clip and call effect manager's casting event in clip
+				bool goodToGo = true;
+				foreach (var mat in selectedMats)
+				{
+					if (mat.GetComponent<MatScriptNew>().amount <= 0)
+					{
+						goodToGo = false;
+					}
+				}
+				if (goodToGo)
+				{
+					foreach (var mat in selectedMats)
+					{
+						mat.GetComponent<MatScriptNew>().amount--;
+					}
+					anim.Play("testWindup"); // player anticipation clip and call effect manager's casting event in clip
+				}
+				else
+				{
+					print("YOU DON'T HAVE ENOUGH MATERIALS!!!");
+				}
 			}
 		}
-
+		#region Temp UI
+		if (selectedMats.Contains(matSlots[0]))
+		{
+			mat1.text = matSlots[0].name + ": " + matSlots[0].GetComponent<MatScriptNew>().amount;
+		}
+		else
+		{
+			mat1.text = "mat 1 not selected";
+		}
+		if (selectedMats.Contains(matSlots[1]))
+		{
+			mat2.text = matSlots[1].name + ": " + matSlots[1].GetComponent<MatScriptNew>().amount;
+		}
+		else
+		{
+			mat2.text = "mat 2 not selected";
+		}
+		if (selectedMats.Contains(matSlots[2]))
+		{
+			mat3.text = matSlots[2].name + ": " + matSlots[2].GetComponent<MatScriptNew>().amount;
+		}
+		else
+		{
+			mat3.text = "mat 3 not selected";
+		}
+		if (selectedMats.Contains(matSlots[3]))
+		{
+			mat4.text = matSlots[3].name + ": " + matSlots[3].GetComponent<MatScriptNew>().amount;
+		}
+		else
+		{
+			mat4.text = "mat 4 not selected";
+		}
+		#endregion
 		#region activate and deactivate mats
 		// activate mats
 		if (Input.GetKeyUp(KeyCode.Alpha1))

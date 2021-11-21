@@ -20,6 +20,13 @@ public class EffectManagerNew : MonoBehaviour
 	public Transform spellSpawnLoc;
 	public GameObject spell_proj_prefab;
 	public float extraSpawn_angleRange;
+	public int spawnCount = 1; // number of spells to spawn, default is 1
+	public int hitCount = 1; // number of detection, default is 1
+
+	[Header("Break Manager")]
+	public float droppedMat_flyAmount;
+	public List<GameObject> droppableMat;
+	public GameObject droppedMat_prefab;
 
 	[Header("Effect Infliction")]
 	public GameObject effectHolder_prefab;
@@ -104,9 +111,6 @@ public class EffectManagerNew : MonoBehaviour
 
 	public void CastingEvent(GameObject conditionTrigger) // process effects on targets
 	{
-		int spawnCount = 1; // number of spells to spawn, default is 1
-		int hitCount = 1; // number of detection, default is 1
-
 		// get effects inflicted on player
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
@@ -118,12 +122,12 @@ public class EffectManagerNew : MonoBehaviour
 				{
 					if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnExtraSpell) // if effect spawns extra spells, add it to spawn count
 					{
-						spawnCount += (int)ehs.myEffect.forHowMuch;
+						EffectStorage.me.SpawnExtraSpell(ehs);
 						ehs.destroy = true;
 					}
 					if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnExtraCollisionDetection) // if effect increases hit count, add it to default hit count
 					{
-						hitCount += (int)ehs.myEffect.forHowMuch;
+						EffectStorage.me.ExtraCollisionDetection(ehs);
 						ehs.destroy = true;
 					}
 				}
@@ -198,20 +202,22 @@ public class EffectManagerNew : MonoBehaviour
 					// for each holder, check its effect
 					if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt)
 					{
-						enemy.GetComponent<Enemy>().LoseHealth((int)ehs.myEffect.forHowMuch);
+						EffectStorage.me.HurtEnemy(ehs, enemy);
 						ehs.destroy = true;
 					}
-					if (ehs.myEffect.doThis == EffectStructNew.Effect.DOT)
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt_DOT)
 					{
-						StartCoroutine(DoDot(enemy, ehs.myEffect));
+						EffectStorage.me.DotEnemy(ehs, enemy);
 						ehs.destroy = true;
 					}
 					if (ehs.myEffect.doThis == EffectStructNew.Effect.stun)
 					{
-						enemy.GetComponent<Enemy>().walkable = false;
-						enemy.GetComponent<Enemy>().attackable = false;
-						StartCoroutine(ResetEnemyStatus(enemy, CtrlType.cantWalk, ehs.myEffect.forHowMuch));
-						StartCoroutine(ResetEnemyStatus(enemy, CtrlType.cantAttack, ehs.myEffect.forHowMuch));
+						EffectStorage.me.StunEnemy(ehs, enemy);
+						ehs.destroy = true;
+					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.break_atk)
+					{
+						EffectStorage.me.Break(ehs, enemy);
 						ehs.destroy = true;
 					}
 				}
@@ -222,7 +228,6 @@ public class EffectManagerNew : MonoBehaviour
 	#region Damge Dealt Events
 	public void DmgDealtEvents(GameObject conditionTrigger)
 	{
-		print(conditionTrigger);
 		// check effects on player
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
@@ -247,10 +252,7 @@ public class EffectManagerNew : MonoBehaviour
 					{
 						if (ehs.myEffect.doThis == EffectStructNew.Effect.stun) // check effect
 						{
-							enemy.GetComponent<Enemy>().walkable = false;
-							enemy.GetComponent<Enemy>().attackable = false;
-							StartCoroutine(ResetEnemyStatus(enemy, CtrlType.cantWalk, ehs.myEffect.forHowMuch));
-							StartCoroutine(ResetEnemyStatus(enemy, CtrlType.cantAttack, ehs.myEffect.forHowMuch));
+							EffectStorage.me.StunEnemy(ehs, enemy);
 						}
 					}
 				}
@@ -259,36 +261,7 @@ public class EffectManagerNew : MonoBehaviour
 	}
 	#endregion
 	#endregion
-
-	IEnumerator DoDot(GameObject target, EffectStructNew effect)
-	{
-		yield return new WaitForSeconds(dot_interval);
-		float timer = effect.forHowLong;
-		while (timer > 0)
-		{
-			timer--;
-			target.GetComponent<Enemy>().LoseHealth((int)effect.forHowMuch);
-			SpawnParticle(fragments_dot, target.transform.position);
-			yield return new WaitForSeconds(dot_interval);
-		}
-	}
-	private void SpawnParticle(ParticleSystem particle, Vector3 pos)
-	{
-		ParticleSystem f = Instantiate(particle);
-		f.transform.position = pos;
-	}
-	IEnumerator ResetEnemyStatus(GameObject target, CtrlType type, float duration)
-	{
-		yield return new WaitForSeconds(duration);
-		if (type == CtrlType.cantAttack)
-		{
-			target.GetComponent<Enemy>().attackable = true;
-		}
-		else if (type == CtrlType.cantWalk)
-		{
-			target.GetComponent<Enemy>().walkable = true;
-		}
-	}
+	
 	public void SpawnEffectHolders(GameObject target, EffectStructNew effect)
 	{
 		GameObject effectHolder = Instantiate(effectHolder_prefab, target.transform);
@@ -311,6 +284,8 @@ public class EffectManagerNew : MonoBehaviour
 			DefaultSpawn(hitAmount);
 			mAmount--;
 		}
+		spawnCount = 1;
+		hitCount = 1;
 	}
 
 	private void DefaultSpawn(int hitAmount)

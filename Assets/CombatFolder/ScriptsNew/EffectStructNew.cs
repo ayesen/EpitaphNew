@@ -7,8 +7,8 @@ public struct EffectStructNew
 {
 	public enum Condition // the condition for this effect to take place
 	{
-		none,
-		dmgDealt, // when dmg is dealt
+		none, // this will take place when the spell collides
+		dmgDealt, // when dmg is dealt, only work after this effect is applied before
 		enemyHit, // when enemy is hit, only work after this effect is applied to the enemy on the last collision, so dealing dmg should be none
 		casting // when attack frame
 	};
@@ -26,7 +26,8 @@ public struct EffectStructNew
 	{
 		stun,
 		hurt,
-		DOT,
+		hurt_DOT,
+		break_atk,
 		spawnExtraCollisionDetection,
 		spawnExtraSpell
 	};
