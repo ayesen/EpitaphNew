@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct EffectStructNew
 {
+	
 	public enum Condition // the condition for this effect to take place
 	{
 		none, // this will take place when the spell collides
@@ -12,6 +13,7 @@ public struct EffectStructNew
 		enemyHit, // when enemy is hit, only work after this effect is applied to the enemy on the last collision, so dealing dmg should be none
 		casting // when attack frame
 	};
+	[Header("CONDITION")]
 	public Condition when;
 
 	public enum ConditionTriggeredBy // describe for this effect to take place, who need to trigger the condition
@@ -29,14 +31,18 @@ public struct EffectStructNew
 		hurt_DOT,
 		break_atk,
 		spawnExtraCollisionDetection,
-		spawnExtraSpell
+		spawnExtraSpell,
+		knockBack,
+		spawnHitDetectionAfterDeath
 	};
+	[Header("EFFECTS")]
 	public Effect doThis;
 
 	public enum Target // describe who this effect is applyed to
 	{
 		player,
-		collisionEnemy
+		collisionEnemy,
+		air
 	};
 	public Target toWhom;
 

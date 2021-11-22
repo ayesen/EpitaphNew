@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SpellScript : MonoBehaviour
 {
@@ -10,10 +11,35 @@ public class SpellScript : MonoBehaviour
 	public List<EffectStructNew> myEffects;
 	public int hit_amount;
 	public float hit_interval;
+	private float lifespan;
+	private float deathTimer;
+	[Header("LASTWORD EVENT")]
+	public GameObject collisionPrefab;
+
+	private void Start()
+	{
+		float life = float.MaxValue;
+		foreach (var mat in PlayerScriptNew.me.selectedMats)
+		{
+			if (mat.GetComponent<MatScriptNew>().lifespan < life)
+			{
+				life = mat.GetComponent<MatScriptNew>().lifespan;
+			}
+		}
+		lifespan = life;
+		deathTimer = lifespan;
+	}
 
 	private void Update()
 	{
-		Destroy(gameObject, 3);
+		if (deathTimer > 0)
+		{
+			deathTimer -= Time.deltaTime;
+		}
+		else
+		{
+			DestroyEvent();
+		}
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
@@ -30,6 +56,7 @@ public class SpellScript : MonoBehaviour
 				collision.gameObject.SendMessage("Reaction");
 			}
 		}
+		DestroyEvent();
 	}
 
 	IEnumerator Detection(int hitAmount, Collision hit, Vector3 hitPos)
@@ -69,5 +96,20 @@ public class SpellScript : MonoBehaviour
 			amount--;
 			yield return new WaitForSeconds(hit_interval);
 		}
+	}
+
+	private void DestroyEvent()
+	{
+		foreach (var effect in myEffects.ToList())
+		{
+			if (effect.doThis == EffectStructNew.Effect.spawnHitDetectionAfterDeath)
+			{
+				print("?");
+				GameObject collisionDetector = Instantiate(collisionPrefab, transform.position, Quaternion.identity);
+				collisionDetector.transform.localScale = new Vector3(effect.forHowMuch, effect.forHowMuch, effect.forHowMuch);
+				myEffects.Remove(effect);
+			}
+		}
+		Destroy(gameObject);
 	}
 }

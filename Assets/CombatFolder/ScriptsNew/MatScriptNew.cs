@@ -8,6 +8,7 @@ public class MatScriptNew : MonoBehaviour
 	[HideInInspector]
 	public int amount_max;
 	public List<EffectStructNew> myEffects;
+	public float lifespan;
 
 	private void Start()
 	{

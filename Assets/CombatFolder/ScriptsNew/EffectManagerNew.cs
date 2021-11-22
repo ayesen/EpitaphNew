@@ -15,6 +15,7 @@ public class EffectManagerNew : MonoBehaviour
 	public List<GameObject> enemiesEffected; // enemies that has effects on them
 
 	[Header("Spawn Manager")]
+	public float spellSpd;
 	public Transform spellSpawnLoc;
 	public GameObject spell_proj_prefab;
 	public float extraSpawn_angleRange;
@@ -282,7 +283,7 @@ public class EffectManagerNew : MonoBehaviour
 	private void DefaultSpawn(int hitAmount)
 	{
 		GameObject spell = Instantiate(spell_proj_prefab, spellSpawnLoc.position, spellSpawnLoc.rotation);
-		spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * 5, ForceMode.Impulse);
+		spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * spellSpd, ForceMode.Impulse);
 		spell.GetComponent<SpellScript>().hit_amount = hitAmount;
 		foreach (var mat in currentMats)
 		{
