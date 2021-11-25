@@ -7,6 +7,7 @@ public class EffectHolderScript : MonoBehaviour
 {
 	public GameObject myOwner;
     public EffectStructNew myEffect;
+	public Vector3 myCreatorPos; // the object that created this holder
 	[HideInInspector]
 	public bool destroy = false;
 	private float timer;

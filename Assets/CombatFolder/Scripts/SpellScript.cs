@@ -68,7 +68,7 @@ public class SpellScript : MonoBehaviour
 			{
 				ConditionStruct cs = new ConditionStruct
 				{
-					condition = EffectStructNew.Condition.enemyHit,
+					condition = EffectStructNew.Condition.collision_enemy,
 					conditionTrigger = hit.gameObject
 				};
 				EffectManagerNew.me.conditionProcessList.Add(cs);
@@ -77,7 +77,7 @@ public class SpellScript : MonoBehaviour
 				{
 					if (effect.toWhom == EffectStructNew.Target.collisionEnemy)
 					{
-						EffectManagerNew.me.SpawnEffectHolders(hit.gameObject, effect);
+						EffectManagerNew.me.SpawnEffectHolders(hit.gameObject, effect, gameObject.transform.position);
 					}
 				}
 				// vfx
@@ -104,10 +104,8 @@ public class SpellScript : MonoBehaviour
 		{
 			if (effect.doThis == EffectStructNew.Effect.spawnHitDetectionAfterDeath)
 			{
-				print("?");
-				GameObject collisionDetector = Instantiate(collisionPrefab, transform.position, Quaternion.identity);
-				collisionDetector.transform.localScale = new Vector3(effect.forHowMuch, effect.forHowMuch, effect.forHowMuch);
 				myEffects.Remove(effect);
+				EffectStorage.me.SpawnAOE(effect, gameObject);
 			}
 		}
 		Destroy(gameObject);

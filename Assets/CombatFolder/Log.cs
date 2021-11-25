@@ -168,14 +168,13 @@
 			// xstun
 			// xbreak (drop)
 			// heal
-			// knock back
+			// xknock back
 			// xmultiple collision detection
 			// xmultiple collider spawning
 			// totem
 				// xdifferent attack range
 				// xadd another toWhom enum that doesn't record effects on objects, and just do shit when the spell projectile dies
 				// xleave an aoe collider when the spell projectile dies
-				// pass effects to the collider
-					// collider needs to be able to inflict effects to other game objects
-					// collider needs to destroy itself based on the forHowLong of the effect
-				// rewrite collide situation, so that collided event happens when spell or other hit detection colliders hit the enemy
+				// xpass effects to the collider
+					// xcollider needs to be able to inflict effects to other game objects, record them onto objects, and let the effect manager new do the job
+					// xcollider needs to destroy itself based on the forHowLong of the effect

@@ -37,6 +37,10 @@ public class PlayerScriptNew : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			GetComponentInChildren<Rigidbody>().AddForce(new Vector3(1,0,1) * 50, ForceMode.Impulse);
+		}
 		// check for attack button press
 		if (selectedMats.Count > 0 &&  // check if player has mat activated
 			(anim.GetCurrentAnimatorStateInfo(0).IsName("testIdle") || // if player in idle state

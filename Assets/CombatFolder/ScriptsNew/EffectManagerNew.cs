@@ -66,11 +66,11 @@ public class EffectManagerNew : MonoBehaviour
 					CastingEvent_Inflict();
 					CastingEvent(conditionProcess.conditionTrigger);
 				}
-				else if (conditionProcess.condition == EffectStructNew.Condition.dmgDealt)
+				else if (conditionProcess.condition == EffectStructNew.Condition.dealtDmg)
 				{
 					DmgDealtEvents(conditionProcess.conditionTrigger);
 				}
-				else if (conditionProcess.condition == EffectStructNew.Condition.enemyHit)
+				else if (conditionProcess.condition == EffectStructNew.Condition.collision_enemy)
 				{
 					EnemyHitEvent();
 				}
@@ -93,9 +93,10 @@ public class EffectManagerNew : MonoBehaviour
 			// inflict effects on target
 			foreach (var effect in ms.myEffects)
 			{
-				if (effect.toWhom == EffectStructNew.Target.player) // pick out effects that works on player, generally one time or continuous buffs
+				if (effect.toWhom == EffectStructNew.Target.player && 
+					effect.iS == EffectStructNew.Condition.casting) // pick out effects that works on player, and needs to take place once casting happens
 				{
-					SpawnEffectHolders(PlayerScriptNew.me.gameObject, effect);
+					SpawnEffectHolders(PlayerScriptNew.me.gameObject, effect, gameObject.transform.position);
 				}
 			}
 		}
@@ -107,10 +108,10 @@ public class EffectManagerNew : MonoBehaviour
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-			if (ehs.myEffect.triggeredBy == EffectStructNew.ConditionTriggeredBy.player &&
+			if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.player &&
 				conditionTrigger == PlayerScriptNew.me.gameObject) // casting can only be triggered by player, but for the sake of unification, still checks for triggerer
 			{
-				if (ehs.myEffect.when == EffectStructNew.Condition.casting) // only process effects that take place when casting condition is met
+				if (ehs.myEffect.iS == EffectStructNew.Condition.casting) // only process effects that take place when casting condition is met
 				{
 					if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnExtraSpell) // if effect spawns extra spells, add it to spawn count
 					{
@@ -132,7 +133,7 @@ public class EffectManagerNew : MonoBehaviour
 			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders)
 			{
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-				if (ehs.myEffect.triggeredBy == EffectStructNew.ConditionTriggeredBy.player &&
+				if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.player &&
 					conditionTrigger == PlayerScriptNew.me.gameObject)
 				{
 					// effects
@@ -150,7 +151,7 @@ public class EffectManagerNew : MonoBehaviour
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-			if (ehs.myEffect.when == EffectStructNew.Condition.enemyHit)
+			if (ehs.myEffect.iS == EffectStructNew.Condition.collision_enemy)
 			{
 				
 			}
@@ -162,9 +163,9 @@ public class EffectManagerNew : MonoBehaviour
 			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders)
 			{
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-				if (ehs.myEffect.when == EffectStructNew.Condition.enemyHit)
+				if (ehs.myEffect.iS == EffectStructNew.Condition.collision_enemy)
 				{
-					if (ehs.myEffect.triggeredBy == EffectStructNew.ConditionTriggeredBy.owner)
+					if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.owner_enemy)
 					{
 
 					}
@@ -180,7 +181,14 @@ public class EffectManagerNew : MonoBehaviour
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-			
+			if (ehs.myEffect.iS == EffectStructNew.Condition.none)
+			{
+				if (ehs.myEffect.doThis == EffectStructNew.Effect.knockBack)
+				{
+					EffectStorage.me.KnockBack(ehs.myEffect.forHowMuch, ehs.myCreatorPos, PlayerScriptNew.me.gameObject);
+					ehs.destroy = true;
+				}
+			}
 		}
 
 		// check effects on enemies
@@ -189,7 +197,7 @@ public class EffectManagerNew : MonoBehaviour
 			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders) // get these enemies' effect holders
 			{
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-				if (ehs.myEffect.when == EffectStructNew.Condition.none)
+				if (ehs.myEffect.iS == EffectStructNew.Condition.none)
 				{ 
 					// for each holder, check its effect
 					if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt)
@@ -212,6 +220,11 @@ public class EffectManagerNew : MonoBehaviour
 						EffectStorage.me.Break(ehs, enemy);
 						ehs.destroy = true;
 					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.knockBack)
+					{
+						EffectStorage.me.KnockBack(ehs.myEffect.forHowMuch, ehs.myCreatorPos, enemy);
+						ehs.destroy = true;
+					}
 				}
 			}
 		}
@@ -224,7 +237,7 @@ public class EffectManagerNew : MonoBehaviour
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-			if (ehs.myEffect.when == EffectStructNew.Condition.dmgDealt)
+			if (ehs.myEffect.iS == EffectStructNew.Condition.dealtDmg)
 			{
 
 			}
@@ -237,9 +250,9 @@ public class EffectManagerNew : MonoBehaviour
 			{
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
 				
-				if (ehs.myEffect.when == EffectStructNew.Condition.dmgDealt) // check effect situation
+				if (ehs.myEffect.iS == EffectStructNew.Condition.dealtDmg) // check effect situation
 				{
-					if (ehs.myEffect.triggeredBy == EffectStructNew.ConditionTriggeredBy.owner && // if this condition need to be triggered by the owner of the effect holder
+					if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.owner_enemy && // if this condition need to be triggered by the owner of the effect holder
 						ehs.myOwner == conditionTrigger) // if the owner of the effect holder matches the condition trigger
 					{
 						if (ehs.myEffect.doThis == EffectStructNew.Effect.stun) // check effect
@@ -252,14 +265,16 @@ public class EffectManagerNew : MonoBehaviour
 		}
 	}
 	#endregion
+	//! events that happen when the spell is destroyed due to lifespan is in spell scripts
 	#endregion
 	
-	public void SpawnEffectHolders(GameObject target, EffectStructNew effect)
+	public void SpawnEffectHolders(GameObject target, EffectStructNew effect, Vector3 creatorPos)
 	{
 		GameObject effectHolder = Instantiate(effectHolder_prefab, target.transform);
 		EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
 		ehs.myOwner = target;
 		ehs.myEffect = effect;
+		ehs.myCreatorPos = creatorPos;
 		target.GetComponent<EffectHoldersHolderScript>().effectHolders.Add(effectHolder);
 	}
 	#region spawn spell functions

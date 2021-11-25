@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EffectStorage : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EffectStorage : MonoBehaviour
 	public float droppedMat_flyAmount;
 	public List<GameObject> droppableMat;
 	public GameObject droppedMat_prefab;
+	[Header("AOE Manager")]
+	public GameObject collisionPrefab;
 	
 	private void Awake()
 	{
@@ -63,6 +66,16 @@ public class EffectStorage : MonoBehaviour
 			target.GetComponent<Enemy>().walkable = true;
 		}
 	}
+	public void KnockBack(float amount, Vector3 erPos, GameObject ee)
+	{
+		if (ee.GetComponent<NavMeshAgent>())
+		{
+			ee.GetComponent<NavMeshAgent>().enabled = false;
+			ee.GetComponent<Rigidbody>().isKinematic = false;
+		}
+		Vector3 dir = ee.transform.position - erPos;
+		ee.GetComponent<Rigidbody>().AddForce(dir.normalized * amount, ForceMode.Impulse);
+	}
 	#endregion
 	#region BREAK
 	public void Break(EffectHolderScript ehs, GameObject enemy)
@@ -111,6 +124,18 @@ public class EffectStorage : MonoBehaviour
 	public void ExtraCollisionDetection(EffectHolderScript ehs)
 	{
 		EffectManagerNew.me.hitCount += (int)ehs.myEffect.forHowMuch;
+	}
+	#endregion
+	#region DEATHWORD RELATED
+	public void SpawnAOE(EffectStructNew effect, GameObject spell)
+	{
+		GameObject collisionDetector = Instantiate(collisionPrefab, spell.transform.position, Quaternion.identity);
+		collisionDetector.transform.localScale = new Vector3(effect.forHowMuch, effect.forHowMuch, effect.forHowMuch);
+		collisionDetector.GetComponent<AOECollisionDetectorScript>().lifeSpan = effect.forHowLong;
+		foreach (var effectToBePassed in spell.GetComponent<SpellScript>().myEffects)
+		{
+			collisionDetector.GetComponent<AOECollisionDetectorScript>().myEffects.Add(effectToBePassed);
+		}
 	}
 	#endregion
 	public void SpawnParticle(ParticleSystem particle, Vector3 pos)

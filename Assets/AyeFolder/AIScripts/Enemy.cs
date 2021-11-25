@@ -123,7 +123,7 @@ public class Enemy : MonoBehaviour
 		// for effect manager new
 		ConditionStruct cs = new ConditionStruct
 		{
-			condition = EffectStructNew.Condition.dmgDealt,
+			condition = EffectStructNew.Condition.dealtDmg,
 			conditionTrigger = gameObject
 		};
         EffectManagerNew.me.conditionProcessList.Add(cs);

@@ -6,23 +6,26 @@ using UnityEngine;
 public struct EffectStructNew
 {
 	
-	public enum Condition // the condition for this effect to take place
-	{
-		none, // this will take place when the spell collides
-		dmgDealt, // when dmg is dealt, only work after this effect is applied before
-		enemyHit, // when enemy is hit, only work after this effect is applied to the enemy on the last collision, so dealing dmg should be none
-		casting // when attack frame
-	};
-	[Header("CONDITION")]
-	public Condition when;
-
 	public enum ConditionTriggeredBy // describe for this effect to take place, who need to trigger the condition
 	{
 		anyone, // anyone who triggers the condition
-		owner, // owner of the effect
+		owner_enemy, // owner enemy of the effect
 		player // player
 	};
-	public ConditionTriggeredBy triggeredBy;
+	[Header("CONDITION")]
+	public ConditionTriggeredBy when;
+	public enum Condition // the condition for this effect to take place
+	{
+		none, // this will take place when the spell collides
+		dealtDmg, // when the condition trigger is dealt dmg, only work after this effect is applied before
+		collision_enemy, // when an enemy is hit. Effects that need to be triggered once attached need to have a condition of none
+		collision_player, // when a player is hit, effects that need to be triggered once attached need to have a condition of none
+		casting // when attack frame
+	};
+	
+	public Condition iS;
+
+	
 
 	public enum Effect // describe the effect
 	{
