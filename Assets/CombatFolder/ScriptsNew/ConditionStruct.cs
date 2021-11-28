@@ -7,4 +7,5 @@ public struct ConditionStruct
 {
     public EffectStructNew.Condition condition;
     public GameObject conditionTrigger;
+    public float dmgAmount;
 }

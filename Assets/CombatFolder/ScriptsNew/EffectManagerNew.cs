@@ -68,7 +68,7 @@ public class EffectManagerNew : MonoBehaviour
 				}
 				else if (conditionProcess.condition == EffectStructNew.Condition.dealtDmg)
 				{
-					DmgDealtEvents(conditionProcess.conditionTrigger);
+					DmgDealtEvents(conditionProcess);
 				}
 				else if (conditionProcess.condition == EffectStructNew.Condition.collision_enemy)
 				{
@@ -91,12 +91,22 @@ public class EffectManagerNew : MonoBehaviour
 		{
 			MatScriptNew ms = mat.GetComponent<MatScriptNew>();
 			// inflict effects on target
+			bool recordEffects = true;
 			foreach (var effect in ms.myEffects)
 			{
-				if (effect.toWhom == EffectStructNew.Target.player && 
-					effect.iS == EffectStructNew.Condition.casting) // pick out effects that works on player, and needs to take place once casting happens
+				if (effect.doThis == EffectStructNew.Effect.spawnHitDetectionAfterDeath)
 				{
-					SpawnEffectHolders(PlayerScriptNew.me.gameObject, effect, gameObject.transform.position);
+					recordEffects = false;
+				}
+			}
+			if (recordEffects)
+			{
+				foreach (var effect in ms.myEffects)
+				{
+					if (effect.toWhom == EffectStructNew.Target.player) // pick out effects that works on player
+					{
+						SpawnEffectHolders(PlayerScriptNew.me.gameObject, effect, gameObject.transform.position);
+					}
 				}
 			}
 		}
@@ -225,13 +235,18 @@ public class EffectManagerNew : MonoBehaviour
 						EffectStorage.me.KnockBack(ehs.myEffect.forHowMuch, ehs.myCreatorPos, enemy);
 						ehs.destroy = true;
 					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt_basedOnDis)
+					{
+						EffectStorage.me.HurtEnemyBasedOnDis(ehs, enemy, Vector3.Distance(ehs.myCreatorPos, enemy.transform.position));
+						ehs.destroy = true;
+					}
 				}
 			}
 		}
 	}
 	#endregion
 	#region Damge Dealt Events
-	public void DmgDealtEvents(GameObject conditionTrigger)
+	public void DmgDealtEvents(ConditionStruct condition)
 	{
 		// check effects on player
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
@@ -239,7 +254,10 @@ public class EffectManagerNew : MonoBehaviour
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
 			if (ehs.myEffect.iS == EffectStructNew.Condition.dealtDmg)
 			{
-
+				if (ehs.myEffect.doThis == EffectStructNew.Effect.heal)
+				{
+					EffectStorage.me.Heal(ehs, PlayerScriptNew.me.gameObject, condition);
+				}
 			}
 		}
 
@@ -253,11 +271,15 @@ public class EffectManagerNew : MonoBehaviour
 				if (ehs.myEffect.iS == EffectStructNew.Condition.dealtDmg) // check effect situation
 				{
 					if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.owner_enemy && // if this condition need to be triggered by the owner of the effect holder
-						ehs.myOwner == conditionTrigger) // if the owner of the effect holder matches the condition trigger
+						ehs.myOwner == condition.conditionTrigger) // if the owner of the effect holder matches the condition trigger
 					{
 						if (ehs.myEffect.doThis == EffectStructNew.Effect.stun) // check effect
 						{
 							EffectStorage.me.StunEnemy(ehs, enemy);
+						}
+						if (ehs.myEffect.doThis == EffectStructNew.Effect.break_atk)
+						{
+							EffectStorage.me.Break(ehs, enemy);
 						}
 					}
 				}

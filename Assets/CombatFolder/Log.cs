@@ -171,10 +171,20 @@
 			// xknock back
 			// xmultiple collision detection
 			// xmultiple collider spawning
-			// totem
+			// xtotem
 				// xdifferent attack range
 				// xadd another toWhom enum that doesn't record effects on objects, and just do shit when the spell projectile dies
 				// xleave an aoe collider when the spell projectile dies
 				// xpass effects to the collider
 					// xcollider needs to be able to inflict effects to other game objects, record them onto objects, and let the effect manager new do the job
 					// xcollider needs to destroy itself based on the forHowLong of the effect
+		// mats
+			// xaoe, dmg decay based on distance
+			// xnormal spell, deal dmg and knock back
+			// heal when dmg dealt
+				// xhealing
+				// add modifer
+			// xadd break dmg when dmg dealt / when break dealt / when hit / etc.
+	// pick up mats
+		// currently picking up mats will restore the mats to its starting amount
+	// bugs

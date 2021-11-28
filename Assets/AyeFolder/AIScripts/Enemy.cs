@@ -120,13 +120,15 @@ public class Enemy : MonoBehaviour
 
     public void LoseHealth(int hurtAmt)
     {
-		// for effect manager new
-		ConditionStruct cs = new ConditionStruct
-		{
-			condition = EffectStructNew.Condition.dealtDmg,
-			conditionTrigger = gameObject
+        // for effect manager new
+        ConditionStruct cs = new ConditionStruct
+        {
+            condition = EffectStructNew.Condition.dealtDmg,
+            conditionTrigger = gameObject,
+            dmgAmount = hurtAmt
 		};
         EffectManagerNew.me.conditionProcessList.Add(cs);
+        print("dealt " + hurtAmt + " damage to " + gameObject.name);
 
 		// og code
 		if (shield <= 0)

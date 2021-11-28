@@ -27,28 +27,35 @@ public struct EffectStructNew
 
 	
 
-	public enum Effect // describe the effect
+	public enum Effect // describes the effect
 	{
 		stun,
 		hurt,
+		hurt_basedOnDis,
 		hurt_DOT,
 		break_atk,
 		spawnExtraCollisionDetection,
 		spawnExtraSpell,
 		knockBack,
-		spawnHitDetectionAfterDeath
+		spawnHitDetectionAfterDeath,
+		heal
 	};
 	[Header("EFFECTS")]
 	public Effect doThis;
 
-	public enum Target // describe who this effect is applyed to
+	public enum Target // describes who this effect is applyed to
 	{
 		player,
 		collisionEnemy,
 		air
 	};
 	public Target toWhom;
-
-	public float forHowMuch; // describe the effect numericals
-	public float forHowLong; // describe how long this effect will last
+	public enum Modifier
+	{
+		none,
+		dmgDealt
+	}
+	public float forHowMuch; // describes the effect numericals
+	public List<ModifierStruct> myModifiers; // describes the modifier to numericals
+	public float forHowLong; // describes how long this effect will last
 }

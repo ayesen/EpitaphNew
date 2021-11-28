@@ -29,6 +29,11 @@ public class EffectStorage : MonoBehaviour
 	{
 		enemy.GetComponent<Enemy>().LoseHealth((int)ehs.myEffect.forHowMuch);
 	}
+	public void HurtEnemyBasedOnDis(EffectHolderScript ehs, GameObject enemy, float dis)
+	{
+		float dmgToDeal = 1f / dis * ehs.myEffect.forHowMuch;
+		enemy.GetComponent<Enemy>().LoseHealth((int)dmgToDeal);
+	}
 	public void DotEnemy(EffectHolderScript ehs, GameObject enemy)
 	{
 		StartCoroutine(DoDot(ehs, enemy));
@@ -116,6 +121,15 @@ public class EffectStorage : MonoBehaviour
 		}
 	}
 	#endregion
+	#region HEAL AND BUFFS
+	public void Heal(EffectHolderScript ehs, GameObject target, ConditionStruct condition)
+	{
+		if (target.CompareTag("Player"))
+		{
+			PlayerScriptNew.me.hp += (int)(ehs.myEffect.forHowMuch + ProcessModifers(ehs.myEffect, condition));
+		}
+	}
+	#endregion
 	#region SPAWN SPELL RELATED
 	public void SpawnExtraSpell(EffectHolderScript ehs)
 	{
@@ -142,5 +156,24 @@ public class EffectStorage : MonoBehaviour
 	{
 		ParticleSystem f = Instantiate(particle);
 		f.transform.position = pos;
+	}
+	private float ProcessModifers(EffectStructNew es, ConditionStruct condition)
+	{
+		float outcome = 0;
+		foreach (var modifier in es.myModifiers)
+		{
+			if (modifier.modifierType == EffectStructNew.Modifier.dmgDealt)
+			{
+				if (modifier.plus > 0)
+				{
+					outcome = modifier.plus + condition.dmgAmount;
+				}
+				else if (modifier.times > 0)
+				{
+					outcome = modifier.times * condition.dmgAmount;
+				}
+			}
+		}
+		return outcome;
 	}
 }

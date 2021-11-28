@@ -937,7 +937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &202455563
 Transform:
   m_ObjectHideFlags: 0
@@ -972,6 +972,7 @@ MonoBehaviour:
     doThis: 0
     toWhom: 1
     forHowMuch: 0.5
+    myModifiers: []
     forHowLong: 6
   lifespan: 0.15
 --- !u!114 &243435578 stripped
@@ -1131,7 +1132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &276145238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,21 +1150,24 @@ MonoBehaviour:
   myEffects:
   - when: 0
     iS: 0
-    doThis: 7
+    doThis: 8
     toWhom: 2
     forHowMuch: 5
+    myModifiers: []
     forHowLong: 10
   - when: 1
     iS: 0
-    doThis: 6
+    doThis: 7
     toWhom: 1
     forHowMuch: 5
+    myModifiers: []
     forHowLong: 0
   - when: 2
     iS: 0
-    doThis: 6
+    doThis: 7
     toWhom: 0
     forHowMuch: 10
+    myModifiers: []
     forHowLong: 0
   lifespan: 0.1
 --- !u!4 &276145239
@@ -2224,6 +2228,67 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &438350678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438350680}
+  - component: {fileID: 438350679}
+  m_Layer: 0
+  m_Name: AOE Boss Mat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &438350679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438350678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688550c798a4ec48b9b1eb8c5a9d383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 999
+  amount_max: 0
+  myEffects:
+  - when: 0
+    iS: 0
+    doThis: 8
+    toWhom: 2
+    forHowMuch: 10
+    myModifiers: []
+    forHowLong: 0.02
+  - when: 0
+    iS: 0
+    doThis: 2
+    toWhom: 1
+    forHowMuch: 10
+    myModifiers: []
+    forHowLong: 0
+  lifespan: 0.1
+--- !u!4 &438350680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438350678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5665767, y: 4.914718, z: -7.9863234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456157551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2665,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2838741442077710778, guid: 8a172e8d5ea8afa40a2e57e6f5bed9ff, type: 3}
   m_PrefabInstance: {fileID: 1811313866}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &486996627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486996629}
+  - component: {fileID: 486996628}
+  m_Layer: 0
+  m_Name: Break when dmg dealt mat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &486996628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486996627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688550c798a4ec48b9b1eb8c5a9d383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 5
+  amount_max: 0
+  myEffects:
+  - when: 1
+    iS: 1
+    doThis: 3
+    toWhom: 1
+    forHowMuch: 5
+    myModifiers: []
+    forHowLong: 10
+  - when: 0
+    iS: 0
+    doThis: 3
+    toWhom: 1
+    forHowMuch: 5
+    myModifiers: []
+    forHowLong: 0
+  lifespan: 3
+--- !u!4 &486996629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486996627}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5665767, y: 4.914718, z: -7.9863234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &495669393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2928,7 +3054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &541870979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2949,6 +3075,7 @@ MonoBehaviour:
     doThis: 3
     toWhom: 1
     forHowMuch: 5
+    myModifiers: []
     forHowLong: 0
   lifespan: 3
 --- !u!4 &541870980
@@ -4686,7 +4813,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018698865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d36e3a3a91bb29b4abcf04926b632a0e, type: 3}
   m_Name: 
@@ -4837,7 +4964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1166681400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4858,6 +4985,7 @@ MonoBehaviour:
     doThis: 2
     toWhom: 1
     forHowMuch: 1
+    myModifiers: []
     forHowLong: 5
   lifespan: 1
 --- !u!4 &1166681401
@@ -4873,6 +5001,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1174748991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1174748993}
+  - component: {fileID: 1174748992}
+  m_Layer: 0
+  m_Name: Heal when dmg dealt mat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1174748992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174748991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688550c798a4ec48b9b1eb8c5a9d383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 5
+  amount_max: 0
+  myEffects:
+  - when: 1
+    iS: 1
+    doThis: 9
+    toWhom: 0
+    forHowMuch: 0
+    myModifiers:
+    - modifierType: 1
+      plus: 0
+      times: 0.5
+    forHowLong: 10
+  lifespan: 3
+--- !u!4 &1174748993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174748991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5665767, y: 4.914718, z: -7.9863234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244086297
 GameObject:
@@ -6603,6 +6788,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1543203866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1543203868}
+  - component: {fileID: 1543203867}
+  m_Layer: 0
+  m_Name: ATK & Knock Back Mat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1543203867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543203866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688550c798a4ec48b9b1eb8c5a9d383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 5
+  amount_max: 0
+  myEffects:
+  - when: 0
+    iS: 0
+    doThis: 1
+    toWhom: 1
+    forHowMuch: 5
+    myModifiers: []
+    forHowLong: 0
+  - when: 0
+    iS: 0
+    doThis: 7
+    toWhom: 1
+    forHowMuch: 5
+    myModifiers: []
+    forHowLong: 0
+  lifespan: 3
+--- !u!4 &1543203868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543203866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5665767, y: 4.914718, z: -7.9863234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1557505164
 GameObject:
   m_ObjectHideFlags: 0
@@ -7452,15 +7698,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f80b680459af5f46a38e3d223692a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   spd: 2
   rot_spd: 4
   actualPlayer: {fileID: 769604847}
   selectedMats: []
   matSlots:
-  - {fileID: 276145237}
-  - {fileID: 1166681399}
-  - {fileID: 1915506736}
-  - {fileID: 1774612143}
+  - {fileID: 486996627}
+  - {fileID: 438350678}
+  - {fileID: 1543203866}
+  - {fileID: 1174748991}
   mat1: {fileID: 1344694507}
   mat2: {fileID: 927763055}
   mat3: {fileID: 1652950896}
@@ -7636,7 +7883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1774612144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7657,6 +7904,7 @@ MonoBehaviour:
     doThis: 5
     toWhom: 0
     forHowMuch: 2
+    myModifiers: []
     forHowLong: 0
   lifespan: 3
 --- !u!4 &1774612145
@@ -8217,7 +8465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1915506737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8238,6 +8486,7 @@ MonoBehaviour:
     doThis: 4
     toWhom: 0
     forHowMuch: 2
+    myModifiers: []
     forHowLong: 0
   lifespan: 3
 --- !u!4 &1915506738

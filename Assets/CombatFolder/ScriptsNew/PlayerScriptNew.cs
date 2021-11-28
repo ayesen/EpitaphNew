@@ -7,6 +7,7 @@ public class PlayerScriptNew : MonoBehaviour
 {
 	public static PlayerScriptNew me;
 	[Header("Basics")]
+	public int hp;
 	public float spd;
 	public float rot_spd;
 	private GameObject enemy;

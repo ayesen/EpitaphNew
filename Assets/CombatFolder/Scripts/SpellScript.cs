@@ -15,6 +15,7 @@ public class SpellScript : MonoBehaviour
 	private float deathTimer;
 	[Header("LASTWORD EVENT")]
 	public GameObject collisionPrefab;
+	private bool destroying = false;
 
 	private void Start()
 	{
@@ -72,12 +73,23 @@ public class SpellScript : MonoBehaviour
 					conditionTrigger = hit.gameObject
 				};
 				EffectManagerNew.me.conditionProcessList.Add(cs);
-				// record effects
-				foreach (var effect in myEffects)
+				// record effects to enemies
+				bool recordEffect = true;
+				foreach (var effect in myEffects) // if this spell spawn hit detection collider after death, effects should be passed to the collider instead
 				{
-					if (effect.toWhom == EffectStructNew.Target.collisionEnemy)
+					if (effect.doThis == EffectStructNew.Effect.spawnHitDetectionAfterDeath)
 					{
-						EffectManagerNew.me.SpawnEffectHolders(hit.gameObject, effect, gameObject.transform.position);
+						recordEffect = false;
+					}
+				}
+				if (recordEffect)
+				{
+					foreach (var effect in myEffects)
+					{
+						if (effect.toWhom == EffectStructNew.Target.collisionEnemy)
+						{
+							EffectManagerNew.me.SpawnEffectHolders(hit.gameObject, effect, gameObject.transform.position);
+						}
 					}
 				}
 				// vfx
