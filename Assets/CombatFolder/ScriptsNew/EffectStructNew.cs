@@ -5,32 +5,57 @@ using UnityEngine;
 [System.Serializable]
 public struct EffectStructNew
 {
-	public enum Condition
+	
+	public enum ConditionTriggeredBy // describe for this effect to take place, who need to trigger the condition
 	{
-		none,
-		dmgDealt, // when dmg is dealt
-		enemyHit, // when enemy is hit, only work after this effect is applied to the enemy on the last collision, so dealing dmg should be none
+		anyone, // anyone who triggers the condition
+		owner_enemy, // owner enemy of the effect
+		player // player
+	};
+	[Header("CONDITION")]
+	public ConditionTriggeredBy when;
+	public enum Condition // the condition for this effect to take place
+	{
+		none, // this will take place when the spell collides
+		dealtDmg, // when the condition trigger is dealt dmg, only work after this effect is applied before
+		collision_enemy, // when an enemy is hit. Effects that need to be triggered once attached need to have a condition of none
+		collision_player, // when a player is hit, effects that need to be triggered once attached need to have a condition of none
 		casting // when attack frame
 	};
-	public Condition when;
+	
+	public Condition iS;
 
-	public enum Effect
+	
+
+	public enum Effect // describes the effect
 	{
 		stun,
 		hurt,
-		makeItOT,
-		spawnConsecutive,
-		spawnExtra
+		hurt_basedOnDis,
+		hurt_DOT,
+		break_atk,
+		spawnExtraCollisionDetection,
+		spawnExtraSpell,
+		knockBack,
+		spawnHitDetectionAfterDeath,
+		heal
 	};
+	[Header("EFFECTS")]
 	public Effect doThis;
 
-	public enum Target
+	public enum Target // describes who this effect is applyed to
 	{
 		player,
-		collisionEnemy
+		collisionEnemy,
+		air
 	};
 	public Target toWhom;
-
-	public float forHowMuch;
-	public float forHowLong;
+	public enum Modifier
+	{
+		none,
+		dmgDealt
+	}
+	public float forHowMuch; // describes the effect numericals
+	public List<ModifierStruct> myModifiers; // describes the modifier to numericals
+	public float forHowLong; // describes how long this effect will last
 }

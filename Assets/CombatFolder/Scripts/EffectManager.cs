@@ -95,10 +95,10 @@ public class EffectManager : MonoBehaviour
 		{
 
 			Enemy eS = target.GetComponent<Enemy>();
-			eS.dropMeter += effect.dropMatAmount;
-			if (eS.dropMeter >= eS.dropMeterMax)
+			eS.breakMeter += effect.dropMatAmount;
+			if (eS.breakMeter >= eS.breakMeterMax)
 			{
-				eS.dropMeter = 0;
+				eS.breakMeter = 0;
 				SpawnMat(target, effect);
 			}
 		}

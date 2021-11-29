@@ -147,24 +147,44 @@
 // combat system revamp
 	// store effects on mat
 	// player decide what type of collider to spawn according to mat
-	// when collider hit enemy, add a buff to enemy
-		// this buff will process the effect
-		// when finish, this buff destroys itself
+	// effect processing
+		// effect attachment
+			// effects for enemy, (such as damage the enemy, stun the enemy, break the enemy, debuffs etc.), are added to the enemy when a hit detection collider hit the enemy
+			// effects for player, (such as buffs), are added to the player when the player cast the spell
+			// effects that are aoe, will spawn hit detection collider when the spell dies
+		// condition process
+			// when a condition is met, a condition struct will be made and the condition and the object that triggers the condition will be recorded and pass the the effect manager new
+			// then the effect manager new will process each condition struct and call events based on different condtions
+			// each event (such as dmg dealt event), will realize the effects it contains, based on the fired spell that is.
 	// select a few effects to realize
 		// situations
-			// when dmg dealt
+			// xwhen dmg dealt
 			// xwhen collider hit
 			// xwhen casting
 		// effects
 			// xdmg
 			// buffs
-			// debuffs
-			// stun
-			// drop
-			// break
+			// xdebuffs
+			// xstun
+			// xbreak (drop)
 			// heal
-			// knock back
+			// xknock back
 			// xmultiple collision detection
 			// xmultiple collider spawning
-			// aoe collision detection
-			// aoe
+			// xtotem
+				// xdifferent attack range
+				// xadd another toWhom enum that doesn't record effects on objects, and just do shit when the spell projectile dies
+				// xleave an aoe collider when the spell projectile dies
+				// xpass effects to the collider
+					// xcollider needs to be able to inflict effects to other game objects, record them onto objects, and let the effect manager new do the job
+					// xcollider needs to destroy itself based on the forHowLong of the effect
+		// mats
+			// xaoe, dmg decay based on distance
+			// xnormal spell, deal dmg and knock back
+			// heal when dmg dealt
+				// xhealing
+				// add modifer
+			// xadd break dmg when dmg dealt / when break dealt / when hit / etc.
+	// pick up mats
+		// currently picking up mats will restore the mats to its starting amount
+	// bugs
