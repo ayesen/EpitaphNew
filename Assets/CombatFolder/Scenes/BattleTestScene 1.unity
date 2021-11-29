@@ -7698,7 +7698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f80b680459af5f46a38e3d223692a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
+  hp: 20
   spd: 2
   rot_spd: 4
   actualPlayer: {fileID: 769604847}
