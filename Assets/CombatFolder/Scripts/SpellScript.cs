@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SpellScript : MonoBehaviour
 {
@@ -10,10 +11,36 @@ public class SpellScript : MonoBehaviour
 	public List<EffectStructNew> myEffects;
 	public int hit_amount;
 	public float hit_interval;
+	private float lifespan;
+	private float deathTimer;
+	[Header("LASTWORD EVENT")]
+	public GameObject collisionPrefab;
+	private bool destroying = false;
+
+	private void Start()
+	{
+		float life = float.MaxValue;
+		foreach (var mat in PlayerScriptNew.me.selectedMats)
+		{
+			if (mat.GetComponent<MatScriptNew>().lifespan < life)
+			{
+				life = mat.GetComponent<MatScriptNew>().lifespan;
+			}
+		}
+		lifespan = life;
+		deathTimer = lifespan;
+	}
 
 	private void Update()
 	{
-		Destroy(gameObject, 3);
+		if (deathTimer > 0)
+		{
+			deathTimer -= Time.deltaTime;
+		}
+		else
+		{
+			DestroyEvent();
+		}
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
@@ -30,6 +57,7 @@ public class SpellScript : MonoBehaviour
 				collision.gameObject.SendMessage("Reaction");
 			}
 		}
+		DestroyEvent();
 	}
 
 	IEnumerator Detection(int hitAmount, Collision hit, Vector3 hitPos)
@@ -39,14 +67,29 @@ public class SpellScript : MonoBehaviour
 		{
 			if (hit.gameObject.CompareTag("Enemy")) // if hit enemy, inflict effects on enemy and spawn fragments vfx
 			{
-				EffectManagerNew.me.enemyHit = true;
-				// record effects
-				foreach (var effect in myEffects)
+				ConditionStruct cs = new ConditionStruct
 				{
-					if (effect.toWhom == EffectStructNew.Target.collisionEnemy)
+					condition = EffectStructNew.Condition.collision_enemy,
+					conditionTrigger = hit.gameObject
+				};
+				EffectManagerNew.me.conditionProcessList.Add(cs);
+				// record effects to enemies
+				bool recordEffect = true;
+				foreach (var effect in myEffects) // if this spell spawn hit detection collider after death, effects should be passed to the collider instead
+				{
+					if (effect.doThis == EffectStructNew.Effect.spawnHitDetectionAfterDeath)
 					{
-						print("collide");
-						EffectManagerNew.me.SpawnEffectHolders(hit.gameObject, effect);
+						recordEffect = false;
+					}
+				}
+				if (recordEffect)
+				{
+					foreach (var effect in myEffects)
+					{
+						if (effect.toWhom == EffectStructNew.Target.collisionEnemy)
+						{
+							EffectManagerNew.me.SpawnEffectHolders(hit.gameObject, effect, gameObject.transform.position);
+						}
 					}
 				}
 				// vfx
@@ -65,5 +108,18 @@ public class SpellScript : MonoBehaviour
 			amount--;
 			yield return new WaitForSeconds(hit_interval);
 		}
+	}
+
+	private void DestroyEvent()
+	{
+		foreach (var effect in myEffects.ToList())
+		{
+			if (effect.doThis == EffectStructNew.Effect.spawnHitDetectionAfterDeath)
+			{
+				myEffects.Remove(effect);
+				EffectStorage.me.SpawnAOE(effect, gameObject);
+			}
+		}
+		Destroy(gameObject);
 	}
 }

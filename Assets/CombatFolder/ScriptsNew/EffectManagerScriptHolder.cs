@@ -7,6 +7,11 @@ public class EffectManagerScriptHolder : MonoBehaviour
 	// this script is for calling function from effect manager new in animation
     public void Casting()
 	{
-		EffectManagerNew.me.casting = true;
+		ConditionStruct cs = new ConditionStruct
+		{
+			condition = EffectStructNew.Condition.casting,
+			conditionTrigger = PlayerScriptNew.me.gameObject
+		};
+		EffectManagerNew.me.conditionProcessList.Add(cs);
 	}
 }
