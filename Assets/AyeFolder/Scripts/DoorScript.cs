@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     public Animator DoorAnimator;
+    public bool isOpen = false;
     void Start()
     {
         
@@ -26,21 +27,25 @@ public class DoorScript : MonoBehaviour
     public void OpenFront()
     {
         DoorAnimator.Play("DoorFrontOpen");
+        isOpen = true;
     }
 
     public void CloseFront()
     {
         DoorAnimator.Play("DoorFrontClose");
+        isOpen = false;
     }
 
     public void OpenBack()
     {
         DoorAnimator.Play("DoorBackOpen");
+        isOpen = true;
     }
 
     public void CloseBack()
     {
         DoorAnimator.Play("DoorBackClose");
+        isOpen = false;
     }
 
 
