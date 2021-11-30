@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public int shield;
     public int maxShield;
     public int atkSpd;
-    public int attack;
+    public int attackamt;
     public int preAtkSpd;
     public int atkTime;
     public int postAtkSpd;
@@ -88,6 +88,8 @@ public class Enemy : MonoBehaviour
             preAtkSpd = 2;
             atkTime = 1;
             postAtkSpd = 2;
+            attackamt = 5;
+            
             myTriggerObj = GameObject.Find("Atk1Trigger");
             if (shield <= 0)
             {
@@ -100,6 +102,7 @@ public class Enemy : MonoBehaviour
             preAtkSpd = 7;
             atkTime = 1;
             postAtkSpd = 3;
+            attackamt = 2;
             myTriggerObj = GameObject.Find("Atk2Trigger");
             if (health < healthLimit && changeLimit > 0)
             {
@@ -115,6 +118,18 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             myAC.ChangeState(myAC.dieState);
+        }
+    }
+
+    public void DealtDmg(int dmgAmt)
+    {
+        if(target.gameObject.tag == "Player")
+        {
+            target.GetComponent<PlayerScriptNew>().LoseHealth_player(dmgAmt);
+        }
+        if(target.gameObject.tag == "Enemy")
+        {
+            target.GetComponent<Enemy>().LoseHealth(dmgAmt);
         }
     }
 
@@ -211,7 +226,7 @@ public class Enemy : MonoBehaviour
         if (InRange())
         {
             EffectManager.me.KnockBack(knockbackAmount, gameObject, PlayerScript.me.transform.GetChild(0).gameObject);
-            /*deal damage here*/
+            DealtDmg(attackamt);
         }
 
     }
@@ -225,7 +240,7 @@ public class Enemy : MonoBehaviour
         if (AIToPlayerDist() <= dmgRange)
         {
             Debug.Log("player in dmg range");
-            /*deal damage here*/
+            DealtDmg(attackamt);
             /*apply DOT to player here*/
         }
 
