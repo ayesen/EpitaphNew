@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2631702573312045838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b13c7d76c0affb478c984e7bd623f73, type: 3}
-  m_Name: Pixel
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    outlineMaterial: {fileID: 2100000, guid: c2d37b3fbc54b8b4c914a220b2f0d83c, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RendererFeatures:
   - {fileID: 2202407817304097272}
-  - {fileID: 5468685769682656675}
-  - {fileID: -2631702573312045838}
-  m_RendererFeatureMap: f841f4b03d86901ea31d2bb2bbace44bf20c41f373507adb
+  m_RendererFeatureMap: f841f4b03d86901e
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -81,45 +64,6 @@ MonoBehaviour:
         m_Bits: 2147483647
       PassNames: []
     overrideMaterial: {fileID: 2100000, guid: 5e54d33568d92b146aef9c6af404fe99, type: 2}
-    overrideMaterialPassIndex: 0
-    overrideDepthState: 0
-    depthCompareFunction: 4
-    enableWrite: 1
-    stencilSettings:
-      overrideStencilState: 0
-      stencilReference: 0
-      stencilCompareFunction: 8
-      passOperation: 0
-      failOperation: 0
-      zFailOperation: 0
-    cameraSettings:
-      overrideCamera: 0
-      restoreCamera: 1
-      offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
---- !u!114 &5468685769682656675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Pixelation
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  settings:
-    passTag: Pixelation
-    Event: 500
-    filterSettings:
-      RenderQueueType: 0
-      LayerMask:
-        serializedVersion: 2
-        m_Bits: 2147483647
-      PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: c2d37b3fbc54b8b4c914a220b2f0d83c, type: 2}
     overrideMaterialPassIndex: 0
     overrideDepthState: 0
     depthCompareFunction: 4
