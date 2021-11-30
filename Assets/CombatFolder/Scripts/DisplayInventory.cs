@@ -17,6 +17,8 @@ public class DisplayInventory : MonoBehaviour
     public int Number_Of_Column;
     public int Y_Space_Between_Items;
 
+    public GameObject[] images;
+
     void Start()
     {
         CopyList();
@@ -30,9 +32,26 @@ public class DisplayInventory : MonoBehaviour
     
     public void CreateDisplay()
     {
+        images = GameObject.FindGameObjectsWithTag("Inventory");
+        foreach(GameObject image in images)
+        {
+            Destroy(image);
+        }
+
+        for (int i = 0; i <= 3; i++)
+        {
+            if (inventory[i].Mats != null && inventory[i].matAmounts > 0)
+            {
+                Image obj = Instantiate(imagePrefab, Vector3.zero, Quaternion.identity, transform);
+                obj.sprite = inventory[i].Mats.GetComponent<MatScript>().Icon;
+                obj.GetComponent<RectTransform>().localPosition = GetPosition((i - 4));
+                Amount_Of_Inventory += 1;
+            }
+        }
+
         for (int i = 4; i < inventory.Count; i++)
         {
-            if(inventory[i].Mats != null || inventory[i].matAmounts > 0)
+            if(inventory[i].Mats != null && inventory[i].matAmounts > 0)
             {
                 Image obj = Instantiate(imagePrefab, Vector3.zero, Quaternion.identity, transform);
                 obj.sprite = inventory[i].Mats.GetComponent<MatScript>().Icon;
