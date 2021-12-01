@@ -1061,6 +1061,7 @@ MonoBehaviour:
   healthLimit: 0
   changeLimit: 0
   knockbackAmount: 0
+  ResetPos: {x: 0, y: 0, z: 0}
   myAC: {fileID: 0}
   phase: 1
   ghostRider: {fileID: 0}
@@ -4697,8 +4698,9 @@ MonoBehaviour:
   healthLimit: 50
   changeLimit: 2
   knockbackAmount: 30
+  ResetPos: {x: 72, y: 2, z: 43}
   myAC: {fileID: 0}
-  phase: 1
+  phase: 0
   ghostRider: {fileID: 94765222}
   target: {fileID: 1440344667}
   myTrigger: {fileID: 870652154}
@@ -12091,7 +12093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &326049830
 Transform:
   m_ObjectHideFlags: 0

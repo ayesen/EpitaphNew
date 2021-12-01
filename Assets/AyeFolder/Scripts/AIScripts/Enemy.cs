@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public int healthLimit;
     public int changeLimit = 2;
     public float knockbackAmount;
+    public Vector3 ResetPos;
 
     public AIController myAC;
     public enum AIPhase { NotInBattle, InBattle1, InBattle2 };
@@ -71,6 +72,10 @@ public class Enemy : MonoBehaviour
         PhaseSetting();
         BreakMeter_recovery();
         BreakMeter_show();
+        if (Input.GetKey(KeyCode.O))
+        {
+            ResetEnemy();
+        }
     }
 
     public void ChangePhase(AIPhase phaseName, int time)
@@ -80,6 +85,8 @@ public class Enemy : MonoBehaviour
         changePhaseTime = time;
         myAC.ChangeState(myAC.changePhaseState);
     }
+
+
     public void PhaseSetting()
     {
         if (phase == AIPhase.InBattle1)
@@ -119,6 +126,22 @@ public class Enemy : MonoBehaviour
         {
             myAC.ChangeState(myAC.dieState);
         }
+    }
+
+    public void ResetEnemy()
+    {
+        health = 100;
+        maxHealth = 100;
+        changeLimit = 2;
+        this.transform.position = ResetPos;
+        ChangePhase(AIPhase.NotInBattle, 1);
+        myAC.ChangeState(myAC.idleState);
+        this.GetComponent<MeshRenderer>().enabled = false;
+        this.GetComponent<CapsuleCollider>().enabled = false;
+        breakMeter_ui.enabled = false;
+        hittedStates.enabled = false;
+        myTrigger.myMR.enabled = false;
+
     }
 
     public void DealtDmg(int dmgAmt)
@@ -277,6 +300,11 @@ public class Enemy : MonoBehaviour
     {
         print("ha?");
         // go to specific location and stand still for dialogue
+        this.GetComponent<MeshRenderer>().enabled = true;
+        this.GetComponent<CapsuleCollider>().enabled = true;
+        breakMeter_ui.enabled = true;
+        hittedStates.enabled = true;
+        myTrigger.myMR.enabled = true;
         ChangePhase(AIPhase.InBattle1, 1);
     }
 
@@ -307,8 +335,4 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Test()
-    {
-        print("ha");
-    }
 }
