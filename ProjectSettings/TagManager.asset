@@ -13,6 +13,8 @@ TagManager:
   - Wall Hide Mask
   - Light
   - Floor
+  - Undefined
+  - Inventory
   layers:
   - Default
   - TransparentFX
