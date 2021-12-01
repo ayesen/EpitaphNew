@@ -12,6 +12,26 @@ public class SafehouseManager : MonoBehaviour
     private bool isFading;
     private bool checkBoolChange;
 
+    private static SafehouseManager me = null;
+
+    public static SafehouseManager Me
+    {
+        get
+        {
+            return me;
+        }
+    }
+
+    private void Awake()
+    {
+        if(me != null && me != this)
+        {
+            Destroy(this.gameObject);
+        }
+
+        me = this;
+    }
+
     void Start()
     {
         isSafehouse = true;

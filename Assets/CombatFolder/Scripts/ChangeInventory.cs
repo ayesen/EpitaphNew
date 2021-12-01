@@ -39,16 +39,22 @@ public class ChangeInventory : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (choosenMatIndex <= DI.Amount_Of_Inventory - 1)
+            if (!isChanging)
             {
-                choosenMatIndex += 4;
+                if (choosenMatIndex <= DI.Amount_Of_Inventory - 1)
+                {
+                    choosenMatIndex += 4;
+                }
             }
         }
         else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (choosenMatIndex - 4 >= 4)
+            if (!isChanging)
             {
-                choosenMatIndex -= 4;
+                if (choosenMatIndex - 4 >= 4)
+                {
+                    choosenMatIndex -= 4;
+                }
             }
         }
 
@@ -58,8 +64,8 @@ public class ChangeInventory : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 choosenMat = choosenMatIndex;
-                isChanging = true;
                 choosenMatIndex = 0;
+                isChanging = true;
             }
             //Limit range
             if (choosenMatIndex - 4 > DI.Amount_Of_Inventory - 1)
@@ -78,11 +84,32 @@ public class ChangeInventory : MonoBehaviour
                 ChangeMat(choosenMatIndex, choosenMat);
                 DI.CreateDisplay();
                 isChanging = false;
+                choosenMatIndex = 4;
+            }
+
+            if(choosenMatIndex < 0)
+            {
+                choosenMatIndex = 0;
+            }
+            else if(choosenMatIndex > 2)
+            {
+                choosenMatIndex = 2;
             }
         }
 
         //Draw the square
-        choosenSquare.GetComponent<RectTransform>().localPosition = GetPosition(choosenMatIndex - 4);
+        if (!isChanging)
+        {
+            choosenSquare.color = Color.white;
+            choosenSquare.GetComponent<RectTransform>().localPosition = GetPosition(choosenMatIndex - 4);
+            choosenCircle.enabled = false;
+        }
+        else
+        {
+            choosenSquare.color = new Color32(227, 103, 31, 255);
+            choosenCircle.enabled = true;
+            choosenCircle.GetComponent<RectTransform>().localPosition = DisplayInventory.Me.GetPosition(choosenMatIndex - 4) + Vector3.up * 190f;
+        }
         //Show description
         description.text = DI.inventory[choosenMatIndex].Mats.name;
     }
