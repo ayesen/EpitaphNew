@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
             atkTime = 1;
             postAtkSpd = 2;
             attackamt = 5;
-            
+
             myTriggerObj = GameObject.Find("Atk1Trigger");
             if (shield <= 0)
             {
@@ -123,11 +123,11 @@ public class Enemy : MonoBehaviour
 
     public void DealtDmg(int dmgAmt)
     {
-        if(target.gameObject.tag == "Player")
+        if (target.gameObject.tag == "Player")
         {
             target.GetComponent<PlayerScriptNew>().LoseHealth_player(dmgAmt);
         }
-        if(target.gameObject.tag == "Enemy")
+        if (target.gameObject.tag == "Enemy")
         {
             target.GetComponent<Enemy>().LoseHealth(dmgAmt);
         }
@@ -141,12 +141,12 @@ public class Enemy : MonoBehaviour
             condition = EffectStructNew.Condition.dealtDmg,
             conditionTrigger = gameObject,
             dmgAmount = hurtAmt
-		};
+        };
         EffectManagerNew.me.conditionProcessList.Add(cs);
         print("dealt " + hurtAmt + " damage to " + gameObject.name);
 
-		// og code
-		if (shield <= 0)
+        // og code
+        if (shield <= 0)
         {
             if (health - hurtAmt >= 0)
             {
@@ -204,7 +204,7 @@ public class Enemy : MonoBehaviour
             else if (walkable && attackable)
             {
                 if (hittedStates != null)
-				{
+                {
                     hittedStates.text = "";
                 }
             }
@@ -262,10 +262,10 @@ public class Enemy : MonoBehaviour
     }
 
     public void BackToFighting()
-	{
+    {
         target = GameObject.FindGameObjectWithTag("Player");
         phase = AIPhase.InBattle1;
-	}
+    }
 
     public void GotoLoc()
     {
@@ -275,29 +275,34 @@ public class Enemy : MonoBehaviour
     }
 
     private void BreakMeter_recovery()
-	{
+    {
         if (breakMeter < breakMeterMax)
-		{
+        {
             if (recovery_timer >= 0)
-			{
+            {
                 recovery_timer -= Time.deltaTime;
-			}
-			else
-			{
+            }
+            else
+            {
                 breakMeter += recovery_spd * Time.deltaTime;
-			}
-		}
-		else
-		{
+            }
+        }
+        else
+        {
             recovery_timer = recovery_wait;
-		}
-	}
+        }
+    }
 
     private void BreakMeter_show()
-	{
+    {
         if (breakMeter_ui != null)
-		{
+        {
             breakMeter_ui.text = breakMeter.ToString("F2");
         }
-	}
+    }
+
+    public void Test()
+    {
+        print("ha");
+    }
 }

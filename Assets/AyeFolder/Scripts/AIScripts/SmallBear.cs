@@ -11,15 +11,17 @@ public class SmallBear : Enemy
         myAC = GetComponent<AIController>();
         health = maxHealth;
         ghostRider = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        phase = Enemy.AIPhase.InBattle1;
     }
     void Start()
     {
-        
+
     }
 
 
     void Update()
     {
+        Debug.Log(phase);
         Debug.Log(myAC.currentState);
     }
     
