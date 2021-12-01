@@ -136,13 +136,16 @@ public class Enemy : MonoBehaviour
     public void LoseHealth(int hurtAmt)
     {
         // for effect manager new
-        ConditionStruct cs = new ConditionStruct
+        /*ConditionStruct cs = new ConditionStruct
         {
             condition = EffectStructNew.Condition.dealtDmg,
             conditionTrigger = gameObject,
             dmgAmount = hurtAmt
         };
-        EffectManagerNew.me.conditionProcessList.Add(cs);
+        if (EffectManagerNew.me.gameObject != null)
+        {
+            EffectManagerNew.me.conditionProcessList.Add(cs);
+        }*/
         print("dealt " + hurtAmt + " damage to " + gameObject.name);
 
         // og code
@@ -225,7 +228,7 @@ public class Enemy : MonoBehaviour
 
         if (InRange())
         {
-            EffectManager.me.KnockBack(knockbackAmount, gameObject, PlayerScript.me.transform.GetChild(0).gameObject);
+            EffectManager.me.KnockBack(knockbackAmount, gameObject, GameObject.FindGameObjectWithTag("Player"));
             DealtDmg(attackamt);
         }
 
@@ -269,9 +272,9 @@ public class Enemy : MonoBehaviour
 
     public void GotoLoc()
     {
+        print("ha?");
         // go to specific location and stand still for dialogue
-        myAC.ChangeState(myAC.walkingState);
-        target = eventTarget.gameObject;
+        ChangePhase(AIPhase.InBattle1, 1);
     }
 
     private void BreakMeter_recovery()

@@ -224,7 +224,7 @@ public class SpellCtrlScript : MonoBehaviour
 			spell.GetComponent<MeshRenderer>().material = ps.currentMat.GetComponent<MatScript>().myMaterial;
 			spell.GetComponent<Rigidbody>().mass = spellMass;
 			spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * spellSpd, ForceMode.Impulse);
-			//spell.GetComponent<SpellScript>().mat = ps.currentMat;
+			spell.GetComponent<SpellScript>().mats.Add(ps.currentMat);
 			anim.Play("testATK");
 		}
 	}

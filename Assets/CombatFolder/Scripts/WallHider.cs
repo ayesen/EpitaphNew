@@ -9,6 +9,7 @@ public class WallHider : MonoBehaviour
 	private List<GameObject> _masks;
 	private List<GameObject> _walls;
 	private List<GameObject> _lights;
+	private List<GameObject> _floor;
 	public enum Room
 	{
 		livingRoom,
@@ -32,6 +33,7 @@ public class WallHider : MonoBehaviour
 		_masks = GameObject.FindGameObjectsWithTag("Wall Hide Mask").ToList();
 		_walls = GameObject.FindGameObjectsWithTag("Wall").ToList();
 		_lights = GameObject.FindGameObjectsWithTag("Light").ToList();
+		_floor = GameObject.FindGameObjectsWithTag("Floor").ToList();
 	}
 
 	private void Update()
@@ -41,13 +43,16 @@ public class WallHider : MonoBehaviour
 			case Room.livingRoom:
 				foreach (var wall in _walls)
 				{
-					if (wall.GetComponent<WallScript>().whenLivingRoom)
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-					}
-					else
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+					if (wall != null)
+                    {
+						if (wall.GetComponent<WallScript>().whenLivingRoom)
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+						}
+						else
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+						}
 					}
 				}
 				foreach (var mask in _masks)
@@ -72,17 +77,31 @@ public class WallHider : MonoBehaviour
 						light.SetActive(false);
 					}
 				}
+                foreach (var floor in _floor)
+                {
+					if (floor.GetComponent<WallScript>().whenLivingRoom)
+                    {
+						floor.GetComponent<MeshRenderer>().enabled = true;
+                    }
+                    else
+                    {
+						floor.GetComponent<MeshRenderer>().enabled = false;
+					}
+                }
 				break;
 			case Room.corridor:
 				foreach (var wall in _walls)
 				{
-					if (wall.GetComponent<WallScript>().whenCorridor)
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-					}
-					else
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+					if (wall != null)
+                    {
+						if (wall.GetComponent<WallScript>().whenCorridor)
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+						}
+						else
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+						}
 					}
 				}
 				foreach (var mask in _masks)
@@ -105,6 +124,17 @@ public class WallHider : MonoBehaviour
 					else
 					{
 						light.SetActive(false);
+					}
+				}
+				foreach (var floor in _floor)
+				{
+					if (floor.GetComponent<WallScript>().whenCorridor)
+					{
+						floor.GetComponent<MeshRenderer>().enabled = true;
+					}
+					else
+					{
+						floor.GetComponent<MeshRenderer>().enabled = false;
 					}
 				}
 				break;
@@ -142,6 +172,17 @@ public class WallHider : MonoBehaviour
 						light.SetActive(false);
 					}
 				}
+				foreach (var floor in _floor)
+				{
+					if (floor.GetComponent<WallScript>().whenRestroom)
+					{
+						floor.GetComponent<MeshRenderer>().enabled = true;
+					}
+					else
+					{
+						floor.GetComponent<MeshRenderer>().enabled = false;
+					}
+				}
 				break;
 			case Room.smallCorridor:
 				foreach (var wall in _walls)
@@ -175,6 +216,17 @@ public class WallHider : MonoBehaviour
 					else
 					{
 						light.SetActive(false);
+					}
+				}
+				foreach (var floor in _floor)
+				{
+					if (floor.GetComponent<WallScript>().whenSmallCorridor)
+					{
+						floor.GetComponent<MeshRenderer>().enabled = true;
+					}
+					else
+					{
+						floor.GetComponent<MeshRenderer>().enabled = false;
 					}
 				}
 				break;
@@ -212,17 +264,31 @@ public class WallHider : MonoBehaviour
 						light.SetActive(false);
 					}
 				}
+				foreach (var floor in _floor)
+				{
+					if (floor.GetComponent<WallScript>().whenStorage)
+					{
+						floor.GetComponent<MeshRenderer>().enabled = true;
+					}
+					else
+					{
+						floor.GetComponent<MeshRenderer>().enabled = false;
+					}
+				}
 				break;
 			case Room.masterRoom:
 				foreach (var wall in _walls)
 				{
-					if (wall.GetComponent<WallScript>().whenMasterRoom)
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-					}
-					else
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+					if (wall != null)
+                    {
+						if (wall.GetComponent<WallScript>().whenMasterRoom)
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+						}
+						else
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+						}
 					}
 				}
 				foreach (var mask in _masks)
@@ -245,6 +311,17 @@ public class WallHider : MonoBehaviour
 					else
 					{
 						light.SetActive(false);
+					}
+				}
+				foreach (var floor in _floor)
+				{
+					if (floor.GetComponent<WallScript>().whenMasterRoom)
+					{
+						floor.GetComponent<MeshRenderer>().enabled = true;
+					}
+					else
+					{
+						floor.GetComponent<MeshRenderer>().enabled = false;
 					}
 				}
 				break;
@@ -282,6 +359,17 @@ public class WallHider : MonoBehaviour
 						light.SetActive(false);
 					}
 				}
+				foreach (var floor in _floor)
+				{
+					if (floor.GetComponent<WallScript>().whenBalcony)
+					{
+						floor.GetComponent<MeshRenderer>().enabled = true;
+					}
+					else
+					{
+						floor.GetComponent<MeshRenderer>().enabled = false;
+					}
+				}
 				break;
 			case Room.DaughtorRoom:
 				foreach (var wall in _walls)
@@ -315,6 +403,17 @@ public class WallHider : MonoBehaviour
 					else
 					{
 						light.SetActive(false);
+					}
+				}
+				foreach (var floor in _floor)
+				{
+					if (floor.GetComponent<WallScript>().whenDaughtorRoom)
+					{
+						floor.GetComponent<MeshRenderer>().enabled = true;
+					}
+					else
+					{
+						floor.GetComponent<MeshRenderer>().enabled = false;
 					}
 				}
 				break;
