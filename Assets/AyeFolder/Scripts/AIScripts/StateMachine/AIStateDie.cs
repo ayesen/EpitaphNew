@@ -18,6 +18,7 @@ public class AIStateDie : AIStateBase
 
     public override void LeaveState(Enemy myEnemy)
     {
-
+        myEnemy.myTrigger.myMR.enabled = true;
+        myEnemy.hittedStates.text = "";
     }
 }
