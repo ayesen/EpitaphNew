@@ -322,6 +322,7 @@ public class EffectManagerNew : MonoBehaviour
 		GameObject spell = Instantiate(spell_proj_prefab, spellSpawnLoc.position, spellSpawnLoc.rotation);
 		spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * spellSpd, ForceMode.Impulse);
 		spell.GetComponent<SpellScript>().hit_amount = hitAmount;
+		spell.GetComponent<SpellScript>().mats = currentMats.ToList();
 		foreach (var mat in currentMats)
 		{
 			foreach (var effect in mat.GetComponent<MatScriptNew>().myEffects)
@@ -337,7 +338,6 @@ public class EffectManagerNew : MonoBehaviour
 		float dir_x = Random.Range(-extraSpawn_angleRange, extraSpawn_angleRange);
 		float dir_y = Random.Range(-extraSpawn_angleRange, extraSpawn_angleRange);
 		float dir_z = Random.Range(-extraSpawn_angleRange, extraSpawn_angleRange);
-
 		spellSpawnLoc.rotation = Quaternion.Euler(dir_x + spellSpawnLoc.rotation.eulerAngles.x, dir_y + spellSpawnLoc.rotation.eulerAngles.y, dir_z + spellSpawnLoc.rotation.eulerAngles.z);
 	}
 

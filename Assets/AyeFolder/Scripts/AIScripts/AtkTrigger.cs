@@ -10,7 +10,7 @@ public class AtkTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "RealPlayer")
+        if(other.gameObject.tag == "Player")
         {
             onAtkTrigger = true;
             //myMR.enabled = true;
@@ -19,7 +19,7 @@ public class AtkTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "RealPlayer")
+        if (other.gameObject.tag == "Player")
         {
             
             onAtkTrigger = false;

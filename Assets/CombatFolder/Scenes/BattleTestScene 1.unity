@@ -5379,7 +5379,7 @@ MonoBehaviour:
   shield: 100
   maxShield: 100
   atkSpd: 2
-  attack: 0
+  attackamt: 0
   preAtkSpd: 2
   atkTime: 1
   postAtkSpd: 2
@@ -6960,7 +6960,7 @@ MonoBehaviour:
   shield: 100
   maxShield: 100
   atkSpd: 2
-  attack: 0
+  attackamt: 0
   preAtkSpd: 2
   atkTime: 1
   postAtkSpd: 2
@@ -7701,11 +7701,11 @@ MonoBehaviour:
   hp: 20
   spd: 2
   rot_spd: 4
-  actualPlayer: {fileID: 769604847}
+  playerModel: {fileID: 769604847}
   selectedMats: []
   matSlots:
   - {fileID: 486996627}
-  - {fileID: 438350678}
+  - {fileID: 1774612143}
   - {fileID: 1543203866}
   - {fileID: 1174748991}
   mat1: {fileID: 1344694507}
@@ -7883,7 +7883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1774612144
 MonoBehaviour:
   m_ObjectHideFlags: 0

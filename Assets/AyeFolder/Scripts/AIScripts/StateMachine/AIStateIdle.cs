@@ -13,7 +13,7 @@ public class AIStateIdle : AIStateBase
 
     public override void Update(Enemy myEnemy)
     {
-        if (myEnemy.phase != Enemy.AIPhase.NotInBattle) // in battle phase 1 or 2
+        if (myEnemy.phase != Enemy.AIPhase.NotInBattle || myEnemy.phase != SmallBear.AIPhase.NotInBattle) // in battle phase 1 or 2
         {
             myEnemy.Idleing();
             if (myEnemy.InRange())

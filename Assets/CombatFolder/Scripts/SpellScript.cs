@@ -5,7 +5,7 @@ using System.Linq;
 
 public class SpellScript : MonoBehaviour
 {
-	public GameObject mat;
+	public List<GameObject> mats;
 	public ParticleSystem burst;
 	public ParticleSystem fragments;
 	public List<EffectStructNew> myEffects;
@@ -52,11 +52,12 @@ public class SpellScript : MonoBehaviour
 		}
 		else if (collision.gameObject.CompareTag("InteractableObject"))
 		{
-			if (collision.gameObject.GetComponent<InteractableObjectScript>().reactionMat == mat)
+			if (mats.Contains(collision.gameObject.GetComponent<InteractableObjectScript>().reactionMat))
 			{
 				collision.gameObject.SendMessage("Reaction");
 			}
 		}
+		
 		DestroyEvent();
 	}
 
