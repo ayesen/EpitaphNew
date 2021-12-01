@@ -132,3 +132,4 @@ MonoBehaviour:
   myEffects: []
   hit_amount: 0
   hit_interval: 0.2
+  collisionPrefab: {fileID: 3171771419032561606, guid: 8464666b7d5edac438f7e31026d878ac, type: 3}

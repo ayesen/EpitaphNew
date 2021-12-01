@@ -19,7 +19,7 @@ public class AITestCTRLScript : MonoBehaviour
 
 	private void Update()
 	{
-		dropMeterUI.GetComponent<TextMesh>().text = eS.dropMeter.ToString();
+		dropMeterUI.GetComponent<TextMesh>().text = eS.breakMeter.ToString();
 		if (eS.GetComponent<NavMeshAgent>().enabled)
 		{
 			if (eS.walkable)

@@ -217,13 +217,16 @@ public class SpellCtrlScript : MonoBehaviour
 
 	private void SpawnSpell_proj() // send out the spell
 	{
-		GetMatParams();
-		GameObject spell = Instantiate(spell_proj_prefab, spellSpawnLoc.position, spellSpawnLoc.rotation);
-		spell.GetComponent<MeshRenderer>().material = ps.currentMat.GetComponent<MatScript>().myMaterial;
-		spell.GetComponent<Rigidbody>().mass = spellMass;
-		spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * spellSpd, ForceMode.Impulse);
-		spell.GetComponent<SpellScript>().mat = ps.currentMat;
-		anim.Play("testATK");
+		if (ps != null)
+		{
+			GetMatParams();
+			GameObject spell = Instantiate(spell_proj_prefab, spellSpawnLoc.position, spellSpawnLoc.rotation);
+			spell.GetComponent<MeshRenderer>().material = ps.currentMat.GetComponent<MatScript>().myMaterial;
+			spell.GetComponent<Rigidbody>().mass = spellMass;
+			spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * spellSpd, ForceMode.Impulse);
+			spell.GetComponent<SpellScript>().mat = ps.currentMat;
+			anim.Play("testATK");
+		}
 	}
 
 	private void SpawnSpell_aoe() // spawn a cylinder collider
@@ -277,7 +280,7 @@ public class SpellCtrlScript : MonoBehaviour
 
 	private void GetMatParams()
 	{
-		if (ps.currentMat != null)
+		if (ps != null && ps.currentMat != null)
 		{
 			MatScript ms = ps.currentMat.GetComponent<MatScript>();
 			spellMass = ms.mass;
@@ -289,7 +292,7 @@ public class SpellCtrlScript : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogError("player doesn't have a mat yet");
+			//Debug.LogError("player doesn't have a mat yet");
 		}
 	}
 }

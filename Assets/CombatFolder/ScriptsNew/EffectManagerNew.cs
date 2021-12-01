@@ -1,27 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EffectManagerNew : MonoBehaviour
 {
     public static EffectManagerNew me;
 	public List<GameObject> currentMats;
 
-	[Header("Situation Manager")]
-	public bool casting;
-	public bool dmgDealt;
-	public bool enemyHit;
+	[Header("Condition Manager")]
+	[HideInInspector]
+	public List<ConditionStruct> conditionProcessList; // conditions to be processed
+	[HideInInspector]
+	public List<GameObject> enemiesEffected; // enemies that has effects on them
 
 	[Header("Spawn Manager")]
+	public float spellSpd;
 	public Transform spellSpawnLoc;
 	public GameObject spell_proj_prefab;
 	public float extraSpawn_angleRange;
-
-	[Header("Enemy Stuffs")]
-	public List<GameObject> enemiesEffected; // enemies that have effects infliced on them
+	public int spawnCount = 1; // number of spells to spawn, default is 1
+	public int hitCount = 1; // number of detection, default is 1
 
 	[Header("Effect Infliction")]
 	public GameObject effectHolder_prefab;
+
+	[Header("VFX")]
+	public ParticleSystem burst;
+	public ParticleSystem fragments;
+	public ParticleSystem fragments_dot;
+
+	public enum CtrlType
+	{
+		cantWalk,
+		cantAttack
+	};
 
 	private void Awake()
 	{
@@ -30,7 +43,7 @@ public class EffectManagerNew : MonoBehaviour
 
 	private void Update()
 	{
-		ProcessEffects();
+		ProcessConditions();
 	}
 
 	public void RefreshCurrentMats()
@@ -42,28 +55,31 @@ public class EffectManagerNew : MonoBehaviour
 		}
 	}
 
-	public void ProcessEffects()
+	public void ProcessConditions()
 	{
-		// when casting
-		if (casting)
+		if (conditionProcessList.Count > 0)
 		{
-			CastingEvent_Inflict();
-			CastingEvent();
-			casting = false;
+			foreach (var conditionProcess in conditionProcessList.ToList())
+			{
+				if (conditionProcess.condition == EffectStructNew.Condition.casting)
+				{
+					CastingEvent_Inflict();
+					CastingEvent(conditionProcess.conditionTrigger);
+				}
+				else if (conditionProcess.condition == EffectStructNew.Condition.dealtDmg)
+				{
+					DmgDealtEvents(conditionProcess);
+				}
+				else if (conditionProcess.condition == EffectStructNew.Condition.collision_enemy)
+				{
+					EnemyHitEvent();
+				}
+				//NoneEvents();
+				print("condition processed: " + conditionProcess.condition + " condition trigger: " + conditionProcess.conditionTrigger);
+				conditionProcessList.Remove(conditionProcess);
+			}
 		}
-		// when dmg dealt
-		if (dmgDealt)
-		{
-
-			dmgDealt = false;
-		}
-		// when collider hit
-		if (enemyHit)
-		{
-			EnemyHitEvent();
-			enemyHit = false;
-		}
-		// no condition
+		// no condition events, effect will take place immediately with no condition check whatsoever
 		NoneEvents();
 	}
 
@@ -75,34 +91,49 @@ public class EffectManagerNew : MonoBehaviour
 		{
 			MatScriptNew ms = mat.GetComponent<MatScriptNew>();
 			// inflict effects on target
+			bool recordEffects = true;
 			foreach (var effect in ms.myEffects)
 			{
-				if (effect.toWhom == EffectStructNew.Target.player) // pick out effects that works on player, generally one time or continuous buffs
+				if (effect.doThis == EffectStructNew.Effect.spawnHitDetectionAfterDeath)
 				{
-					SpawnEffectHolders(PlayerScriptNew.me.gameObject, effect);
+					recordEffects = false;
+				}
+			}
+			if (recordEffects)
+			{
+				foreach (var effect in ms.myEffects)
+				{
+					if (effect.toWhom == EffectStructNew.Target.player) // pick out effects that works on player
+					{
+						SpawnEffectHolders(PlayerScriptNew.me.gameObject, effect, gameObject.transform.position);
+					}
 				}
 			}
 		}
 	}
 
-	public void CastingEvent() // process effects on targets
+	public void CastingEvent(GameObject conditionTrigger) // process effects on targets
 	{
 		// get effects inflicted on player
-		int spawnCount = 1; // number of spells to spawn, default is 1
-		int hitCount = 1; // number of detection, default is 1
-
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-			if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnExtra) // if effect spawns extra spells, add it to spawn count
+			if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.player &&
+				conditionTrigger == PlayerScriptNew.me.gameObject) // casting can only be triggered by player, but for the sake of unification, still checks for triggerer
 			{
-				spawnCount += (int)ehs.myEffect.forHowMuch;
-				ehs.destroy = true;
-			}
-			if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnConsecutive) // if effect increases hit count, add it to default hit count
-			{
-				hitCount += (int)ehs.myEffect.forHowMuch;
-				ehs.destroy = true;
+				if (ehs.myEffect.iS == EffectStructNew.Condition.casting) // only process effects that take place when casting condition is met
+				{
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnExtraSpell) // if effect spawns extra spells, add it to spawn count
+					{
+						EffectStorage.me.SpawnExtraSpell(ehs);
+						ehs.destroy = true;
+					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.spawnExtraCollisionDetection) // if effect increases hit count, add it to default hit count
+					{
+						EffectStorage.me.ExtraCollisionDetection(ehs);
+						ehs.destroy = true;
+					}
+				}
 			}
 		}
 
@@ -112,7 +143,8 @@ public class EffectManagerNew : MonoBehaviour
 			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders)
 			{
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-				if (ehs.myEffect.when == EffectStructNew.Condition.casting)
+				if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.player &&
+					conditionTrigger == PlayerScriptNew.me.gameObject)
 				{
 					// effects
 				}
@@ -129,21 +161,24 @@ public class EffectManagerNew : MonoBehaviour
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-			if (ehs.myEffect.when == EffectStructNew.Condition.enemyHit)
+			if (ehs.myEffect.iS == EffectStructNew.Condition.collision_enemy)
 			{
 				
 			}
 		}
 		
-		// check effects on enemie
+		// check effects on enemies
 		foreach (var enemy in enemiesEffected)
 		{
 			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders)
 			{
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-				if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt)
+				if (ehs.myEffect.iS == EffectStructNew.Condition.collision_enemy)
 				{
-					
+					if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.owner_enemy)
+					{
+
+					}
 				}
 			}
 		}
@@ -156,7 +191,14 @@ public class EffectManagerNew : MonoBehaviour
 		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
 		{
 			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-			
+			if (ehs.myEffect.iS == EffectStructNew.Condition.none)
+			{
+				if (ehs.myEffect.doThis == EffectStructNew.Effect.knockBack)
+				{
+					EffectStorage.me.KnockBack(ehs.myEffect.forHowMuch, ehs.myCreatorPos, PlayerScriptNew.me.gameObject);
+					ehs.destroy = true;
+				}
+			}
 		}
 
 		// check effects on enemies
@@ -165,23 +207,96 @@ public class EffectManagerNew : MonoBehaviour
 			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders) // get these enemies' effect holders
 			{
 				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
-				if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt) // for each holder, check its effect
-				{
-					enemy.GetComponent<Enemy>().LoseHealth((int)ehs.myEffect.forHowMuch);
-					ehs.destroy = true;
+				if (ehs.myEffect.iS == EffectStructNew.Condition.none)
+				{ 
+					// for each holder, check its effect
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt)
+					{
+						EffectStorage.me.HurtEnemy(ehs, enemy);
+						ehs.destroy = true;
+					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt_DOT)
+					{
+						EffectStorage.me.DotEnemy(ehs, enemy);
+						ehs.destroy = true;
+					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.stun)
+					{
+						EffectStorage.me.StunEnemy(ehs, enemy);
+						ehs.destroy = true;
+					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.break_atk)
+					{
+						EffectStorage.me.Break(ehs, enemy);
+						ehs.destroy = true;
+					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.knockBack)
+					{
+						EffectStorage.me.KnockBack(ehs.myEffect.forHowMuch, ehs.myCreatorPos, enemy);
+						ehs.destroy = true;
+					}
+					if (ehs.myEffect.doThis == EffectStructNew.Effect.hurt_basedOnDis)
+					{
+						EffectStorage.me.HurtEnemyBasedOnDis(ehs, enemy, Vector3.Distance(ehs.myCreatorPos, enemy.transform.position));
+						ehs.destroy = true;
+					}
 				}
 			}
 		}
 	}
 	#endregion
-	#endregion
+	#region Damge Dealt Events
+	public void DmgDealtEvents(ConditionStruct condition)
+	{
+		// check effects on player
+		foreach (var effectHolder in PlayerScriptNew.me.gameObject.GetComponent<EffectHoldersHolderScript>().effectHolders)
+		{
+			EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+			if (ehs.myEffect.iS == EffectStructNew.Condition.dealtDmg)
+			{
+				if (ehs.myEffect.doThis == EffectStructNew.Effect.heal)
+				{
+					EffectStorage.me.Heal(ehs, PlayerScriptNew.me.gameObject, condition);
+				}
+			}
+		}
 
-	public void SpawnEffectHolders(GameObject target, EffectStructNew effect)
+		// check effects on enemies
+		foreach (var enemy in enemiesEffected) // get every enemies that have effects on them
+		{
+			foreach (var effectHolder in enemy.GetComponent<EffectHoldersHolderScript>().effectHolders) // get these enemies' effect holders
+			{
+				EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
+				
+				if (ehs.myEffect.iS == EffectStructNew.Condition.dealtDmg) // check effect situation
+				{
+					if (ehs.myEffect.when == EffectStructNew.ConditionTriggeredBy.owner_enemy && // if this condition need to be triggered by the owner of the effect holder
+						ehs.myOwner == condition.conditionTrigger) // if the owner of the effect holder matches the condition trigger
+					{
+						if (ehs.myEffect.doThis == EffectStructNew.Effect.stun) // check effect
+						{
+							EffectStorage.me.StunEnemy(ehs, enemy);
+						}
+						if (ehs.myEffect.doThis == EffectStructNew.Effect.break_atk)
+						{
+							EffectStorage.me.Break(ehs, enemy);
+						}
+					}
+				}
+			}
+		}
+	}
+	#endregion
+	//! events that happen when the spell is destroyed due to lifespan is in spell scripts
+	#endregion
+	
+	public void SpawnEffectHolders(GameObject target, EffectStructNew effect, Vector3 creatorPos)
 	{
 		GameObject effectHolder = Instantiate(effectHolder_prefab, target.transform);
 		EffectHolderScript ehs = effectHolder.GetComponent<EffectHolderScript>();
 		ehs.myOwner = target;
 		ehs.myEffect = effect;
+		ehs.myCreatorPos = creatorPos;
 		target.GetComponent<EffectHoldersHolderScript>().effectHolders.Add(effectHolder);
 	}
 	#region spawn spell functions
@@ -198,12 +313,14 @@ public class EffectManagerNew : MonoBehaviour
 			DefaultSpawn(hitAmount);
 			mAmount--;
 		}
+		spawnCount = 1;
+		hitCount = 1;
 	}
 
 	private void DefaultSpawn(int hitAmount)
 	{
 		GameObject spell = Instantiate(spell_proj_prefab, spellSpawnLoc.position, spellSpawnLoc.rotation);
-		spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * 5, ForceMode.Impulse);
+		spell.GetComponent<Rigidbody>().AddForce(spellSpawnLoc.transform.forward * spellSpd, ForceMode.Impulse);
 		spell.GetComponent<SpellScript>().hit_amount = hitAmount;
 		foreach (var mat in currentMats)
 		{
