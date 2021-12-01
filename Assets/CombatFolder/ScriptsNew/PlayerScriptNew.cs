@@ -12,7 +12,7 @@ public class PlayerScriptNew : MonoBehaviour
 	public float rot_spd;
 	private GameObject enemy;
     private Animator anim;
-    public GameObject actualPlayer;
+    public GameObject playerModel;
 	private bool dead = false;
 	[Header("Mat")]
 	public List<GameObject> selectedMats; // mats activated
@@ -33,7 +33,7 @@ public class PlayerScriptNew : MonoBehaviour
 
 	private void Start()
     {
-        anim = actualPlayer.GetComponent<Animator>();
+        anim = playerModel.GetComponent<Animator>();
 		enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 

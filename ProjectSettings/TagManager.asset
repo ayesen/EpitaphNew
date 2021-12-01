@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - Wall Hide Mask
   - Light
+  - Floor
   layers:
   - Default
   - TransparentFX

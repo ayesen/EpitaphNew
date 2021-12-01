@@ -11,7 +11,14 @@ public class InteractableObjectScript : MonoBehaviour
 	public string methodToCall;
 	public GameObject methodsOwner;
 
-	public void Reaction()
+	public bool triggerOn = false;
+
+    private void Start()
+    {
+		triggerOn = false;
+    }
+
+    public void Reaction()
 	{
 		if (objectsToShow.Count > 0) // show things
 		{
@@ -28,5 +35,6 @@ public class InteractableObjectScript : MonoBehaviour
 			}
 		}
 		methodsOwner.SendMessage(methodToCall);
+		triggerOn = true;
 	}
 }

@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
 	public GameObject cotton;
 	public GameObject enemy;
 	public GameObject MatInventory;
-
+	private bool dead = false;
 	//Temp inventory
 	[Header("Temp Inventory")]
 	public List<InventoryDict> tempInventory;
@@ -35,51 +35,55 @@ public class PlayerScript : MonoBehaviour
 
 	private void Update()
 	{
+		Death();
+		if(!dead)
+		{ 
 		// simple movement for now
 		if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) &&
 			anim.GetCurrentAnimatorStateInfo(0).IsName("testIdle")) // if in idel state and a movement key pressed, go into walk state
 		{
 			anim.Play("testWalk");
 		}
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("testWalk")) // if in walk state, walk
-		{
-			// walking diagonally
-			if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+			if (anim.GetCurrentAnimatorStateInfo(0).IsName("testWalk")) // if in walk state, walk
 			{
-				transform.position = new Vector3(transform.position.x - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
-			}
-			else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-			{
-				transform.position = new Vector3(transform.position.x + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
-			}
-			else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-			{
-				transform.position = new Vector3(transform.position.x - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
-			}
-			else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-			{
-				transform.position = new Vector3(transform.position.x + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
-			}
-			// walking in one axis
-			else if (Input.GetKey(KeyCode.W))
-			{
-				transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + spd * Time.deltaTime);
-			}
-			else if (Input.GetKey(KeyCode.S))
-			{
-				transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - spd * Time.deltaTime);
-			}
-			else if (Input.GetKey(KeyCode.A))
-			{
-				transform.position = new Vector3(transform.position.x - spd * Time.deltaTime, transform.position.y, transform.position.z);
-			}
-			else if (Input.GetKey(KeyCode.D))
-			{
-				transform.position = new Vector3(transform.position.x + spd * Time.deltaTime, transform.position.y, transform.position.z);
-			}
-			else
-			{
-				anim.Play("testIdle");
+				// walking diagonally
+				if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+				{
+					transform.position = new Vector3(transform.position.x - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
+				}
+				else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+				{
+					transform.position = new Vector3(transform.position.x + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
+				}
+				else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+				{
+					transform.position = new Vector3(transform.position.x - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
+				}
+				else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+				{
+					transform.position = new Vector3(transform.position.x + Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime, transform.position.y, transform.position.z - Mathf.Sqrt(Mathf.Pow(spd, 2) / 2) * Time.deltaTime);
+				}
+				// walking in one axis
+				else if (Input.GetKey(KeyCode.W))
+				{
+					transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + spd * Time.deltaTime);
+				}
+				else if (Input.GetKey(KeyCode.S))
+				{
+					transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - spd * Time.deltaTime);
+				}
+				else if (Input.GetKey(KeyCode.A))
+				{
+					transform.position = new Vector3(transform.position.x - spd * Time.deltaTime, transform.position.y, transform.position.z);
+				}
+				else if (Input.GetKey(KeyCode.D))
+				{
+					transform.position = new Vector3(transform.position.x + spd * Time.deltaTime, transform.position.y, transform.position.z);
+				}
+				else
+				{
+					anim.Play("testIdle");
+				}
 			}
 		}
 
@@ -275,5 +279,17 @@ public class PlayerScript : MonoBehaviour
 			}
 		}
 		return true;
+	}
+
+	public void LoseHealth_player(int amt)
+	{
+		hp -= amt;
+	}
+	public void Death()
+	{
+		if (hp <= 0)
+		{
+			dead = true;
+		}
 	}
 }
