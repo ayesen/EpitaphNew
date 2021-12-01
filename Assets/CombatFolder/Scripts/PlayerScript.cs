@@ -289,13 +289,17 @@ public class PlayerScript : MonoBehaviour
 	public void LoseHealth_player(int amt)
 	{
 		hp -= amt;
+		if(hp < 15)
+        {
+			PostProcessingManager.Me.ChangeFilter();
+        }
 	}
 	public void Death()
 	{
 		if (hp <= 0)
 		{
 			dead = true;
-			SafehouseManager.Me.isSafehouse = true;
+			PostProcessingManager.Me.StartDeadFilter();
 		}
 	}
 }

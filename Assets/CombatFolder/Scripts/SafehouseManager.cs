@@ -12,6 +12,8 @@ public class SafehouseManager : MonoBehaviour
     private bool isFading;
     private bool checkBoolChange;
 
+    public Enemy enemyScript;
+
     public Transform spawnPoint;
 
     private static SafehouseManager me = null;
@@ -36,9 +38,9 @@ public class SafehouseManager : MonoBehaviour
 
     void Start()
     {
-        isSafehouse = true;
         checkBoolChange = isSafehouse;
         cg = GetComponent<CanvasGroup>();
+        enemyScript = GameObject.Find("Bear").GetComponent<Enemy>();
     }
 
     void Update()
@@ -70,6 +72,7 @@ public class SafehouseManager : MonoBehaviour
         if(isSafehouse != checkBoolChange && isSafehouse)
         {
             StartCoroutine(FadeCanvas(cg, 1f, fadeTime));
+            PostProcessingManager.Me.StartReset();
             PlayerScript.me.gameObject.SetActive(false);
             checkBoolChange = isSafehouse;
         }
@@ -77,6 +80,9 @@ public class SafehouseManager : MonoBehaviour
         {
             StartCoroutine(FadeCanvas(cg, 0f, fadeTime));
             RespawnPlayer(spawnPoint);
+            enemyScript.ResetEnemy();
+            WallHider.me.roomPlayerIsIn = WallHider.Room.corridor;
+
             checkBoolChange = isSafehouse;
         }
     }
