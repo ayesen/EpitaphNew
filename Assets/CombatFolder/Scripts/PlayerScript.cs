@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
 	public GameObject cotton;
 	public GameObject enemy;
 	public GameObject MatInventory;
-	private bool dead = false;
+	public bool dead = false;
 	//Temp inventory
 	[Header("Temp Inventory")]
 	public List<InventoryDict> tempInventory;
@@ -35,6 +35,11 @@ public class PlayerScript : MonoBehaviour
 
 	private void Update()
 	{
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+			hp = 0;
+        }
+
 		Death();
 		if(!dead)
 		{ 
@@ -290,6 +295,7 @@ public class PlayerScript : MonoBehaviour
 		if (hp <= 0)
 		{
 			dead = true;
+			SafehouseManager.Me.isSafehouse = true;
 		}
 	}
 }
