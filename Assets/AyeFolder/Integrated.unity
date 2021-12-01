@@ -4687,8 +4687,8 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   moveSpeed: 0
-  shield: 100
-  maxShield: 100
+  shield: 500
+  maxShield: 500
   atkSpd: 2
   attackamt: 0
   preAtkSpd: 2

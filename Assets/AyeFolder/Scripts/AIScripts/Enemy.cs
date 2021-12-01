@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
             preAtkSpd = 2;
             atkTime = 1;
             postAtkSpd = 2;
-            attackamt = 5;
+            attackamt = 10;
 
             myTriggerObj = GameObject.Find("Atk1Trigger");
             if (shield <= 0)
@@ -132,6 +132,8 @@ public class Enemy : MonoBehaviour
     {
         health = 100;
         maxHealth = 100;
+        shield = 200;
+        maxShield = 200;
         changeLimit = 2;
         this.transform.position = ResetPos;
         ChangePhase(AIPhase.NotInBattle, 1);
