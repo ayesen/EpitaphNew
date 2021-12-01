@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour
     {
         if (target.gameObject.tag == "Player")
         {
-            target.GetComponent<PlayerScriptNew>().LoseHealth_player(dmgAmt);
+            target.GetComponent<PlayerScript>().LoseHealth_player(dmgAmt);
         }
         if (target.gameObject.tag == "Enemy")
         {
@@ -149,19 +149,22 @@ public class Enemy : MonoBehaviour
         print("dealt " + hurtAmt + " damage to " + gameObject.name);
 
         // og code
-        if (shield <= 0)
+        if (myAC.currentState != myAC.changePhaseState)
         {
-            if (health - hurtAmt >= 0)
+            if (shield <= 0)
             {
-                health -= hurtAmt;
+                if (health - hurtAmt >= 0)
+                {
+                    health -= hurtAmt;
+                }
+                else
+                {
+                    health = 0;
+                }
             }
             else
-            {
-                health = 0;
-            }
+                shield -= hurtAmt;
         }
-        else
-            shield -= hurtAmt;
     }
 
     public void ChangeSpd(int ChangeAmt)
