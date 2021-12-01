@@ -12,6 +12,8 @@ public class SafehouseManager : MonoBehaviour
     private bool isFading;
     private bool checkBoolChange;
 
+    public Transform spawnPoint;
+
     private static SafehouseManager me = null;
 
     public static SafehouseManager Me
@@ -68,13 +70,23 @@ public class SafehouseManager : MonoBehaviour
         if(isSafehouse != checkBoolChange && isSafehouse)
         {
             StartCoroutine(FadeCanvas(cg, 1f, fadeTime));
+            PlayerScript.me.gameObject.SetActive(false);
             checkBoolChange = isSafehouse;
         }
         else if(isSafehouse != checkBoolChange && !isSafehouse)
         {
             StartCoroutine(FadeCanvas(cg, 0f, fadeTime));
+            RespawnPlayer(spawnPoint);
             checkBoolChange = isSafehouse;
         }
+    }
+
+    public void RespawnPlayer(Transform SpawnPoint)
+    {
+        PlayerScript.me.transform.position = new Vector3(SpawnPoint.position.x, PlayerScript.me.transform.position.y, SpawnPoint.position.z);
+        PlayerScript.me.hp = 30;
+        PlayerScript.me.dead = false;
+        PlayerScript.me.gameObject.SetActive(true);
     }
 
     IEnumerator FadeCanvas(CanvasGroup cg, float endValue, float duration)
