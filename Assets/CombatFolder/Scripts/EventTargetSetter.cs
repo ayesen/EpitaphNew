@@ -10,7 +10,7 @@ public class EventTargetSetter : MonoBehaviour
 	{
 		if (pos.Count == 2)
 		{
-			transform.position = pos[GameManager.me.stateOfLevel].position;
+			//transform.position = pos[GameManager.me.stateOfLevel].position;
 		}
 		else
 		{

@@ -141,13 +141,16 @@ public class WallHider : MonoBehaviour
 			case Room.restRoom:
 				foreach (var wall in _walls)
 				{
-					if (wall.GetComponent<WallScript>().whenRestroom)
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-					}
-					else
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+					if (wall != null)
+                    {
+						if (wall.GetComponent<WallScript>().whenRestroom)
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+						}
+						else
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+						}
 					}
 				}
 				foreach (var mask in _masks)
@@ -187,13 +190,16 @@ public class WallHider : MonoBehaviour
 			case Room.smallCorridor:
 				foreach (var wall in _walls)
 				{
-					if (wall.GetComponent<WallScript>().whenSmallCorridor)
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-					}
-					else
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+					if (wall != null)
+                    {
+						if (wall.GetComponent<WallScript>().whenSmallCorridor)
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+						}
+						else
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+						}
 					}
 				}
 				foreach (var mask in _masks)
@@ -328,13 +334,16 @@ public class WallHider : MonoBehaviour
 			case Room.balcony:
 				foreach (var wall in _walls)
 				{
-					if (wall.GetComponent<WallScript>().whenBalcony)
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-					}
-					else
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+					if (wall != null)
+                    {
+						if (wall.GetComponent<WallScript>().whenBalcony)
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+						}
+						else
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+						}
 					}
 				}
 				foreach (var mask in _masks)
@@ -374,13 +383,16 @@ public class WallHider : MonoBehaviour
 			case Room.DaughtorRoom:
 				foreach (var wall in _walls)
 				{
-					if (wall.GetComponent<WallScript>().whenDaughtorRoom)
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-					}
-					else
-					{
-						wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+					if (wall != null)
+                    {
+						if (wall.GetComponent<WallScript>().whenDaughtorRoom)
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+						}
+						else
+						{
+							wall.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+						}
 					}
 				}
 				foreach (var mask in _masks)

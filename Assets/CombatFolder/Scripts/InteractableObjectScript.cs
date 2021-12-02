@@ -20,6 +20,7 @@ public class InteractableObjectScript : MonoBehaviour
 
     public void Reaction()
 	{
+		print("have reaction");
 		if (objectsToShow.Count > 0) // show things
 		{
 			foreach (var thing in objectsToShow)
@@ -34,7 +35,10 @@ public class InteractableObjectScript : MonoBehaviour
 				thing.SetActive(false);
 			}
 		}
-		methodsOwner.SendMessage(methodToCall);
+		if (methodToCall.Length > 0)
+        {
+			methodsOwner.SendMessage(methodToCall);
+		}
 		triggerOn = true;
 	}
 }

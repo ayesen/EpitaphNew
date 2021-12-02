@@ -44,18 +44,20 @@ public class SpellScript : MonoBehaviour
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (!collision.gameObject.CompareTag("Player"))
+		print(("collide"));
+		if (collision.gameObject.CompareTag("InteractableObject"))
 		{
-			StartCoroutine(Detection(hit_amount, collision, collision.GetContact(0).point));
-			GetComponent<BoxCollider>().enabled = false;
-			GetComponent<MeshRenderer>().enabled = false;
-		}
-		else if (collision.gameObject.CompareTag("InteractableObject"))
-		{
+			print(mats);
 			if (mats.Contains(collision.gameObject.GetComponent<InteractableObjectScript>().reactionMat))
 			{
 				collision.gameObject.SendMessage("Reaction");
 			}
+		}
+		else if (!collision.gameObject.CompareTag("Player"))
+		{
+			StartCoroutine(Detection(hit_amount, collision, collision.GetContact(0).point));
+			GetComponent<BoxCollider>().enabled = false;
+			GetComponent<MeshRenderer>().enabled = false;
 		}
 		
 		DestroyEvent();

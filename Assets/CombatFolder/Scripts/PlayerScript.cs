@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
 	public GameObject enemy;
 	public GameObject MatInventory;
 	public bool dead = false;
+	private bool checkBoolChange;
 	//Temp inventory
 	[Header("Temp Inventory")]
 	public List<InventoryDict> tempInventory;
@@ -33,7 +34,12 @@ public class PlayerScript : MonoBehaviour
 		anim = actualModel.GetComponent<Animator>();
 	}
 
-	private void Update()
+    private void Start()
+    {
+		checkBoolChange = dead;
+    }
+
+    private void Update()
 	{
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -296,10 +302,22 @@ public class PlayerScript : MonoBehaviour
 	}
 	public void Death()
 	{
-		if (hp <= 0)
-		{
+		if(hp <= 0)
+        {
 			dead = true;
-			PostProcessingManager.Me.StartDeadFilter();
+        }
+        else
+        {
+			dead = false;
+        }
+		if (dead != checkBoolChange && dead)
+		{
+			checkBoolChange = dead;
+			PostProcessingManager.Me.StartCoroutine(PostProcessingManager.Me.DeadFilter());
 		}
+		else if(dead != checkBoolChange && !dead)
+        {
+			checkBoolChange = dead;
+        }
 	}
 }

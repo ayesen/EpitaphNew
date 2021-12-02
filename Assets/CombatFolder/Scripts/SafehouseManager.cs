@@ -71,8 +71,10 @@ public class SafehouseManager : MonoBehaviour
         //when bool is changed, do once
         if(isSafehouse != checkBoolChange && isSafehouse)
         {
+            Debug.Log("Safehouse");
+            enemyScript.ResetEnemy();
+            PostProcessingManager.Me.StartCoroutine(PostProcessingManager.Me.ResetFilter());
             StartCoroutine(FadeCanvas(cg, 1f, fadeTime));
-            PostProcessingManager.Me.StartReset();
             PlayerScript.me.gameObject.SetActive(false);
             checkBoolChange = isSafehouse;
         }
@@ -80,7 +82,6 @@ public class SafehouseManager : MonoBehaviour
         {
             StartCoroutine(FadeCanvas(cg, 0f, fadeTime));
             RespawnPlayer(spawnPoint);
-            enemyScript.ResetEnemy();
             WallHider.me.roomPlayerIsIn = WallHider.Room.corridor;
 
             checkBoolChange = isSafehouse;
