@@ -8,7 +8,11 @@ public class AIStateDie : AIStateBase
     public override void StartState(Enemy myEnemy)
     {
         myEnemy.myTrigger.myMR.enabled = false;
-        myEnemy.Mother.BackKids();
+        if(myEnemy.Mother != null)
+        {
+            myEnemy.Mother.BackKids();
+
+        }
     }
 
     public override void Update(Enemy myEnemy)

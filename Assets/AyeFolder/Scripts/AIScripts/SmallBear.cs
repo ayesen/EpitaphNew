@@ -15,12 +15,14 @@ public class SmallBear : Enemy
     }
     void Start()
     {
-
+        
     }
 
 
     void Update()
     {
+        HittedStatesIndication();
+        AIDead();
         Debug.Log(phase);
         Debug.Log(myAC.currentState);
     }

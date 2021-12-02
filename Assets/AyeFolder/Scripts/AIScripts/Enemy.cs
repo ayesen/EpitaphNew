@@ -72,10 +72,6 @@ public class Enemy : MonoBehaviour
         PhaseSetting();
         BreakMeter_recovery();
         BreakMeter_show();
-        if (Input.GetKey(KeyCode.O))
-        {
-            ResetEnemy();
-        }
     }
 
     public void ChangePhase(AIPhase phaseName, int time)

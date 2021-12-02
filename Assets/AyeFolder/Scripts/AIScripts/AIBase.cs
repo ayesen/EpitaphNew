@@ -58,6 +58,7 @@ public abstract class AIBase : MonoBehaviour
     public abstract void ChangePhase(AIPhase phaseName, int time);
     public abstract void PhaseSetting();
 
+
     public abstract void AIDead();
 
 
