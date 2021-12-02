@@ -136,13 +136,15 @@ public class Enemy : MonoBehaviour
         maxShield = 200;
         changeLimit = 2;
         Mother.BackKids();
-        this.transform.position = ResetPos;
+        this.GetComponent<NavMeshAgent>().enabled = false;
         ChangePhase(AIPhase.NotInBattle, 1);
         myAC.ChangeState(myAC.idleState);
+        this.transform.position = ResetPos;
         this.GetComponent<MeshRenderer>().enabled = false;
         this.GetComponent<CapsuleCollider>().enabled = false;
         breakMeter_ui.enabled = false;
         hittedStates.enabled = false;
+        myTrigger.GetComponent<AtkTrigger>().onAtkTrigger = false;
         myTrigger.myMR.enabled = false;
 
     }
@@ -301,10 +303,10 @@ public class Enemy : MonoBehaviour
 
     public void GotoLoc()
     {
-        print("ha?");
         // go to specific location and stand still for dialogue
         this.GetComponent<MeshRenderer>().enabled = true;
         this.GetComponent<CapsuleCollider>().enabled = true;
+        this.GetComponent<NavMeshAgent>().enabled = true;
         breakMeter_ui.enabled = true;
         hittedStates.enabled = true;
         myTrigger.myMR.enabled = true;

@@ -8,7 +8,10 @@ public class AIStateIdle : AIStateBase
 
     public override void StartState(Enemy myEnemy)
     {
-        myEnemy.ghostRider.isStopped = true;
+        if (myEnemy.ghostRider.enabled == true)
+        {
+            myEnemy.ghostRider.isStopped = true;
+        }
     }
 
     public override void Update(Enemy myEnemy)

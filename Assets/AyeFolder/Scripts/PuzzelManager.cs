@@ -18,7 +18,7 @@ public class PuzzelManager : MonoBehaviour
     {
         for (int i = 0; i < Triggers.Count; i++)
         {
-            //if triger.bool = true, can open = true
+            canOpen = Triggers[i].GetComponent<InteractableObjectScript>().triggerOn;
 
         }
 

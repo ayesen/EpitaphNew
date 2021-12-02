@@ -91,6 +91,7 @@ public class PostProcessingManager : MonoBehaviour
 
     public IEnumerator ResetFilter()
     {
+        
         float time = 0;
         float timecolor = 0;
         float timevig = 0;
@@ -100,9 +101,10 @@ public class PostProcessingManager : MonoBehaviour
 
         while (CA.colorFilter.value != Color.white)
         {
-            time += Time.fixedDeltaTime / 10;
-            timecolor += Time.fixedDeltaTime / 20;
-            timevig += Time.fixedDeltaTime / 20;
+            Debug.Log("resetf");
+            time += Time.fixedDeltaTime / 5;
+            timecolor += Time.fixedDeltaTime / 10;
+            timevig += Time.fixedDeltaTime / 10;
             CA.saturation.value = Mathf.Lerp(originalSat, 0, time);
             CA.colorFilter.value = Color.Lerp(Color.black, Color.white, timecolor);
             Vig.intensity.value = Mathf.Lerp(originalVig, 0, timevig);
@@ -121,21 +123,22 @@ public class PostProcessingManager : MonoBehaviour
         float originalVig = Vig.intensity.value;
         float originalChrom = ChrAb.intensity.value;
 
-        if (CA.colorFilter.value == Color.black)
-        {
-            SafehouseManager.Me.isSafehouse = true;
-        }
-
         while (CA.colorFilter.value != Color.black)
         {
-            time += Time.fixedDeltaTime/10;
-            timecolor += Time.fixedDeltaTime/20;
-            timevig += Time.fixedDeltaTime/20;
+            Debug.Log("black");
+            time += Time.fixedDeltaTime/5;
+            timecolor += Time.fixedDeltaTime/10;
+            timevig += Time.fixedDeltaTime/10;
             CA.saturation.value = Mathf.Lerp(originalSat, -100, time);
             CA.colorFilter.value = Color.Lerp(Color.white, Color.black, timecolor);
             Vig.intensity.value = Mathf.Lerp(originalVig, 1, timevig);
             ChrAb.intensity.value = Mathf.Lerp(originalChrom, 1, timevig);
             yield return null;
+        }
+
+        if (CA.colorFilter.value == Color.black)
+        {
+            SafehouseManager.Me.isSafehouse = true;
         }
     }
 
